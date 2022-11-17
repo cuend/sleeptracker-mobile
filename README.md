@@ -1,5 +1,6 @@
 --Readme document for *author(s)*, *email(s)*, *UCI id(s)*--
 Anthony Martinez, anthomm5@uci.edu, 58472467
+David Cuen, cuend@uci.edu, 61157101
 
 1. How many assignment points do you believe you completed (replace the *'s with your numbers)?
 
