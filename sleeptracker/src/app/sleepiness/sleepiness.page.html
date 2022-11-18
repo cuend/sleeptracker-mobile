@@ -7,3 +7,24 @@
 <ion-content>
 
 </ion-content>
+
+
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="logSleep">
+      <ion-icon name="moon-sharp"></ion-icon>
+      <ion-label>Log Sleep</ion-label>
+      <ion-badge *NgIf=""></ion-badge>
+    </ion-tab-button>
+
+    <ion-tab-button tab="sleepiness">
+      <ion-icon name="battery-dead-sharp"></ion-icon>
+      <ion-label>Track Sleepiness</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="viewData">
+      <ion-icon name="analytics-sharp"></ion-icon>
+      <ion-label>View Data</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
