@@ -9,6 +9,8 @@ import { OvernightSleepData } from '../data/overnight-sleep-data';
 })
 export class LogSleepPage implements OnInit {
   sleepService:SleepService;
+  currentTime:Date;
+  overNightSleep:OvernightSleepData;
 
   constructor(sleepService:SleepService) { 
     this.sleepService = sleepService;
@@ -19,6 +21,10 @@ export class LogSleepPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  startCurrentSleep() {
+    this.currentTime = new Date;
   }
 
 }

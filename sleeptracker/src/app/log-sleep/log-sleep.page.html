@@ -4,10 +4,33 @@
   </ion-toolbar>
 </ion-header>
 
+<style>
+ion-row {
+height: 50%;
+width: 100%;
+align-items: center;
+}
+.design {
+  position: center;
+  width: 90%;
+  height: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+</style>
+
 <ion-content>
 
-  <div id="demo">
-    <strong>The Log Sleep page</strong>
-  </div>
+  <ion-grid class="design">
+    <ion-row>
+      <ion-col>
+        <strong>The Log Sleep page</strong>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-button shape="round" color="warning">Start Sleep</ion-button>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>
