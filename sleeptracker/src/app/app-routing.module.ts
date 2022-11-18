@@ -15,6 +15,14 @@ const routes: Routes = [
     path: 'sleepiness',
     loadChildren: () => import('./sleepiness/sleepiness.module').then( m => m.SleepinessPageModule)
   },
+  {
+    path: 'log-sleep',
+    loadChildren: () => import('./log-sleep/log-sleep.module').then( m => m.LogSleepPageModule)
+  },
+  {
+    path: 'view-data',
+    loadChildren: () => import('./view-data/view-data.module').then( m => m.ViewDataPageModule)
+  },
 ];
 
 @NgModule({
