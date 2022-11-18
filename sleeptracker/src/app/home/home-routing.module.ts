@@ -17,6 +17,24 @@ const routes: Routes = [
             loadChildren:() => import('../sleepiness/sleepiness.module').then(m => m.SleepinessPageModule)
           }
         ]
+      },
+      {
+        path: 'logSleep',
+        children: [
+          {
+            path:'',
+            loadChildren: () => import('../log-sleep/log-sleep.module').then(m=>m.LogSleepPageModule)
+          }
+        ]
+      },
+      {
+        path: 'viewData',
+        children: [
+          {
+            path:'',
+            loadChildren: () => import('../view-data/view-data.module').then(m=>m.ViewDataPageModule)
+          }
+        ]
       }
     ]
   }
