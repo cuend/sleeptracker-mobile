@@ -16,6 +16,10 @@ export class LogSleepPage implements OnInit {
 
   constructor(sleepService:SleepService) { 
     this.sleepService = sleepService;
+
+    sleepService.logOvernightData(new OvernightSleepData(new Date(), new Date()));
+
+    
   }
 
   ngOnInit() {
