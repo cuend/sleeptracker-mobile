@@ -5,6 +5,7 @@
 </ion-header>
 
 <style>
+
 ion-row {
 height: 30%;
 width: 100%;
@@ -18,14 +19,21 @@ align-items: center;
   margin-right: auto;
 }
 
+.notice {
+  text-decoration-color: lightslategray;
+  text-align: left;
+  font-size: small;
+  justify-content: center;
+}
+
 </style>
 
 <ion-content>
 
   <ion-grid class="design">
-    <ion-row>
+    <ion-row class="notice">
       <ion-col>
-        <strong *ngIf="overNightSleep">Previous Sleep: On the {{overNightSleep.dateString()}}. You slept a total of {{overNightSleep.summaryString()}} </strong>
+        <p *ngIf="overNightSleep">Previous Sleep Data: On the {{overNightSleep.dateString()}}. You slept a total of {{overNightSleep.summaryString()}} </p>
       </ion-col>
     </ion-row>
     <ion-row>
