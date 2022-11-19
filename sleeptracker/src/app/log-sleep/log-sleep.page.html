@@ -29,8 +29,8 @@ align-items: center;
       </ion-col>
     </ion-row>
     <ion-row class="ion-justify-content-center">
-      <ion-button shape="round" color="success" (click)="startCurrentSleep" *ngIf="!currentlySleeping">Start Sleep</ion-button>
-      <ion-button shape="round" color="warning" *ngIf="currentlySleeping">End Sleep</ion-button>
+      <ion-button shape="round" color="success" (click)="startCurrentSleep()" *ngIf="!currentlySleeping">Start Sleep</ion-button>
+      <ion-button shape="round" color="warning" (click)="endCurrentSleep()" *ngIf="currentlySleeping">End Sleep</ion-button>
     </ion-row>
   </ion-grid>
 

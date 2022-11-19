@@ -34,6 +34,7 @@ export class LogSleepPage implements OnInit {
     this.sleepStart = new Date;
 
     this.overNightSleep = new OvernightSleepData(this.sleepStart, this.sleepEnd);
+    this.currentlySleeping = false;
   }
 
 }
