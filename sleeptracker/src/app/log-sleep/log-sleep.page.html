@@ -6,7 +6,7 @@
 
 <style>
 ion-row {
-height: 50%;
+height: 30%;
 width: 100%;
 align-items: center;
 }
@@ -23,6 +23,11 @@ align-items: center;
 <ion-content>
 
   <ion-grid class="design">
+    <ion-row>
+      <ion-col>
+        <strong *ngIf="overNightSleep">Previous Sleep: On the {{overNightSleep.dateString()}}. You slept a total of {{overNightSleep.summaryString()}} </strong>
+      </ion-col>
+    </ion-row>
     <ion-row>
       <ion-col>
         <strong>The Log Sleep page</strong>

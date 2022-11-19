@@ -31,10 +31,12 @@ export class LogSleepPage implements OnInit {
   }
 
   endCurrentSleep() {
-    this.sleepStart = new Date;
+    this.sleepEnd = new Date;
 
     this.overNightSleep = new OvernightSleepData(this.sleepStart, this.sleepEnd);
     this.currentlySleeping = false;
+
+    console.log(this.overNightSleep.summaryString());
   }
 
 }
