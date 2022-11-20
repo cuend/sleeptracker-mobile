@@ -4,11 +4,59 @@
   </ion-toolbar>
 </ion-header>
 
+<style>
+
+  ion-row {
+  height: 30%;
+  width: 100%;
+  align-items: center;
+  }
+  .design {
+    position: center;
+    width: 90%;
+    height: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .notice {
+    text-decoration-color: lightslategray;
+    text-align: left;
+    font-size: small;
+    justify-content: center;
+  }
+  ion-range {
+  --knob-size: 20px;
+
+}
+  
+  </style>
+
 <ion-content>
 
-  <div id="demo">
-    <strong>The Sleepiness page</strong>
-  </div>
+  <ion-grid class="design">
+    <ion-row>
+      <ion-col>
+        <strong>Feeling Sleepy?</strong>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p>Sleepiness</p>
+        <ion-range [ticks]="true" [snaps]="true" [pin]="true" [min]="1" [max]="7">
+          <div slot="start">1</div>
+          <div slot="end">7</div>
+        </ion-range>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col>
+        <ion-button shape="round" color="success" (click)="onSleepinessLog()">Log Sleepiness</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 
 
 </ion-content>
