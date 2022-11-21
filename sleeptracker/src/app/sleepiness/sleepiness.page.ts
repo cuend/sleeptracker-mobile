@@ -29,8 +29,9 @@ export class SleepinessPage implements OnInit {
     this.currStanfordValue = StanfordSleepinessData.ScaleValues[this.currSliderValue as number];
   }
 
-  onSleepinessLog() {
-    this.sleepService.logSleepinessData(new StanfordSleepinessData((this.currSliderValue as number), new Date(), ));
+  onSleepinessLog(e: Event) {
+    this.sleepService.logSleepinessData(new StanfordSleepinessData((this.currSliderValue as number), new Date(), this.currNoteString));
+    window.location.reload();
   }
 
   onNoteInputChange(e: Event) {
