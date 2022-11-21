@@ -31,7 +31,7 @@ export class SleepinessPage implements OnInit {
 
   onSleepinessLog(e: Event) {
     this.sleepService.logSleepinessData(new StanfordSleepinessData((this.currSliderValue as number), new Date(), this.currNoteString));
-    window.location.reload();
+    // window.location.reload();
   }
 
   onNoteInputChange(e: Event) {

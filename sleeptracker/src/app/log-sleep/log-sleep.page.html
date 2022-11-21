@@ -7,7 +7,7 @@
 <style>
 
 ion-row {
-height: 30%;
+height: 50%;
 width: 100%;
 align-items: center;
 }
@@ -20,10 +20,11 @@ align-items: center;
 }
 
 .notice {
-  text-decoration-color: lightslategray;
+  /* text-decoration-color: lightslategray; */
   text-align: left;
-  font-size: small;
+  font-size: xx-small;
   justify-content: center;
+  opacity: 0.5;
 }
 
 </style>
@@ -31,20 +32,24 @@ align-items: center;
 <ion-content>
 
   <ion-grid class="design">
-    <ion-row class="notice">
-      <ion-col>
-        <p class="notice" *ngIf="overNightSleep">Previous Sleep Data: On the {{overNightSleep.dateString()}}. You slept a total of {{overNightSleep.summaryString()}} </p>
-      </ion-col>
-    </ion-row>
     <ion-row>
-      <ion-col>
-        <strong>The Log Sleep page</strong>
+      <ion-col class="ion-align-items-start">
+        <h1>Ready for Bed?</h1>
       </ion-col>
+      <ion-row class="notice">
+        <ion-col class="ion-align-items-stretch">
+          <p class="notice" *ngIf="overNightSleep">Previous Sleep Data: On the {{overNightSleep.dateString()}}. You slept a total of {{overNightSleep.summaryString()}} </p>
+          <ion-icon name="bed-outline"></ion-icon>
+        </ion-col>
+      </ion-row>
     </ion-row>
+
     <ion-row class="ion-justify-content-center">
-      <ion-button shape="round" color="success" (click)="startCurrentSleep()" *ngIf="!currentlySleeping">Start Sleep</ion-button>
-      <ion-button shape="round" color="warning" (click)="endCurrentSleep()" *ngIf="currentlySleeping">End Sleep</ion-button>
+      <ion-button shape="round" color="success" (click)="startCurrentSleep();startToast('top')" *ngIf="!currentlySleeping">Start Sleep</ion-button>
+      <ion-button shape="round" color="warning" (click)="endCurrentSleep();endToast('top')" *ngIf="currentlySleeping">End Sleep</ion-button>
+      <ion-button expand="block" size="small" shape="round" (click)="presentAlert()">Forgot to log a previous night's sleep?</ion-button>
     </ion-row>
+
   </ion-grid>
 
 </ion-content>
