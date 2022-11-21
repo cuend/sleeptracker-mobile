@@ -47,7 +47,7 @@ align-items: center;
     <ion-row class="ion-justify-content-center">
       <ion-button shape="round" color="success" (click)="startCurrentSleep();startToast('top')" *ngIf="!currentlySleeping">Start Sleep</ion-button>
       <ion-button shape="round" color="warning" (click)="endCurrentSleep();endToast('top')" *ngIf="currentlySleeping">End Sleep</ion-button>
-      <ion-button expand="block" size="small" shape="round" (click)="presentAlert()">Forgot to log a previous night's sleep?</ion-button>
+      <ion-button expand="block" size="small" shape="round" (click)="presentAlert()">Log a Previous Night's Sleep</ion-button>
     </ion-row>
 
   </ion-grid>
