@@ -33,7 +33,7 @@ align-items: center;
   <ion-grid class="design">
     <ion-row class="notice">
       <ion-col>
-        <p *ngIf="overNightSleep">Previous Sleep Data: On the {{overNightSleep.dateString()}}. You slept a total of {{overNightSleep.summaryString()}} </p>
+        <p class="notice" *ngIf="overNightSleep">Previous Sleep Data: On the {{overNightSleep.dateString()}}. You slept a total of {{overNightSleep.summaryString()}} </p>
       </ion-col>
     </ion-row>
     <ion-row>

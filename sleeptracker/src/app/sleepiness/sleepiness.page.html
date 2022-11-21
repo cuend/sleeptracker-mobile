@@ -11,6 +11,7 @@
   width: 100%;
   align-items: center;
   }
+
   .design {
     position: center;
     width: 90%;
@@ -18,12 +19,14 @@
     margin-left: auto;
     margin-right: auto;
   }
+
   .notice {
     text-decoration-color: lightslategray;
     text-align: left;
     font-size: small;
     justify-content: center;
   }
+
   ion-range {
   --knob-size: 20px;
   }
@@ -37,14 +40,17 @@
       <ion-col>
         <h1 class="mb-10">Feeling Sleepy?</h1>
         <ion-label>Sleepiness</ion-label>
-        <ion-range [ticks]="true" [snaps]="true" [pin]="true" [min]="1" [max]="7" (ionChange)="onSliderChange($event)">
-          <div slot="start">1</div>
-          <div slot="end">7</div>
-        </ion-range>
       </ion-col>
     </ion-row>
 
     <ion-row>
+      <ion-range [ticks]="true" [snaps]="true" [pin]="true" [min]="1" [max]="7" (ionChange)="onSliderChange($event)">
+        <div slot="start">1</div>
+        <div slot="end">7</div>
+      </ion-range>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
       <ion-item id="custom-item" counter="true" [counterFormatter]="inputTextCounterFormatter">
         <ion-label position="floating">Sleepiness Notes (Optional)</ion-label>
         <ion-input (ionChange)="onNoteInputChange($event)" maxlength="50"></ion-input>
