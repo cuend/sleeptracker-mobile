@@ -12,6 +12,7 @@ import { RangeValue } from '@ionic/core';
 export class SleepinessPage implements OnInit {
   sleepService:SleepService;
   currSliderValue:RangeValue;
+  currNoteString:string;
 
   constructor(sleepService:SleepService) { 
     this.sleepService = sleepService;
@@ -25,9 +26,11 @@ export class SleepinessPage implements OnInit {
   }
 
   onSleepinessLog() {
+    this.sleepService.logSleepinessData(new StanfordSleepinessData((this.currSliderValue as number), new Date(), ));
+  }
 
-    this.sleepService.logSleepinessData(new StanfordSleepinessData((this.currSliderValue as number)));
-    
+  onNoteInputChange(e: Event) {
+    this.currNoteString = ((<HTMLTextAreaElement> e.target).value as string);
   }
 
   inputTextCounterFormatter(inputLength: number, maxLength: number) {

@@ -37,7 +37,7 @@
       <ion-col>
         <h1 class="mb-10">Feeling Sleepy?</h1>
         <p>Sleepiness</p>
-        <ion-range [ticks]="true" [snaps]="true" [pin]="true" [min]="1" [max]="7">
+        <ion-range [ticks]="true" [snaps]="true" [pin]="true" [min]="1" [max]="7" (ionChange)="onSliderChange($event)">
           <div slot="start">1</div>
           <div slot="end">7</div>
         </ion-range>
@@ -47,7 +47,7 @@
     <ion-row>
       <ion-item id="custom-item" counter="true" [counterFormatter]="inputTextCounterFormatter">
         <ion-label position="floating">Sleepiness Notes (Optional)</ion-label>
-        <ion-input maxlength="50"></ion-input>
+        <ion-input (ionChange)="onNoteInputChange($event)" maxlength="50"></ion-input>
       </ion-item>
     </ion-row>
 
