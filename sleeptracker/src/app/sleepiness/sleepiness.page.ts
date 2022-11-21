@@ -30,4 +30,8 @@ export class SleepinessPage implements OnInit {
     
   }
 
+  inputTextCounterFormatter(inputLength: number, maxLength: number) {
+    return `${maxLength - inputLength} characters remaining`;
+  }
+
 }

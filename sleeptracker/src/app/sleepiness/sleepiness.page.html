@@ -26,8 +26,7 @@
   }
   ion-range {
   --knob-size: 20px;
-
-}
+  }
   
   </style>
 
@@ -36,12 +35,7 @@
   <ion-grid class="design">
     <ion-row>
       <ion-col>
-        <strong>Feeling Sleepy?</strong>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
+        <h1>Feeling Sleepy?</h1>
         <p>Sleepiness</p>
         <ion-range [ticks]="true" [snaps]="true" [pin]="true" [min]="1" [max]="7">
           <div slot="start">1</div>
@@ -50,12 +44,16 @@
       </ion-col>
     </ion-row>
 
-    <ion-row class="ion-justify-content-center">
-      <ion-col>
-        <ion-button shape="round" color="success" (click)="onSleepinessLog()">Log Sleepiness</ion-button>
-      </ion-col>
+    <ion-row>
+      <ion-item id="custom-item" counter="true" [counterFormatter]="inputTextCounterFormatter">
+        <ion-label position="floating">Sleepiness Notes (Optional)</ion-label>
+        <ion-input maxlength="50"></ion-input>
+      </ion-item>
     </ion-row>
 
+    <ion-row class="ion-justify-content-center">
+        <ion-button shape="round" color="success" (click)="onSleepinessLog()">Log Sleepiness</ion-button>
+    </ion-row>
   </ion-grid>
 
 
