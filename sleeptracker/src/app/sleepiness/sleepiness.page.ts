@@ -25,6 +25,8 @@ export class SleepinessPage implements OnInit {
   }
 
   onSleepinessLog() {
+
+    this.sleepService.logSleepinessData(new StanfordSleepinessData((this.currSliderValue as number)));
     
   }
 

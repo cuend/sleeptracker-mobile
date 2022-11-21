@@ -38,4 +38,12 @@ export class SleepService {
 	public getLastSleepData(sleepData:OvernightSleepData) {
 		return SleepService.AllSleepData[SleepService.AllSleepData.length - 1];
 	}
+
+	public getLastSleepinessLog(sleepData:OvernightSleepData) {
+		return SleepService.AllSleepinessData[SleepService.AllSleepinessData.length - 1];
+	}
+
+	public getLastOvernightLog(sleepData:OvernightSleepData) {
+		return SleepService.AllOvernightData[SleepService.AllOvernightData.length - 1];
+	}
 }
