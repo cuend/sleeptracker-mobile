@@ -3,6 +3,7 @@ import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
 import { SleepService } from '../services/sleep.service';
 import { RangeCustomEvent } from '@ionic/angular';
 import { RangeValue } from '@ionic/core';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sleepiness',
@@ -19,7 +20,7 @@ export class SleepinessPage implements OnInit {
 
 
 
-  constructor(sleepService:SleepService) { 
+  constructor(sleepService:SleepService, private toastController: ToastController) { 
     this.sleepService = sleepService;
   }
 
@@ -45,6 +46,16 @@ export class SleepinessPage implements OnInit {
 
   inputTextCounterFormatter(inputLength: number, maxLength: number) {
     return `${maxLength - inputLength} characters remaining`;
+  }
+
+  async sleepyToast(position: 'top' | 'middle' | 'bottom') {
+    const toast = await this.toastController.create({
+      message: 'Log Submitted!',
+      duration: 1500,
+      position: position
+    });
+
+    await toast.present();
   }
 
 }
