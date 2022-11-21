@@ -12,7 +12,9 @@ import { RangeValue } from '@ionic/core';
 export class SleepinessPage implements OnInit {
   sleepService:SleepService;
   currSliderValue:RangeValue;
+  currStanfordValue:String;
   currNoteString:string;
+
 
   constructor(sleepService:SleepService) { 
     this.sleepService = sleepService;
@@ -23,6 +25,8 @@ export class SleepinessPage implements OnInit {
 
   onSliderChange(e: Event) {
     this.currSliderValue = (e as RangeCustomEvent).detail.value;
+
+    this.currStanfordValue = StanfordSleepinessData.ScaleValues[this.currSliderValue as number];
   }
 
   onSleepinessLog() {
