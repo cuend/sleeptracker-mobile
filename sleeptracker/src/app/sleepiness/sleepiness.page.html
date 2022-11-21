@@ -44,7 +44,7 @@
     </ion-row>
 
     <ion-row>
-      <ion-range [ticks]="true" [snaps]="true" [pin]="true" [min]="1" [max]="7" (ionChange)="onSliderChange($event)">
+      <ion-range [(ngModel)]="rangeSlider" [ticks]="true" [snaps]="true" [pin]="true" [min]="1" [max]="7" (ionChange)="onSliderChange($event)">
         <div slot="start">1</div>
         <div slot="end">7</div>
       </ion-range>
@@ -56,7 +56,7 @@
     <ion-row class="ion-justify-content-center">
       <ion-item id="custom-item" counter="true" [counterFormatter]="inputTextCounterFormatter">
         <ion-label position="floating">Sleepiness Notes (Optional)</ion-label>
-        <ion-input (ionChange)="onNoteInputChange($event)" maxlength="50"></ion-input>
+        <ion-input [(ngModel)]="inputBox" (ionChange)="onNoteInputChange($event)" maxlength="50"></ion-input>
       </ion-item>
     </ion-row>
 
