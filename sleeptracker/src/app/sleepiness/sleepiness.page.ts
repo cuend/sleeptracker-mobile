@@ -17,6 +17,7 @@ export class SleepinessPage implements OnInit {
   currNoteString:string;
   inputBox:String;
   rangeSlider:RangeValue;
+  hasBeenResest:boolean;
 
 
 
@@ -29,8 +30,12 @@ export class SleepinessPage implements OnInit {
 
   onSliderChange(e: Event) {
     this.currSliderValue = (e as RangeCustomEvent).detail.value;
-
-    this.currStanfordValue = StanfordSleepinessData.ScaleValues[this.currSliderValue as number];
+    if (this.hasBeenResest) {
+      this.currStanfordValue = "";
+      this.hasBeenResest = false;
+    } else {
+      this.currStanfordValue = StanfordSleepinessData.ScaleValues[this.currSliderValue as number];
+    }
   }
 
   onSleepinessLog(e: Event) {
@@ -38,6 +43,7 @@ export class SleepinessPage implements OnInit {
 
     this.inputBox = "";
     this.rangeSlider = 1;
+    this.hasBeenResest = true;
   }
 
   onNoteInputChange(e: Event) {

@@ -1,5 +1,7 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import Chart from 'chart.js/auto';
+import { OvernightSleepData } from '../data/overnight-sleep-data';
+import { SleepService } from '../services/sleep.service';
 
 @Component({
   selector: 'app-view-data',
@@ -7,8 +9,11 @@ import Chart from 'chart.js/auto';
   styleUrls: ['./view-data.page.scss'],
 })
 export class ViewDataPage implements OnInit, AfterViewInit {
+  sleepService:SleepService;
 
-  constructor() { }
+  constructor(sleepService:SleepService) { 
+    this.sleepService = sleepService;
+  }
 
   ngOnInit() {
   }
@@ -26,20 +31,37 @@ export class ViewDataPage implements OnInit, AfterViewInit {
   // When we try to call our chart to initialize methods in ngOnInit() it shows an error nativeElement of undefined. 
   // So, we need to call all chart methods in ngAfterViewInit() where @ViewChild and @ViewChildren will be resolved.
   ngAfterViewInit() {
+
+    SleepService.AllOvernightData.push(new OvernightSleepData(new Date("2022-11-18"), new Date("2022-11-19")));
+    SleepService.AllOvernightData.push(new OvernightSleepData(new Date("2022-11-16"), new Date("2022-11-17")));
+    SleepService.AllOvernightData.push(new OvernightSleepData(new Date("2022-11-20"), new Date("2022-11-21")));
+
     this.barChartMethod();
-    this.doughnutChartMethod();
-    this.lineChartMethod();
+    //this.doughnutChartMethod();
+    //this.lineChartMethod();
   }
 
   barChartMethod() {
     // Now we need to supply a Chart element reference with an object that defines the type of chart we want to use, and the type of data we want to display.
+    let hours_slept = [];
+    let dates_logged = [];
+
+    console.log(hours_slept);
+    console.log(dates_logged);
+
+    // Put data into arrays
+    for (let i=0; i < SleepService.AllOvernightData.length;i++) {
+      hours_slept.push(SleepService.AllOvernightData[i].getTotalMinutesSlept());
+      dates_logged.push(SleepService.AllOvernightData[i].getDateStringForGraph());
+    }
+
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: 'bar',
       data: {
-        labels: ['BJP', 'INC', 'AAP', 'CPI', 'CPI-M', 'NCP'],
+        labels: dates_logged, //['BJP', 'INC', 'AAP', 'CPI', 'CPI-M', 'NCP'],
         datasets: [{
-          label: '# of Votes',
-          data: [200, 50, 30, 15, 20, 34],
+          label: 'Minutes Slept',
+          data: hours_slept,//[200, 150, 80, 15, 20, 34],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',

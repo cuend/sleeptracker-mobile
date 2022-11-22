@@ -19,7 +19,7 @@ David Cuen, cuend@uci.edu, 61157101
 
 3. What online resources did you consult when completing this assignment? (list specific URLs)
 
-
+    - https://javascript.plainenglish.io/ionic-5-charts-graphs-using-chartjs-library-5ce69b83b2a9
 
 4. What classmates or other individuals did you consult as part of this assignment? What did you discuss?
 

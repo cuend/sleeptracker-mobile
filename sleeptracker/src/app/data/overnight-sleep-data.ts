@@ -24,4 +24,20 @@ export class OvernightSleepData extends SleepData {
 	dateString():string {
 		return "Night of " + this.sleepStart.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
 	}
+
+	getTotalMinutesSlept():number {
+		var sleepStart_ms = this.sleepStart.getTime();
+		var sleepEnd_ms = this.sleepEnd.getTime();
+
+		// Calculate the difference in milliseconds
+		var difference_ms = sleepEnd_ms - sleepStart_ms;
+
+		return Math.floor(difference_ms / 60000);
+	}
+
+	getDateStringForGraph():string {
+		let d = this.sleepStart.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }).split(" ");
+
+		return d[1] + " " + d[2];
+	}
 }
