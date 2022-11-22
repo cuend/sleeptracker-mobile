@@ -113,22 +113,23 @@ export class ViewDataPage implements OnInit, AfterViewInit {
   }
 
   lineChartMethod() {
-    let hours_slept = [];
+    let lastFiveLogs = this.sleepService.getLastFiveOvernightLogs();
+    let minutes_slept = [];
     let dates_logged = [];
 
     // Put data into arrays
-    for (let i=0; i < SleepService.AllOvernightData.length;i++) {
-      hours_slept.push(SleepService.AllOvernightData[i].getTotalMinutesSlept());
-      dates_logged.push(SleepService.AllOvernightData[i].getDateStringForGraph());
+    for (let i=0; i < lastFiveLogs.length;i++) {
+      minutes_slept.push(lastFiveLogs[i].getTotalMinutesSlept());
+      dates_logged.push(lastFiveLogs[i].getDateStringForGraph());
     }
 
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
       type: 'line',
       data: {
-        labels: dates_logged,//['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'November', 'December'],
+        labels: dates_logged,
         datasets: [{
-          label: 'Hours slept',
-          data: hours_slept,
+          label: 'Minutes slept',
+          data: minutes_slept,
           fill: false,
           borderColor: 'rgb(75, 192, 192)',
           tension: 0.1
