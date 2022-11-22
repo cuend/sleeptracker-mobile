@@ -36,18 +36,15 @@ export class ViewDataPage implements OnInit, AfterViewInit {
     SleepService.AllOvernightData.push(new OvernightSleepData(new Date("2022-11-16"), new Date("2022-11-17")));
     SleepService.AllOvernightData.push(new OvernightSleepData(new Date("2022-11-20"), new Date("2022-11-21")));
 
-    this.barChartMethod();
+    //this.barChartMethod();
     //this.doughnutChartMethod();
-    //this.lineChartMethod();
+    this.lineChartMethod();
   }
 
   barChartMethod() {
     // Now we need to supply a Chart element reference with an object that defines the type of chart we want to use, and the type of data we want to display.
     let hours_slept = [];
     let dates_logged = [];
-
-    console.log(hours_slept);
-    console.log(dates_logged);
 
     // Put data into arrays
     for (let i=0; i < SleepService.AllOvernightData.length;i++) {
@@ -116,33 +113,26 @@ export class ViewDataPage implements OnInit, AfterViewInit {
   }
 
   lineChartMethod() {
+    let hours_slept = [];
+    let dates_logged = [];
+
+    // Put data into arrays
+    for (let i=0; i < SleepService.AllOvernightData.length;i++) {
+      hours_slept.push(SleepService.AllOvernightData[i].getTotalMinutesSlept());
+      dates_logged.push(SleepService.AllOvernightData[i].getDateStringForGraph());
+    }
+
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
       type: 'line',
       data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'November', 'December'],
-        datasets: [
-          {
-            label: 'Sell per week',
-            fill: false,
-            backgroundColor: 'rgba(75,192,192,0.4)',
-            borderColor: 'rgba(75,192,192,1)',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(75,192,192,1)',
-            pointBackgroundColor: '#fff',
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-            pointHoverBorderColor: 'rgba(220,220,220,1)',
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40, 10, 5, 50, 10, 15],
-            spanGaps: false,
-          }
-        ]
+        labels: dates_logged,//['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'November', 'December'],
+        datasets: [{
+          label: 'Hours slept',
+          data: hours_slept,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }]
       }
     });
   }
