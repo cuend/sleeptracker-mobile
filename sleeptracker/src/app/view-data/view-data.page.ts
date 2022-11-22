@@ -136,6 +136,9 @@ export class ViewDataPage implements OnInit, AfterViewInit {
         }]
       }
     });
+
+    //this.lineChart.canvas.parentNode.parentNode.style.height = '256px';
+    //this.lineChart.canvas.parentNode.parentNode.style.width = '256px';
   }
 
 }
