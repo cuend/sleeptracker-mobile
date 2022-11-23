@@ -23,12 +23,10 @@ export class ViewDataPage implements OnInit, AfterViewInit {
   // Importing ViewChild. We need @ViewChild decorator to get a reference to the local variable 
   // that we have added to the canvas element in the HTML template.
   @ViewChild('barCanvas') private barCanvas: ElementRef;
-  @ViewChild('doughnutCanvas') private doughnutCanvas: ElementRef;
   @ViewChild('lineCanvas') private lineCanvas: ElementRef;
   @ViewChild('lineCanvasSleepiness') private lineCanvasSleepiness: ElementRef;
 
   barChart: any;
-  doughnutChart: any;
   overnightLineChart: any;
   sleepinessLineChart: any;
 
@@ -167,14 +165,36 @@ export class ViewDataPage implements OnInit, AfterViewInit {
       tension: 0.1
     }];
     
-    //.data = sleepiness_values;
     this.sleepinessLineChart.update();
   }
 
+  refreshOvernightSleepGraph() {
+    let lastFiveLogs = this.sleepService.getLastFiveOvernightLogs();
+    let minutes_slept = [];
+    let dates_logged = [];
+
+    // Put data into arrays
+    for (let i=0; i < lastFiveLogs.length;i++) {
+      minutes_slept.push(lastFiveLogs[i].getTotalMinutesSlept());
+      dates_logged.push(lastFiveLogs[i].getDateStringForGraph());
+    }
+
+    this.overnightLineChart.data.labels = dates_logged;
+    this.overnightLineChart.data.datasets = [{
+      label: 'Minutes Slept',
+      data: minutes_slept,
+      fill: false,
+      borderColor: 'rgb(75, 192, 192)',
+      tension: 0.1
+    }];
+
+    this.overnightLineChart.update();
+  }
 
 
   viewDataRefresh(e : Event) {
       this.refreshSleepinessGraph();
+      this.refreshOvernightSleepGraph();
 
       setTimeout(() => {
         // Any calls to load data go here
