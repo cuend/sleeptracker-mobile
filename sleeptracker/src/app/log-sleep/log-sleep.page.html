@@ -6,6 +6,12 @@
 
 <style>
 
+.menu {
+  --height: 50%;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
 ion-row {
 height: auto;
 width: 100%;
@@ -22,7 +28,7 @@ align-items: center;
 .notice {
   /* text-decoration-color: lightslategray; */
   text-align: left;
-  font-size: xx-small;
+  font-size: 8px;
   justify-content: center;
   opacity: 0.5;
 }
@@ -32,26 +38,77 @@ align-items: center;
 <ion-content>
 
   <ion-grid class="design">
-    <ion-row>
+
+    <ion-row style="height: 50%">
+
       <ion-col class="ion-align-items-start">
         <h1>Ready for Bed?</h1>
       </ion-col>
-      <ion-row class="ion-justify-content-center">
-        <ion-col class="ion-align-items-stretch">
-          <p class="notice" *ngIf="overNightSleep">Previous Sleep Data: On the {{overNightSleep.dateString()}}. You slept a total of {{overNightSleep.summaryString()}} </p>
+
+      <ion-row style="height: 50%" class="ion-justify-content-center">
+        <ion-col class="ion-align-items-start" size="6">
+          <label class="notice">Previous Sleep Data:</label>
+        </ion-col>
+        <ion-col size="6" class="ion-align-items-stretch">
+          <p class="notice" *ngIf="overNightSleep">On the {{overNightSleep.dateString()}}. You slept a total of {{overNightSleep.summaryString()}} </p>
         </ion-col>
       </ion-row>
-      <ion-row class="ion-justify-content-center">
+
+      <ion-row style="height: 25%" class="ion-justify-content-center">
         <ion-icon size="large" name="bed-outline"></ion-icon>
       </ion-row>
+
     </ion-row>
 
-    <ion-row class="ion-justify-content-center">
+    <ion-row style="height: 50%" class="ion-justify-content-center">
       <ion-button shape="round" color="success" (click)="startCurrentSleep();startToast('top')" *ngIf="!currentlySleeping">Start Sleep</ion-button>
       <ion-button shape="round" color="warning" (click)="endCurrentSleep();endToast('top')" *ngIf="currentlySleeping">End Sleep</ion-button>
-      <ion-button expand="block" size="small" shape="round" (click)="presentAlert()">Log a Previous Night's Sleep</ion-button>
+      <br>
+      <ion-button expand="block" size="small" shape="round" (click)="setOpen(true)">Log a Previous Night's Sleep</ion-button>
     </ion-row>
 
   </ion-grid>
+
+  <ion-modal class="menu" [isOpen]="isModalOpen">
+    <ng-template>
+  
+      <ion-content class="ion-padding">
+        
+        <header>
+          <ion-toolbar>
+            <ion-title>Enter Sleep Log:</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="setOpen(false)">Close</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </header>
+
+        <div class="ion-padding">
+          <label>Start Date and Time:</label>
+          <br>
+          <ion-datetime-button datetime="datetime"></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime value="currentDateTime" [(ngModel)]="startString" presentation="date-time" preferWheel="true" id="datetime"></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </div>
+
+        <div class="ion-padding">
+          <label>End Date and Time:</label>
+          <br>
+          <ion-datetime-button datetime="datetime1"></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime value="currentDateTime" [(ngModel)]="endString" presentation="date-time" preferWheel="true" id="datetime1"></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </div>
+
+        <ion-button expand="block" shape="round" color="success" (click)="addSleep();setOpen(false)">Log Sleep</ion-button>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 
 </ion-content>

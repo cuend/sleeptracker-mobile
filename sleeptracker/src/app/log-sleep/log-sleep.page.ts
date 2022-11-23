@@ -3,6 +3,7 @@ import { SleepService } from '../services/sleep.service';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
+import { format, compareAsc } from 'date-fns'
 
 @Component({
   selector: 'app-log-sleep',
@@ -15,6 +16,14 @@ export class LogSleepPage implements OnInit {
   sleepEnd:Date;
   overNightSleep:OvernightSleepData;
   currentlySleeping:boolean = false;
+  isModalOpen = false;
+  startString:string;
+  endString:string;
+  currentDateTime:string = new Date().toISOString();
+
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
 
   constructor(sleepService:SleepService, private alertController: AlertController, private toastController: ToastController) { 
     this.sleepService = sleepService;
@@ -26,8 +35,22 @@ export class LogSleepPage implements OnInit {
   ngOnInit() {
   }
 
+  addSleep() {
+    this.sleepStart = new Date(this.startString);
+    this.sleepEnd = new Date(this.endString);
+    this.overNightSleep = new OvernightSleepData(this.sleepStart, this.sleepEnd);
+    this.sleepService.logOvernightData(this.overNightSleep);
+
+    console.log(this.overNightSleep);
+    console.log(this.sleepStart);
+    console.log(this.sleepEnd);
+    console.log(this.startString);
+    console.log(this.endString);
+    console.log(this.currentDateTime);
+  }
+
   startCurrentSleep() {
-    this.sleepStart = new Date;
+    this.sleepStart = new Date();
     this.currentlySleeping = true;
   }
 
@@ -58,36 +81,6 @@ export class LogSleepPage implements OnInit {
     });
 
     await toast.present();
-  }
-
-  async presentAlert() {
-    const alert = await this.alertController.create({
-      header: 'Please enter your info',
-      buttons: ['OK'],
-      inputs: [
-        {
-          placeholder: 'Name',
-        },
-        {
-          placeholder: 'Nickname (max 8 characters)',
-          attributes: {
-            maxlength: 8,
-          },
-        },
-        {
-          type: 'number',
-          placeholder: 'Age',
-          min: 1,
-          max: 100,
-        },
-        {
-          type: 'textarea',
-          placeholder: 'A little about yourself',
-        },
-      ],
-    });
-
-    await alert.present();
   }
 
 }
