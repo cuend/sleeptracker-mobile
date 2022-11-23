@@ -3,7 +3,7 @@ import { SleepService } from '../services/sleep.service';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
-import { format, compareAsc } from 'date-fns'
+
 
 @Component({
   selector: 'app-log-sleep',

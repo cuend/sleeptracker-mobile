@@ -9,6 +9,7 @@ import { SleepService } from '../services/sleep.service';
   templateUrl: './view-data.page.html',
   styleUrls: ['./view-data.page.scss'],
 })
+
 export class ViewDataPage implements OnInit, AfterViewInit {
   sleepService:SleepService;
 
@@ -43,6 +44,7 @@ export class ViewDataPage implements OnInit, AfterViewInit {
     SleepService.AllSleepinessData.push(new StanfordSleepinessData(2, new Date("2022-11-18"), ""));
     SleepService.AllSleepinessData.push(new StanfordSleepinessData(7, new Date("2022-11-16"), ""));
     SleepService.AllSleepinessData.push(new StanfordSleepinessData(3, new Date("2022-11-16"), ""));
+    SleepService.AllSleepinessData.push(new StanfordSleepinessData(6, new Date("2022-11-16"), ""));
 
     //this.barChartMethod();
     this.lineChartForOvernightSleep();
@@ -157,17 +159,18 @@ export class ViewDataPage implements OnInit, AfterViewInit {
     }
 
     this.sleepinessLineChart.data.labels = dates_logged;
-    this.sleepinessLineChart.data.datasets.data = sleepiness_values;
+    this.sleepinessLineChart.data.datasets = [{
+      label: 'Sleepiness Rating',
+      data: sleepiness_values,
+      fill: false,
+      borderColor: 'rgb(75, 192, 192)',
+      tension: 0.1
+    }];
+    
+    //.data = sleepiness_values;
     this.sleepinessLineChart.update();
   }
 
-  interface RefresherCustomEvent extends CustomEvent {
-    detail: RefresherEventDetail;
-    target: HTMLIonRefresherElement;
-  }
-  interface RefresherEventDetail {
-    complete(): void;
-  }
 
 
   viewDataRefresh(e : Event) {
@@ -176,9 +179,17 @@ export class ViewDataPage implements OnInit, AfterViewInit {
       setTimeout(() => {
         // Any calls to load data go here
         (e as RefresherCustomEvent).target.complete();
-      }, 2000);
+      }, 800);
       
   }
 
 
+}
+
+export interface RefresherCustomEvent extends CustomEvent {
+  detail: RefresherEventDetail;
+  target: HTMLIonRefresherElement;
+}
+export interface RefresherEventDetail {
+  complete(): void;
 }
