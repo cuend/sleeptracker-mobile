@@ -58,4 +58,16 @@ export class SleepService {
 
 		return lastFiveLogs.reverse();
 	}
+
+	public getLastFiveSleepinessLogs() {
+		let lastFiveLogs = [];
+		
+		let x = 0;
+		for (let i=SleepService.AllSleepinessData.length - 1; i >= 0 && x < 5;i--) {
+			lastFiveLogs.push(SleepService.AllOvernightData[i]);
+			x++;
+		}
+
+		return lastFiveLogs.reverse();
+	}
 }
