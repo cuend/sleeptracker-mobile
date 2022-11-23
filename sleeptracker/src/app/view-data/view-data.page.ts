@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
 import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
@@ -28,7 +28,9 @@ export class ViewDataPage implements OnInit, AfterViewInit {
 
   barChart: any;
   doughnutChart: any;
-  lineChart: any;
+  overnightLineChart: any;
+  sleepinessLineChart: any;
+
 
   // When we try to call our chart to initialize methods in ngOnInit() it shows an error nativeElement of undefined. 
   // So, we need to call all chart methods in ngAfterViewInit() where @ViewChild and @ViewChildren will be resolved.
@@ -43,7 +45,6 @@ export class ViewDataPage implements OnInit, AfterViewInit {
     SleepService.AllSleepinessData.push(new StanfordSleepinessData(3, new Date("2022-11-16"), ""));
 
     //this.barChartMethod();
-    //this.doughnutChartMethod();
     this.lineChartForOvernightSleep();
     this.lineChartForSleepiness();
   }
@@ -103,7 +104,7 @@ export class ViewDataPage implements OnInit, AfterViewInit {
       dates_logged.push(lastFiveLogs[i].getDateStringForGraph());
     }
 
-    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+    this.overnightLineChart = new Chart(this.lineCanvas.nativeElement, {
       type: 'line',
       data: {
         labels: dates_logged,
@@ -129,7 +130,7 @@ export class ViewDataPage implements OnInit, AfterViewInit {
       dates_logged.push(lastFiveLogs[i].getDateStringForGraph());
     }
 
-    this.lineChart = new Chart(this.lineCanvasSleepiness.nativeElement, {
+    this.sleepinessLineChart = new Chart(this.lineCanvasSleepiness.nativeElement, {
       type: 'line',
       data: {
         labels: dates_logged,
@@ -143,5 +144,41 @@ export class ViewDataPage implements OnInit, AfterViewInit {
       }
     });
   }
+
+  refreshSleepinessGraph() {
+    let lastFiveLogs = this.sleepService.getLastFiveSleepinessLogs();
+    let sleepiness_values = [];
+    let dates_logged = [];
+
+    // Put data into arrays
+    for (let i=0; i < lastFiveLogs.length;i++) {
+      sleepiness_values.push(lastFiveLogs[i].getLoggedValue());
+      dates_logged.push(lastFiveLogs[i].getDateStringForGraph());
+    }
+
+    this.sleepinessLineChart.data.labels = dates_logged;
+    this.sleepinessLineChart.data.datasets.data = sleepiness_values;
+    this.sleepinessLineChart.update();
+  }
+
+  interface RefresherCustomEvent extends CustomEvent {
+    detail: RefresherEventDetail;
+    target: HTMLIonRefresherElement;
+  }
+  interface RefresherEventDetail {
+    complete(): void;
+  }
+
+
+  viewDataRefresh(e : Event) {
+      this.refreshSleepinessGraph();
+
+      setTimeout(() => {
+        // Any calls to load data go here
+        (e as RefresherCustomEvent).target.complete();
+      }, 2000);
+      
+  }
+
 
 }
