@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
+import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
 import { SleepService } from '../services/sleep.service';
 
 @Component({
@@ -23,6 +24,7 @@ export class ViewDataPage implements OnInit, AfterViewInit {
   @ViewChild('barCanvas') private barCanvas: ElementRef;
   @ViewChild('doughnutCanvas') private doughnutCanvas: ElementRef;
   @ViewChild('lineCanvas') private lineCanvas: ElementRef;
+  @ViewChild('lineCanvasSleepiness') private lineCanvasSleepiness: ElementRef;
 
   barChart: any;
   doughnutChart: any;
@@ -36,9 +38,14 @@ export class ViewDataPage implements OnInit, AfterViewInit {
     SleepService.AllOvernightData.push(new OvernightSleepData(new Date("2022-11-16"), new Date("2022-11-17")));
     SleepService.AllOvernightData.push(new OvernightSleepData(new Date("2022-11-20"), new Date("2022-11-21")));
 
+    SleepService.AllSleepinessData.push(new StanfordSleepinessData(2, new Date("2022-11-18"), ""));
+    SleepService.AllSleepinessData.push(new StanfordSleepinessData(7, new Date("2022-11-16"), ""));
+    SleepService.AllSleepinessData.push(new StanfordSleepinessData(3, new Date("2022-11-16"), ""));
+
     //this.barChartMethod();
     //this.doughnutChartMethod();
-    this.lineChartMethod();
+    this.lineChartForOvernightSleep();
+    this.lineChartForSleepiness();
   }
 
   barChartMethod() {
@@ -85,34 +92,7 @@ export class ViewDataPage implements OnInit, AfterViewInit {
     });
   }
 
-  doughnutChartMethod() {
-    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-      type: 'doughnut',
-      data: {
-        labels: ['BJP', 'Congress', 'AAP', 'CPM', 'SP'],
-        datasets: [{
-          label: '# of Votes',
-          data: [50, 29, 15, 10, 7],
-          backgroundColor: [
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)'
-          ],
-          hoverBackgroundColor: [
-            '#FFCE56',
-            '#FF6384',
-            '#36A2EB',
-            '#FFCE56',
-            '#FF6384'
-          ]
-        }]
-      }
-    });
-  }
-
-  lineChartMethod() {
+  lineChartForOvernightSleep() {
     let lastFiveLogs = this.sleepService.getLastFiveOvernightLogs();
     let minutes_slept = [];
     let dates_logged = [];
@@ -136,9 +116,32 @@ export class ViewDataPage implements OnInit, AfterViewInit {
         }]
       }
     });
+  }
 
-    //this.lineChart.canvas.parentNode.parentNode.style.height = '256px';
-    //this.lineChart.canvas.parentNode.parentNode.style.width = '256px';
+  lineChartForSleepiness() {
+    let lastFiveLogs = this.sleepService.getLastFiveSleepinessLogs();
+    let sleepiness_values = [];
+    let dates_logged = [];
+
+    // Put data into arrays
+    for (let i=0; i < lastFiveLogs.length;i++) {
+      sleepiness_values.push(lastFiveLogs[i].getLoggedValue());
+      dates_logged.push(lastFiveLogs[i].getDateStringForGraph());
+    }
+
+    this.lineChart = new Chart(this.lineCanvasSleepiness.nativeElement, {
+      type: 'line',
+      data: {
+        labels: dates_logged,
+        datasets: [{
+          label: 'Sleepiness Rating',
+          data: sleepiness_values,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }]
+      }
+    });
   }
 
 }
