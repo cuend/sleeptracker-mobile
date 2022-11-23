@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
+import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
 import { SleepService } from '../services/sleep.service';
 
 @Component({
@@ -23,6 +24,7 @@ export class ViewDataPage implements OnInit, AfterViewInit {
   @ViewChild('barCanvas') private barCanvas: ElementRef;
   @ViewChild('doughnutCanvas') private doughnutCanvas: ElementRef;
   @ViewChild('lineCanvas') private lineCanvas: ElementRef;
+  @ViewChild('lineCanvasSleepiness') private lineCanvasSleepiness: ElementRef;
 
   barChart: any;
   doughnutChart: any;
@@ -36,18 +38,20 @@ export class ViewDataPage implements OnInit, AfterViewInit {
     SleepService.AllOvernightData.push(new OvernightSleepData(new Date("2022-11-16"), new Date("2022-11-17")));
     SleepService.AllOvernightData.push(new OvernightSleepData(new Date("2022-11-20"), new Date("2022-11-21")));
 
-    this.barChartMethod();
+    SleepService.AllSleepinessData.push(new StanfordSleepinessData(2, new Date("2022-11-18"), ""));
+    SleepService.AllSleepinessData.push(new StanfordSleepinessData(7, new Date("2022-11-16"), ""));
+    SleepService.AllSleepinessData.push(new StanfordSleepinessData(3, new Date("2022-11-16"), ""));
+
+    //this.barChartMethod();
     //this.doughnutChartMethod();
-    //this.lineChartMethod();
+    this.lineChartForOvernightSleep();
+    this.lineChartForSleepiness();
   }
 
   barChartMethod() {
     // Now we need to supply a Chart element reference with an object that defines the type of chart we want to use, and the type of data we want to display.
     let hours_slept = [];
     let dates_logged = [];
-
-    console.log(hours_slept);
-    console.log(dates_logged);
 
     // Put data into arrays
     for (let i=0; i < SleepService.AllOvernightData.length;i++) {
@@ -88,61 +92,54 @@ export class ViewDataPage implements OnInit, AfterViewInit {
     });
   }
 
-  doughnutChartMethod() {
-    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-      type: 'doughnut',
+  lineChartForOvernightSleep() {
+    let lastFiveLogs = this.sleepService.getLastFiveOvernightLogs();
+    let minutes_slept = [];
+    let dates_logged = [];
+
+    // Put data into arrays
+    for (let i=0; i < lastFiveLogs.length;i++) {
+      minutes_slept.push(lastFiveLogs[i].getTotalMinutesSlept());
+      dates_logged.push(lastFiveLogs[i].getDateStringForGraph());
+    }
+
+    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+      type: 'line',
       data: {
-        labels: ['BJP', 'Congress', 'AAP', 'CPM', 'SP'],
+        labels: dates_logged,
         datasets: [{
-          label: '# of Votes',
-          data: [50, 29, 15, 10, 7],
-          backgroundColor: [
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)'
-          ],
-          hoverBackgroundColor: [
-            '#FFCE56',
-            '#FF6384',
-            '#36A2EB',
-            '#FFCE56',
-            '#FF6384'
-          ]
+          label: 'Minutes slept',
+          data: minutes_slept,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
         }]
       }
     });
   }
 
-  lineChartMethod() {
-    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+  lineChartForSleepiness() {
+    let lastFiveLogs = this.sleepService.getLastFiveSleepinessLogs();
+    let sleepiness_values = [];
+    let dates_logged = [];
+
+    // Put data into arrays
+    for (let i=0; i < lastFiveLogs.length;i++) {
+      sleepiness_values.push(lastFiveLogs[i].getLoggedValue());
+      dates_logged.push(lastFiveLogs[i].getDateStringForGraph());
+    }
+
+    this.lineChart = new Chart(this.lineCanvasSleepiness.nativeElement, {
       type: 'line',
       data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'November', 'December'],
-        datasets: [
-          {
-            label: 'Sell per week',
-            fill: false,
-            backgroundColor: 'rgba(75,192,192,0.4)',
-            borderColor: 'rgba(75,192,192,1)',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(75,192,192,1)',
-            pointBackgroundColor: '#fff',
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-            pointHoverBorderColor: 'rgba(220,220,220,1)',
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40, 10, 5, 50, 10, 15],
-            spanGaps: false,
-          }
-        ]
+        labels: dates_logged,
+        datasets: [{
+          label: 'Sleepiness Rating',
+          data: sleepiness_values,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }]
       }
     });
   }

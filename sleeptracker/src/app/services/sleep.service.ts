@@ -46,4 +46,28 @@ export class SleepService {
 	public getLastOvernightLog(sleepData:OvernightSleepData) {
 		return SleepService.AllOvernightData[SleepService.AllOvernightData.length - 1];
 	}
+
+	public getLastFiveOvernightLogs() {
+		let lastFiveLogs = [];
+		
+		let x = 0;
+		for (let i=SleepService.AllOvernightData.length - 1; i >= 0 && x < 5;i--) {
+			lastFiveLogs.push(SleepService.AllOvernightData[i]);
+			x++;
+		}
+
+		return lastFiveLogs.reverse();
+	}
+
+	public getLastFiveSleepinessLogs() {
+		let lastFiveLogs = [];
+		
+		let x = 0;
+		for (let i=SleepService.AllSleepinessData.length - 1; i >= 0 && x < 5;i--) {
+			lastFiveLogs.push(SleepService.AllSleepinessData[i]);
+			x++;
+		}
+
+		return lastFiveLogs.reverse();
+	}
 }
