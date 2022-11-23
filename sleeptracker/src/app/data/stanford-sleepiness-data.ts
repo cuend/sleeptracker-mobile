@@ -27,7 +27,7 @@ export class StanfordSleepinessData extends SleepData {
 		return this.loggedValue + ": " + StanfordSleepinessData.ScaleValues[this.loggedValue];
 	}
 
-	getLoggedValue() {
+	getLoggedValue():number {
 		return this.loggedValue;
 	}
 
@@ -37,6 +37,12 @@ export class StanfordSleepinessData extends SleepData {
 
 	getLoggedNote() {
 		return this.loggedNote;
+	}
+
+	getDateStringForGraph():string {
+		let d = this.loggedAt.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }).split(" ");
+
+		return d[1] + " " + d[2];
 	}
 
 }
