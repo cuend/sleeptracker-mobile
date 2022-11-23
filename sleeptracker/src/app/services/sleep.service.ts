@@ -64,7 +64,7 @@ export class SleepService {
 		
 		let x = 0;
 		for (let i=SleepService.AllSleepinessData.length - 1; i >= 0 && x < 5;i--) {
-			lastFiveLogs.push(SleepService.AllOvernightData[i]);
+			lastFiveLogs.push(SleepService.AllSleepinessData[i]);
 			x++;
 		}
 
