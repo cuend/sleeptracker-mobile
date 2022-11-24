@@ -28,7 +28,7 @@ align-items: center;
 .notice {
   /* text-decoration-color: lightslategray; */
   text-align: left;
-  font-size: 8px;
+  font-size: 12px;
   justify-content: center;
   opacity: 0.5;
 }
@@ -46,10 +46,10 @@ align-items: center;
       </ion-col>
 
       <ion-row style="height: 50%" class="ion-justify-content-center">
-        <ion-col class="ion-align-items-start" size="6">
+        <ion-col class="ion-align-items-start" size="12" style="height: 10%">
           <label class="notice">Previous Sleep Data:</label>
         </ion-col>
-        <ion-col size="6" class="ion-align-items-stretch">
+        <ion-col size="12" class="ion-align-items-stretch" style="height: 50%">
           <p class="notice" *ngIf="overNightSleep">On the {{overNightSleep.dateString()}}. You slept a total of {{overNightSleep.summaryString()}} </p>
         </ion-col>
       </ion-row>
