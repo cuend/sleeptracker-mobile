@@ -3,7 +3,7 @@ import { SleepService } from '../services/sleep.service';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
-
+import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
 
 @Component({
   selector: 'app-log-sleep',
@@ -25,10 +25,12 @@ export class LogSleepPage implements OnInit {
     this.isModalOpen = isOpen;
   }
 
-  constructor(sleepService:SleepService, private alertController: AlertController, private toastController: ToastController) { 
+  constructor(sleepService:SleepService, private localNotifications:LocalNotifications, private toastController: ToastController) { 
     this.sleepService = sleepService;
 
+
     //sleepService.logOvernightData(new OvernightSleepData(new Date(), new Date()));
+    
 
   }
 
@@ -81,6 +83,15 @@ export class LogSleepPage implements OnInit {
     });
 
     await toast.present();
+  }
+  
+  simpleNotif () {
+    this.localNotifications.schedule({
+      text: 'Delayed ILocalNotification',
+      trigger: {at: new Date(new Date().getTime() + 6000)},
+      led: 'FF0000',
+      sound: null
+    });
   }
 
 }

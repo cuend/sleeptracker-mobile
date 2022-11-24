@@ -8,6 +8,8 @@ import { LogSleepPageRoutingModule } from './log-sleep-routing.module';
 
 import { LogSleepPage } from './log-sleep.page';
 
+import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,9 @@ import { LogSleepPage } from './log-sleep.page';
     IonicModule,
     LogSleepPageRoutingModule
   ],
-  declarations: [LogSleepPage]
+  declarations: [LogSleepPage],
+  providers: [
+    LocalNotifications,
+  ]
 })
 export class LogSleepPageModule {}
