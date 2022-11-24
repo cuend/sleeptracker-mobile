@@ -175,13 +175,14 @@ export class ViewDataPage implements OnInit, AfterViewInit {
 
     // Put data into arrays
     for (let i=0; i < lastFiveLogs.length;i++) {
-      minutes_slept.push(lastFiveLogs[i].getTotalMinutesSlept());
+      minutes_slept.push(lastFiveLogs[i].getTotalHoursSlept());
+      console.log(lastFiveLogs[i].getTotalHoursSlept());
       dates_logged.push(lastFiveLogs[i].getDateStringForGraph());
     }
 
     this.overnightLineChart.data.labels = dates_logged;
     this.overnightLineChart.data.datasets =[{
-      label: 'Minutes Slept',
+      label: 'Hours Slept',
       data: minutes_slept,
       fill: false,
       borderColor: 'rgb(75, 192, 192)',

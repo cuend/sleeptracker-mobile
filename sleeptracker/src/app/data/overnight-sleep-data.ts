@@ -35,6 +35,15 @@ export class OvernightSleepData extends SleepData {
 		return Math.floor(difference_ms / 60000);
 	}
 
+	getTotalHoursSlept():number {
+		var sleepStart_ms = this.sleepStart.getTime();
+		var sleepEnd_ms = this.sleepEnd.getTime();
+
+		// Calculate the difference in milliseconds
+		var difference_ms = sleepEnd_ms - sleepStart_ms;
+		return Math.floor(difference_ms / (60000*60)) + ((difference_ms / 60000 % 60) * .01);
+	}
+
 	getDateStringForGraph():string {
 		let d = this.sleepStart.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }).split(" ");
 
