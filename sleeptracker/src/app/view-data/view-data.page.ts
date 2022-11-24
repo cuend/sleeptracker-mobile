@@ -158,13 +158,45 @@ export class ViewDataPage implements OnInit, AfterViewInit {
     }
 
     this.sleepinessLineChart.data.labels = dates_logged;
-    this.sleepinessLineChart.data.datasets.data = sleepiness_values;
+    this.sleepinessLineChart.data.datasets =[{
+      label: 'Sleepiness Rating',
+      data: sleepiness_values,
+      fill: false,
+      borderColor: 'rgb(75, 192, 192)',
+      tension: 0.1
+    }];
     this.sleepinessLineChart.update();
   }
+
+  refreshOvernightGraph() {
+    let lastFiveLogs = this.sleepService.getLastFiveOvernightLogs();
+    let minutes_slept = [];
+    let dates_logged = [];
+
+    // Put data into arrays
+    for (let i=0; i < lastFiveLogs.length;i++) {
+      minutes_slept.push(lastFiveLogs[i].getTotalMinutesSlept());
+      dates_logged.push(lastFiveLogs[i].getDateStringForGraph());
+    }
+
+    this.overnightLineChart.data.labels = dates_logged;
+    this.overnightLineChart.data.datasets =[{
+      label: 'Minutes Slept',
+      data: minutes_slept,
+      fill: false,
+      borderColor: 'rgb(75, 192, 192)',
+      tension: 0.1
+    }];
+
+
+    this.overnightLineChart.update();
+  }
+
 
 
   viewDataRefresh(e : Event) {
       this.refreshSleepinessGraph();
+      this.refreshOvernightGraph();
 
       setTimeout(() => {
         // Any calls to load data go here
