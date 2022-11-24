@@ -82,7 +82,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _view_data_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view-data.page.scss?ngResource */ 4178);
 /* harmony import */ var _view_data_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_view_data_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! chart.js/auto */ 2224);
+/* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! chart.js/auto */ 3707);
 /* harmony import */ var _data_overnight_sleep_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data/overnight-sleep-data */ 4883);
 /* harmony import */ var _data_stanford_sleepiness_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../data/stanford-sleepiness-data */ 4201);
 /* harmony import */ var _services_sleep_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/sleep.service */ 5403);
@@ -291,10 +291,10 @@ module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>ViewData</ion-ti
 
 /***/ }),
 
-/***/ 2224:
-/*!*********************************************!*\
-  !*** ../node_modules/chart.js/auto/auto.js ***!
-  \*********************************************/
+/***/ 3707:
+/*!*********************************************************!*\
+  !*** ../../../../../node_modules/chart.js/auto/auto.js ***!
+  \*********************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -349,7 +349,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "registry": () => (/* reexport safe */ _dist_chart_js__WEBPACK_IMPORTED_MODULE_0__.registry),
 /* harmony export */   "scales": () => (/* reexport safe */ _dist_chart_js__WEBPACK_IMPORTED_MODULE_0__.scales)
 /* harmony export */ });
-/* harmony import */ var _dist_chart_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../dist/chart.js */ 8931);
+/* harmony import */ var _dist_chart_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../dist/chart.js */ 7668);
 
 _dist_chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(..._dist_chart_js__WEBPACK_IMPORTED_MODULE_0__.registerables);
 
@@ -357,10 +357,10 @@ _dist_chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(..._dist_chart_js__WE
 
 /***/ }),
 
-/***/ 8931:
-/*!**********************************************!*\
-  !*** ../node_modules/chart.js/dist/chart.js ***!
-  \**********************************************/
+/***/ 7668:
+/*!**********************************************************!*\
+  !*** ../../../../../node_modules/chart.js/dist/chart.js ***!
+  \**********************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -414,7 +414,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "registry": () => (/* binding */ registry),
 /* harmony export */   "scales": () => (/* binding */ scales)
 /* harmony export */ });
-/* harmony import */ var _chunks_helpers_segment_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./chunks/helpers.segment.js */ 4642);
+/* harmony import */ var _chunks_helpers_segment_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./chunks/helpers.segment.js */ 824);
 /*!
  * Chart.js v4.0.1
  * https://www.chartjs.org
@@ -12176,10 +12176,10 @@ const registerables = [controllers, elements, plugins, scales];
 
 /***/ }),
 
-/***/ 4642:
-/*!***************************************************************!*\
-  !*** ../node_modules/chart.js/dist/chunks/helpers.segment.js ***!
-  \***************************************************************/
+/***/ 824:
+/*!***************************************************************************!*\
+  !*** ../../../../../node_modules/chart.js/dist/chunks/helpers.segment.js ***!
+  \***************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";

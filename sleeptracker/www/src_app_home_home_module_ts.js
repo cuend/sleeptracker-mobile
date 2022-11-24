@@ -27,7 +27,7 @@ const routes = [{
     loadChildren: () => __webpack_require__.e(/*! import() */ "common").then(__webpack_require__.bind(__webpack_require__, /*! ../sleepiness/sleepiness.module */ 7534)).then(m => m.SleepinessPageModule)
   }, {
     path: 'logSleep',
-    loadChildren: () => __webpack_require__.e(/*! import() */ "common").then(__webpack_require__.bind(__webpack_require__, /*! ../log-sleep/log-sleep.module */ 3456)).then(m => m.LogSleepPageModule)
+    loadChildren: () => __webpack_require__.e(/*! import() */ "default-src_app_log-sleep_log-sleep_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../log-sleep/log-sleep.module */ 3456)).then(m => m.LogSleepPageModule)
   }, {
     path: 'viewData',
     loadChildren: () => __webpack_require__.e(/*! import() */ "default-src_app_view-data_view-data_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../view-data/view-data.module */ 7163)).then(m => m.ViewDataPageModule)

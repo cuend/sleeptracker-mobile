@@ -1,176 +1,5 @@
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["common"],{
 
-/***/ 889:
-/*!*******************************************************!*\
-  !*** ./src/app/log-sleep/log-sleep-routing.module.ts ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "LogSleepPageRoutingModule": () => (/* binding */ LogSleepPageRoutingModule)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 124);
-/* harmony import */ var _log_sleep_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./log-sleep.page */ 1739);
-
-
-
-
-const routes = [{
-  path: '',
-  component: _log_sleep_page__WEBPACK_IMPORTED_MODULE_0__.LogSleepPage
-}];
-let LogSleepPageRoutingModule = class LogSleepPageRoutingModule {};
-LogSleepPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.NgModule)({
-  imports: [_angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule.forChild(routes)],
-  exports: [_angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule]
-})], LogSleepPageRoutingModule);
-
-
-/***/ }),
-
-/***/ 3456:
-/*!***********************************************!*\
-  !*** ./src/app/log-sleep/log-sleep.module.ts ***!
-  \***********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "LogSleepPageModule": () => (/* binding */ LogSleepPageModule)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 4666);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 2508);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 3819);
-/* harmony import */ var _log_sleep_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./log-sleep-routing.module */ 889);
-/* harmony import */ var _log_sleep_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./log-sleep.page */ 1739);
-
-
-
-
-
-
-
-let LogSleepPageModule = class LogSleepPageModule {};
-LogSleepPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.NgModule)({
-  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormsModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonicModule, _log_sleep_routing_module__WEBPACK_IMPORTED_MODULE_0__.LogSleepPageRoutingModule],
-  declarations: [_log_sleep_page__WEBPACK_IMPORTED_MODULE_1__.LogSleepPage]
-})], LogSleepPageModule);
-
-
-/***/ }),
-
-/***/ 1739:
-/*!*********************************************!*\
-  !*** ./src/app/log-sleep/log-sleep.page.ts ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "LogSleepPage": () => (/* binding */ LogSleepPage)
-/* harmony export */ });
-/* harmony import */ var _Users_anthony_Documents_IN4MATX133_a4_sleeptracker_INF133_sleeptracker_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _log_sleep_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./log-sleep.page.html?ngResource */ 2143);
-/* harmony import */ var _log_sleep_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./log-sleep.page.scss?ngResource */ 1287);
-/* harmony import */ var _log_sleep_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_log_sleep_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _services_sleep_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/sleep.service */ 5403);
-/* harmony import */ var _data_overnight_sleep_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../data/overnight-sleep-data */ 4883);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 3819);
-
-
-
-
-
-
-
-
-
-let LogSleepPage = class LogSleepPage {
-  constructor(sleepService, alertController, toastController) {
-    this.alertController = alertController;
-    this.toastController = toastController;
-    this.currentlySleeping = false;
-    this.isModalOpen = false;
-    this.currentDateTime = new Date().toISOString();
-    this.sleepService = sleepService;
-    //sleepService.logOvernightData(new OvernightSleepData(new Date(), new Date()));
-  }
-
-  setOpen(isOpen) {
-    this.isModalOpen = isOpen;
-  }
-  ngOnInit() {}
-  addSleep() {
-    this.sleepStart = new Date(this.startString);
-    this.sleepEnd = new Date(this.endString);
-    this.overNightSleep = new _data_overnight_sleep_data__WEBPACK_IMPORTED_MODULE_4__.OvernightSleepData(this.sleepStart, this.sleepEnd);
-    this.sleepService.logOvernightData(this.overNightSleep);
-    console.log(this.overNightSleep);
-    console.log(this.sleepStart);
-    console.log(this.sleepEnd);
-    console.log(this.startString);
-    console.log(this.endString);
-    console.log(this.currentDateTime);
-  }
-  startCurrentSleep() {
-    this.sleepStart = new Date();
-    this.currentlySleeping = true;
-  }
-  endCurrentSleep() {
-    this.sleepEnd = new Date();
-    this.overNightSleep = new _data_overnight_sleep_data__WEBPACK_IMPORTED_MODULE_4__.OvernightSleepData(this.sleepStart, this.sleepEnd);
-    this.currentlySleeping = false;
-    this.sleepService.logOvernightData(new _data_overnight_sleep_data__WEBPACK_IMPORTED_MODULE_4__.OvernightSleepData(this.sleepStart, this.sleepEnd));
-  }
-  startToast(position) {
-    var _this = this;
-    return (0,_Users_anthony_Documents_IN4MATX133_a4_sleeptracker_INF133_sleeptracker_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const toast = yield _this.toastController.create({
-        message: 'Goodnight!',
-        duration: 1500,
-        position: position
-      });
-      yield toast.present();
-    })();
-  }
-  endToast(position) {
-    var _this2 = this;
-    return (0,_Users_anthony_Documents_IN4MATX133_a4_sleeptracker_INF133_sleeptracker_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const toast = yield _this2.toastController.create({
-        message: 'Welcome Back!',
-        duration: 1500,
-        position: position
-      });
-      yield toast.present();
-    })();
-  }
-  static #_ = this.ctorParameters = () => [{
-    type: _services_sleep_service__WEBPACK_IMPORTED_MODULE_3__.SleepService
-  }, {
-    type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.AlertController
-  }, {
-    type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ToastController
-  }];
-};
-LogSleepPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
-  selector: 'app-log-sleep',
-  template: _log_sleep_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
-  styles: [(_log_sleep_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]
-})], LogSleepPage);
-
-
-/***/ }),
-
 /***/ 7644:
 /*!*********************************************************!*\
   !*** ./src/app/sleepiness/sleepiness-routing.module.ts ***!
@@ -248,7 +77,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "SleepinessPage": () => (/* binding */ SleepinessPage)
 /* harmony export */ });
-/* harmony import */ var _Users_anthony_Documents_IN4MATX133_a4_sleeptracker_INF133_sleeptracker_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var _Users_davidcuen_Desktop_Computer_Science_INF_133_a4_sleeptracker_INF133_sleeptracker_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 4929);
 /* harmony import */ var _sleepiness_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sleepiness.page.html?ngResource */ 6693);
 /* harmony import */ var _sleepiness_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sleepiness.page.scss?ngResource */ 6435);
@@ -294,7 +123,7 @@ let SleepinessPage = class SleepinessPage {
   }
   sleepyToast(position) {
     var _this = this;
-    return (0,_Users_anthony_Documents_IN4MATX133_a4_sleeptracker_INF133_sleeptracker_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_davidcuen_Desktop_Computer_Science_INF_133_a4_sleeptracker_INF133_sleeptracker_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const toast = yield _this.toastController.create({
         message: 'Log Submitted!',
         duration: 1500,
@@ -518,7 +347,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "a": () => (/* binding */ attachComponent),
 /* harmony export */   "d": () => (/* binding */ detachComponent)
 /* harmony export */ });
-/* harmony import */ var _Users_anthony_Documents_IN4MATX133_a4_sleeptracker_INF133_sleeptracker_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var _Users_davidcuen_Desktop_Computer_Science_INF_133_a4_sleeptracker_INF133_sleeptracker_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
 /* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 9259);
 
 /*!
@@ -526,7 +355,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 const attachComponent = /*#__PURE__*/function () {
-  var _ref = (0,_Users_anthony_Documents_IN4MATX133_a4_sleeptracker_INF133_sleeptracker_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (delegate, container, component, cssClasses, componentProps, inline) {
+  var _ref = (0,_Users_davidcuen_Desktop_Computer_Science_INF_133_a4_sleeptracker_INF133_sleeptracker_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (delegate, container, component, cssClasses, componentProps, inline) {
     var _a;
     if (delegate) {
       return delegate.attachViewToDom(container, component, componentProps, cssClasses);
@@ -563,7 +392,7 @@ const CoreDelegate = () => {
   let BaseComponent;
   let Reference;
   const attachViewToDom = /*#__PURE__*/function () {
-    var _ref2 = (0,_Users_anthony_Documents_IN4MATX133_a4_sleeptracker_INF133_sleeptracker_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (parentElement, userComponent, userComponentProps = {}, cssClasses = []) {
+    var _ref2 = (0,_Users_davidcuen_Desktop_Computer_Science_INF_133_a4_sleeptracker_INF133_sleeptracker_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (parentElement, userComponent, userComponentProps = {}, cssClasses = []) {
       var _a, _b;
       BaseComponent = parentElement;
       /**
@@ -879,7 +708,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "r": () => (/* binding */ resetContentScrollY),
 /* harmony export */   "s": () => (/* binding */ scrollToTop)
 /* harmony export */ });
-/* harmony import */ var _Users_anthony_Documents_IN4MATX133_a4_sleeptracker_INF133_sleeptracker_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var _Users_davidcuen_Desktop_Computer_Science_INF_133_a4_sleeptracker_INF133_sleeptracker_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
 /* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 9259);
 /* harmony import */ var _index_c4b11676_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index-c4b11676.js */ 9273);
 
@@ -911,7 +740,7 @@ const isIonContent = el => el.tagName === ION_CONTENT_TAG_NAME;
  * or a selector within the host, if supplied through `scrollTarget`.
  */
 const getScrollElement = /*#__PURE__*/function () {
-  var _ref = (0,_Users_anthony_Documents_IN4MATX133_a4_sleeptracker_INF133_sleeptracker_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (el) {
+  var _ref = (0,_Users_davidcuen_Desktop_Computer_Science_INF_133_a4_sleeptracker_INF133_sleeptracker_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (el) {
     if (isIonContent(el)) {
       yield new Promise(resolve => (0,_helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_1__.c)(el, resolve));
       return el.getScrollElement();
@@ -1471,24 +1300,6 @@ const createSwipeBackGesture = (el, canStartHandler, onStartHandler, onMoveHandl
 
 /***/ }),
 
-/***/ 1287:
-/*!**********************************************************!*\
-  !*** ./src/app/log-sleep/log-sleep.page.scss?ngResource ***!
-  \**********************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-// Imports
-var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 9579);
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ 931);
-var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "", "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
-// Exports
-module.exports = ___CSS_LOADER_EXPORT___.toString();
-
-
-/***/ }),
-
 /***/ 6435:
 /*!************************************************************!*\
   !*** ./src/app/sleepiness/sleepiness.page.scss?ngResource ***!
@@ -1504,17 +1315,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, "", "",{"version":3,"sources":[],"names
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 
-
-/***/ }),
-
-/***/ 2143:
-/*!**********************************************************!*\
-  !*** ./src/app/log-sleep/log-sleep.page.html?ngResource ***!
-  \**********************************************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>LogSleep</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<style>\n\n.menu {\n  --height: 50%;\n  --border-radius: 16px;\n  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);\n}\n\nion-row {\nheight: auto;\nwidth: 100%;\nalign-items: center;\n}\n.design {\n  position: center;\n  width: 90%;\n  height: 90%;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.notice {\n  /* text-decoration-color: lightslategray; */\n  text-align: left;\n  font-size: 12px;\n  justify-content: center;\n  opacity: 0.5;\n}\n\n</style>\n\n<ion-content>\n\n  <ion-grid class=\"design\">\n\n    <ion-row style=\"height: 50%\">\n\n      <ion-col class=\"ion-align-items-start\">\n        <h1>Ready for Bed?</h1>\n      </ion-col>\n\n      <ion-row style=\"height: 50%\" class=\"ion-justify-content-center\">\n        <ion-col class=\"ion-align-items-start\" size=\"12\" style=\"height: 10%\">\n          <label class=\"notice\">Previous Sleep Data:</label>\n        </ion-col>\n        <ion-col size=\"12\" class=\"ion-align-items-stretch\" style=\"height: 50%\">\n          <p class=\"notice\" *ngIf=\"overNightSleep\">On the {{overNightSleep.dateString()}}. You slept a total of {{overNightSleep.summaryString()}} </p>\n        </ion-col>\n      </ion-row>\n\n      <ion-row style=\"height: 25%\" class=\"ion-justify-content-center\">\n        <ion-icon size=\"large\" name=\"bed-outline\"></ion-icon>\n      </ion-row>\n\n    </ion-row>\n\n    <ion-row style=\"height: 50%\" class=\"ion-justify-content-center\">\n      <ion-button shape=\"round\" color=\"success\" (click)=\"startCurrentSleep();startToast('top')\" *ngIf=\"!currentlySleeping\">Start Sleep</ion-button>\n      <ion-button shape=\"round\" color=\"warning\" (click)=\"endCurrentSleep();endToast('top')\" *ngIf=\"currentlySleeping\">End Sleep</ion-button>\n      <br>\n      <ion-button expand=\"block\" size=\"small\" shape=\"round\" (click)=\"setOpen(true)\">Log a Previous Night's Sleep</ion-button>\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-modal class=\"menu\" [isOpen]=\"isModalOpen\">\n    <ng-template>\n  \n      <ion-content class=\"ion-padding\">\n        \n        <header>\n          <ion-toolbar>\n            <ion-title>Enter Sleep Log:</ion-title>\n            <ion-buttons slot=\"end\">\n              <ion-button (click)=\"setOpen(false)\">Close</ion-button>\n            </ion-buttons>\n          </ion-toolbar>\n        </header>\n\n        <div class=\"ion-padding\">\n          <label>Start Date and Time:</label>\n          <br>\n          <ion-datetime-button datetime=\"datetime\"></ion-datetime-button>\n          <ion-modal [keepContentsMounted]=\"true\">\n            <ng-template>\n              <ion-datetime value=\"currentDateTime\" [(ngModel)]=\"startString\" presentation=\"date-time\" preferWheel=\"true\" id=\"datetime\"></ion-datetime>\n            </ng-template>\n          </ion-modal>\n        </div>\n\n        <div class=\"ion-padding\">\n          <label>End Date and Time:</label>\n          <br>\n          <ion-datetime-button datetime=\"datetime1\"></ion-datetime-button>\n          <ion-modal [keepContentsMounted]=\"true\">\n            <ng-template>\n              <ion-datetime value=\"currentDateTime\" [(ngModel)]=\"endString\" presentation=\"date-time\" preferWheel=\"true\" id=\"datetime1\"></ion-datetime>\n            </ng-template>\n          </ion-modal>\n        </div>\n\n        <ion-button expand=\"block\" shape=\"round\" color=\"success\" (click)=\"addSleep();setOpen(false)\">Log Sleep</ion-button>\n\n      </ion-content>\n    </ng-template>\n  </ion-modal>\n\n</ion-content>\n";
 
 /***/ }),
 
