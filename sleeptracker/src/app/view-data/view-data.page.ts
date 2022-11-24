@@ -101,7 +101,7 @@ export class ViewDataPage implements OnInit, AfterViewInit {
 
     // Put data into arrays
     for (let i=0; i < lastFiveLogs.length;i++) {
-      minutes_slept.push(lastFiveLogs[i].getTotalMinutesSlept());
+      minutes_slept.push(lastFiveLogs[i].getTotalHoursSlept());
       dates_logged.push(lastFiveLogs[i].getDateStringForGraph());
     }
 
