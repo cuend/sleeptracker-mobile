@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SleepService } from '../services/sleep.service';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
-import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
 

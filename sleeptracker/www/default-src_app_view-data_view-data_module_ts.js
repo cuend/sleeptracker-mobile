@@ -102,9 +102,9 @@ let ViewDataPage = class ViewDataPage {
   // When we try to call our chart to initialize methods in ngOnInit() it shows an error nativeElement of undefined. 
   // So, we need to call all chart methods in ngAfterViewInit() where @ViewChild and @ViewChildren will be resolved.
   ngAfterViewInit() {
-    _services_sleep_service__WEBPACK_IMPORTED_MODULE_5__.SleepService.AllOvernightData.push(new _data_overnight_sleep_data__WEBPACK_IMPORTED_MODULE_3__.OvernightSleepData(new Date("2022-11-18"), new Date("2022-11-19")));
-    _services_sleep_service__WEBPACK_IMPORTED_MODULE_5__.SleepService.AllOvernightData.push(new _data_overnight_sleep_data__WEBPACK_IMPORTED_MODULE_3__.OvernightSleepData(new Date("2022-11-16"), new Date("2022-11-17")));
-    _services_sleep_service__WEBPACK_IMPORTED_MODULE_5__.SleepService.AllOvernightData.push(new _data_overnight_sleep_data__WEBPACK_IMPORTED_MODULE_3__.OvernightSleepData(new Date("2022-11-20"), new Date("2022-11-21")));
+    _services_sleep_service__WEBPACK_IMPORTED_MODULE_5__.SleepService.AllOvernightData.push(new _data_overnight_sleep_data__WEBPACK_IMPORTED_MODULE_3__.OvernightSleepData(new Date("November 11, 2022 20:13:00"), new Date("November 12, 2022 4:13:00")));
+    _services_sleep_service__WEBPACK_IMPORTED_MODULE_5__.SleepService.AllOvernightData.push(new _data_overnight_sleep_data__WEBPACK_IMPORTED_MODULE_3__.OvernightSleepData(new Date("November 16, 2022 22:34:00"), new Date("November 17, 2022 6:01:00")));
+    _services_sleep_service__WEBPACK_IMPORTED_MODULE_5__.SleepService.AllOvernightData.push(new _data_overnight_sleep_data__WEBPACK_IMPORTED_MODULE_3__.OvernightSleepData(new Date("November 18, 2022 23:42:00"), new Date("November 19, 2022 7:04:00")));
     _services_sleep_service__WEBPACK_IMPORTED_MODULE_5__.SleepService.AllSleepinessData.push(new _data_stanford_sleepiness_data__WEBPACK_IMPORTED_MODULE_4__.StanfordSleepinessData(2, new Date("2022-11-18"), ""));
     _services_sleep_service__WEBPACK_IMPORTED_MODULE_5__.SleepService.AllSleepinessData.push(new _data_stanford_sleepiness_data__WEBPACK_IMPORTED_MODULE_4__.StanfordSleepinessData(7, new Date("2022-11-16"), ""));
     _services_sleep_service__WEBPACK_IMPORTED_MODULE_5__.SleepService.AllSleepinessData.push(new _data_stanford_sleepiness_data__WEBPACK_IMPORTED_MODULE_4__.StanfordSleepinessData(3, new Date("2022-11-16"), ""));
@@ -112,39 +112,13 @@ let ViewDataPage = class ViewDataPage {
     this.lineChartForOvernightSleep();
     this.lineChartForSleepiness();
   }
-  barChartMethod() {
-    // Now we need to supply a Chart element reference with an object that defines the type of chart we want to use, and the type of data we want to display.
+  lineChartForOvernightSleep() {
+    let lastFiveLogs = this.sleepService.getLastFiveOvernightLogs();
     let hours_slept = [];
     let dates_logged = [];
     // Put data into arrays
-    for (let i = 0; i < _services_sleep_service__WEBPACK_IMPORTED_MODULE_5__.SleepService.AllOvernightData.length; i++) {
-      hours_slept.push(_services_sleep_service__WEBPACK_IMPORTED_MODULE_5__.SleepService.AllOvernightData[i].getTotalMinutesSlept());
-      dates_logged.push(_services_sleep_service__WEBPACK_IMPORTED_MODULE_5__.SleepService.AllOvernightData[i].getDateStringForGraph());
-    }
-    this.barChart = new chart_js_auto__WEBPACK_IMPORTED_MODULE_2__["default"](this.barCanvas.nativeElement, {
-      type: 'bar',
-      data: {
-        labels: dates_logged,
-        datasets: [{
-          label: 'Minutes Slept',
-          data: hours_slept,
-          backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
-          borderColor: ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {}
-      }
-    });
-  }
-  lineChartForOvernightSleep() {
-    let lastFiveLogs = this.sleepService.getLastFiveOvernightLogs();
-    let minutes_slept = [];
-    let dates_logged = [];
-    // Put data into arrays
     for (let i = 0; i < lastFiveLogs.length; i++) {
-      minutes_slept.push(lastFiveLogs[i].getTotalHoursSlept());
+      hours_slept.push(lastFiveLogs[i].getTotalHoursSlept());
       dates_logged.push(lastFiveLogs[i].getDateStringForGraph());
     }
     this.overnightLineChart = new chart_js_auto__WEBPACK_IMPORTED_MODULE_2__["default"](this.lineCanvas.nativeElement, {
@@ -152,8 +126,8 @@ let ViewDataPage = class ViewDataPage {
       data: {
         labels: dates_logged,
         datasets: [{
-          label: 'Minutes slept',
-          data: minutes_slept,
+          label: 'Hours slept',
+          data: hours_slept,
           fill: false,
           borderColor: 'rgb(75, 192, 192)',
           tension: 0.1
@@ -205,18 +179,18 @@ let ViewDataPage = class ViewDataPage {
   }
   refreshOvernightGraph() {
     let lastFiveLogs = this.sleepService.getLastFiveOvernightLogs();
-    let minutes_slept = [];
+    let hours_slept = [];
     let dates_logged = [];
     // Put data into arrays
     for (let i = 0; i < lastFiveLogs.length; i++) {
-      minutes_slept.push(lastFiveLogs[i].getTotalHoursSlept());
+      hours_slept.push(lastFiveLogs[i].getTotalHoursSlept());
       console.log(lastFiveLogs[i].getTotalHoursSlept());
       dates_logged.push(lastFiveLogs[i].getDateStringForGraph());
     }
     this.overnightLineChart.data.labels = dates_logged;
     this.overnightLineChart.data.datasets = [{
       label: 'Hours Slept',
-      data: minutes_slept,
+      data: hours_slept,
       fill: false,
       borderColor: 'rgb(75, 192, 192)',
       tension: 0.1
@@ -235,14 +209,6 @@ let ViewDataPage = class ViewDataPage {
     type: _services_sleep_service__WEBPACK_IMPORTED_MODULE_5__.SleepService
   }];
   static #_2 = this.propDecorators = {
-    barCanvas: [{
-      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.ViewChild,
-      args: ['barCanvas']
-    }],
-    doughnutCanvas: [{
-      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.ViewChild,
-      args: ['doughnutCanvas']
-    }],
     lineCanvas: [{
       type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.ViewChild,
       args: ['lineCanvas']

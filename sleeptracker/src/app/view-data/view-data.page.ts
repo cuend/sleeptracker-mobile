@@ -22,13 +22,8 @@ export class ViewDataPage implements OnInit, AfterViewInit {
 
   // Importing ViewChild. We need @ViewChild decorator to get a reference to the local variable 
   // that we have added to the canvas element in the HTML template.
-  @ViewChild('barCanvas') private barCanvas: ElementRef;
-  @ViewChild('doughnutCanvas') private doughnutCanvas: ElementRef;
   @ViewChild('lineCanvas') private lineCanvas: ElementRef;
   @ViewChild('lineCanvasSleepiness') private lineCanvasSleepiness: ElementRef;
-
-  barChart: any;
-  doughnutChart: any;
   overnightLineChart: any;
   sleepinessLineChart: any;
 
@@ -37,9 +32,9 @@ export class ViewDataPage implements OnInit, AfterViewInit {
   // So, we need to call all chart methods in ngAfterViewInit() where @ViewChild and @ViewChildren will be resolved.
   ngAfterViewInit() {
 
-    SleepService.AllOvernightData.push(new OvernightSleepData(new Date("2022-11-18"), new Date("2022-11-19")));
-    SleepService.AllOvernightData.push(new OvernightSleepData(new Date("2022-11-16"), new Date("2022-11-17")));
-    SleepService.AllOvernightData.push(new OvernightSleepData(new Date("2022-11-20"), new Date("2022-11-21")));
+    SleepService.AllOvernightData.push(new OvernightSleepData(new Date("November 11, 2022 20:13:00"), new Date("November 12, 2022 4:13:00")));
+    SleepService.AllOvernightData.push(new OvernightSleepData(new Date("November 16, 2022 22:34:00"), new Date("November 17, 2022 6:01:00")));
+    SleepService.AllOvernightData.push(new OvernightSleepData(new Date("November 18, 2022 23:42:00"), new Date("November 19, 2022 7:04:00")));
 
     SleepService.AllSleepinessData.push(new StanfordSleepinessData(2, new Date("2022-11-18"), ""));
     SleepService.AllSleepinessData.push(new StanfordSleepinessData(7, new Date("2022-11-16"), ""));
@@ -50,58 +45,14 @@ export class ViewDataPage implements OnInit, AfterViewInit {
     this.lineChartForSleepiness();
   }
 
-  barChartMethod() {
-    // Now we need to supply a Chart element reference with an object that defines the type of chart we want to use, and the type of data we want to display.
+  lineChartForOvernightSleep() {
+    let lastFiveLogs = this.sleepService.getLastFiveOvernightLogs();
     let hours_slept = [];
     let dates_logged = [];
 
     // Put data into arrays
-    for (let i=0; i < SleepService.AllOvernightData.length;i++) {
-      hours_slept.push(SleepService.AllOvernightData[i].getTotalMinutesSlept());
-      dates_logged.push(SleepService.AllOvernightData[i].getDateStringForGraph());
-    }
-
-    this.barChart = new Chart(this.barCanvas.nativeElement, {
-      type: 'bar',
-      data: {
-        labels: dates_logged, //['BJP', 'INC', 'AAP', 'CPI', 'CPI-M', 'NCP'],
-        datasets: [{
-          label: 'Minutes Slept',
-          data: hours_slept,//[200, 150, 80, 15, 20, 34],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-        }
-      }
-    });
-  }
-
-  lineChartForOvernightSleep() {
-    let lastFiveLogs = this.sleepService.getLastFiveOvernightLogs();
-    let minutes_slept = [];
-    let dates_logged = [];
-
-    // Put data into arrays
     for (let i=0; i < lastFiveLogs.length;i++) {
-      minutes_slept.push(lastFiveLogs[i].getTotalHoursSlept());
+      hours_slept.push(lastFiveLogs[i].getTotalHoursSlept());
       dates_logged.push(lastFiveLogs[i].getDateStringForGraph());
     }
 
@@ -110,8 +61,8 @@ export class ViewDataPage implements OnInit, AfterViewInit {
       data: {
         labels: dates_logged,
         datasets: [{
-          label: 'Minutes slept',
-          data: minutes_slept,
+          label: 'Hours slept',
+          data: hours_slept,
           fill: false,
           borderColor: 'rgb(75, 192, 192)',
           tension: 0.1
@@ -170,12 +121,12 @@ export class ViewDataPage implements OnInit, AfterViewInit {
 
   refreshOvernightGraph() {
     let lastFiveLogs = this.sleepService.getLastFiveOvernightLogs();
-    let minutes_slept = [];
+    let hours_slept = [];
     let dates_logged = [];
 
     // Put data into arrays
     for (let i=0; i < lastFiveLogs.length;i++) {
-      minutes_slept.push(lastFiveLogs[i].getTotalHoursSlept());
+      hours_slept.push(lastFiveLogs[i].getTotalHoursSlept());
       console.log(lastFiveLogs[i].getTotalHoursSlept());
       dates_logged.push(lastFiveLogs[i].getDateStringForGraph());
     }
@@ -183,7 +134,7 @@ export class ViewDataPage implements OnInit, AfterViewInit {
     this.overnightLineChart.data.labels = dates_logged;
     this.overnightLineChart.data.datasets =[{
       label: 'Hours Slept',
-      data: minutes_slept,
+      data: hours_slept,
       fill: false,
       borderColor: 'rgb(75, 192, 192)',
       tension: 0.1
