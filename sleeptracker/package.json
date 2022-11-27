@@ -28,6 +28,7 @@
     "@capacitor/push-notifications": "^4.1.2",
     "@capacitor/status-bar": "4.0.1",
     "@ionic/angular": "^6.1.9",
+    "cordova-plugin-device": "github:apache/cordova-plugin-device",
     "cordova-plugin-local-notification": "^0.9.0-beta.2",
     "ionicons": "^6.0.3",
     "rxjs": "~6.6.0",

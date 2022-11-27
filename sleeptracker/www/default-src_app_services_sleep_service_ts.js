@@ -1,6 +1,6 @@
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["default-src_app_services_sleep_service_ts"],{
 
-/***/ 4883:
+/***/ 7212:
 /*!**********************************************!*\
   !*** ./src/app/data/overnight-sleep-data.ts ***!
   \**********************************************/
@@ -11,7 +11,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "OvernightSleepData": () => (/* binding */ OvernightSleepData)
 /* harmony export */ });
-/* harmony import */ var _sleep_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sleep-data */ 8035);
+/* harmony import */ var _sleep_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sleep-data */ 533);
 
 class OvernightSleepData extends _sleep_data__WEBPACK_IMPORTED_MODULE_0__.SleepData {
   constructor(sleepStart, sleepEnd) {
@@ -60,7 +60,7 @@ class OvernightSleepData extends _sleep_data__WEBPACK_IMPORTED_MODULE_0__.SleepD
 
 /***/ }),
 
-/***/ 8035:
+/***/ 533:
 /*!************************************!*\
   !*** ./src/app/data/sleep-data.ts ***!
   \************************************/
@@ -94,7 +94,7 @@ class SleepData {
 
 /***/ }),
 
-/***/ 4201:
+/***/ 743:
 /*!**************************************************!*\
   !*** ./src/app/data/stanford-sleepiness-data.ts ***!
   \**************************************************/
@@ -105,7 +105,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "StanfordSleepinessData": () => (/* binding */ StanfordSleepinessData)
 /* harmony export */ });
-/* harmony import */ var _sleep_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sleep-data */ 8035);
+/* harmony import */ var _sleep_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sleep-data */ 533);
 /* from the Stanford Sleepiness Scale */
 /* https://web.stanford.edu/~dement/sss.html */
 
@@ -141,7 +141,7 @@ class StanfordSleepinessData extends _sleep_data__WEBPACK_IMPORTED_MODULE_0__.Sl
 
 /***/ }),
 
-/***/ 5403:
+/***/ 2517:
 /*!*******************************************!*\
   !*** ./src/app/services/sleep.service.ts ***!
   \*******************************************/
@@ -154,8 +154,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _data_overnight_sleep_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/overnight-sleep-data */ 4883);
-/* harmony import */ var _data_stanford_sleepiness_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data/stanford-sleepiness-data */ 4201);
+/* harmony import */ var _data_overnight_sleep_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/overnight-sleep-data */ 7212);
+/* harmony import */ var _data_stanford_sleepiness_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data/stanford-sleepiness-data */ 743);
 
 
 

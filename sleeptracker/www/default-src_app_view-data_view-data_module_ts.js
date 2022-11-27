@@ -1,6 +1,6 @@
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["default-src_app_view-data_view-data_module_ts"],{
 
-/***/ 7598:
+/***/ 6316:
 /*!*******************************************************!*\
   !*** ./src/app/view-data/view-data-routing.module.ts ***!
   \*******************************************************/
@@ -14,7 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 2560);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 124);
-/* harmony import */ var _view_data_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./view-data.page */ 7891);
+/* harmony import */ var _view_data_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./view-data.page */ 8808);
 
 
 
@@ -32,7 +32,7 @@ ViewDataPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([(
 
 /***/ }),
 
-/***/ 7163:
+/***/ 642:
 /*!***********************************************!*\
   !*** ./src/app/view-data/view-data.module.ts ***!
   \***********************************************/
@@ -48,8 +48,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 4666);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 2508);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 3819);
-/* harmony import */ var _view_data_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./view-data-routing.module */ 7598);
-/* harmony import */ var _view_data_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view-data.page */ 7891);
+/* harmony import */ var _view_data_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./view-data-routing.module */ 6316);
+/* harmony import */ var _view_data_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view-data.page */ 8808);
 
 
 
@@ -66,7 +66,7 @@ ViewDataPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([(0,_angu
 
 /***/ }),
 
-/***/ 7891:
+/***/ 8808:
 /*!*********************************************!*\
   !*** ./src/app/view-data/view-data.page.ts ***!
   \*********************************************/
@@ -83,9 +83,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _view_data_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_view_data_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 2560);
 /* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! chart.js/auto */ 3707);
-/* harmony import */ var _data_overnight_sleep_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data/overnight-sleep-data */ 4883);
-/* harmony import */ var _data_stanford_sleepiness_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../data/stanford-sleepiness-data */ 4201);
-/* harmony import */ var _services_sleep_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/sleep.service */ 5403);
+/* harmony import */ var _data_overnight_sleep_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data/overnight-sleep-data */ 7212);
+/* harmony import */ var _data_stanford_sleepiness_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../data/stanford-sleepiness-data */ 743);
+/* harmony import */ var _services_sleep_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/sleep.service */ 2517);
 
 
 

@@ -1,6 +1,6 @@
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["src_app_home_home_module_ts"],{
 
-/***/ 5089:
+/***/ 2003:
 /*!*********************************************!*\
   !*** ./src/app/home/home-routing.module.ts ***!
   \*********************************************/
@@ -14,7 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 2560);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 124);
-/* harmony import */ var _home_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./home.page */ 9460);
+/* harmony import */ var _home_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./home.page */ 2267);
 
 
 
@@ -24,13 +24,13 @@ const routes = [{
   component: _home_page__WEBPACK_IMPORTED_MODULE_0__.HomePage,
   children: [{
     path: 'sleepiness',
-    loadChildren: () => __webpack_require__.e(/*! import() */ "common").then(__webpack_require__.bind(__webpack_require__, /*! ../sleepiness/sleepiness.module */ 7534)).then(m => m.SleepinessPageModule)
+    loadChildren: () => __webpack_require__.e(/*! import() */ "common").then(__webpack_require__.bind(__webpack_require__, /*! ../sleepiness/sleepiness.module */ 6189)).then(m => m.SleepinessPageModule)
   }, {
     path: 'logSleep',
-    loadChildren: () => __webpack_require__.e(/*! import() */ "default-src_app_log-sleep_log-sleep_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../log-sleep/log-sleep.module */ 3456)).then(m => m.LogSleepPageModule)
+    loadChildren: () => __webpack_require__.e(/*! import() */ "default-src_app_log-sleep_log-sleep_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../log-sleep/log-sleep.module */ 7696)).then(m => m.LogSleepPageModule)
   }, {
     path: 'viewData',
-    loadChildren: () => __webpack_require__.e(/*! import() */ "default-src_app_view-data_view-data_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../view-data/view-data.module */ 7163)).then(m => m.ViewDataPageModule)
+    loadChildren: () => __webpack_require__.e(/*! import() */ "default-src_app_view-data_view-data_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../view-data/view-data.module */ 642)).then(m => m.ViewDataPageModule)
   }, {
     path: '',
     redirectTo: '/home/logSleep',
@@ -46,7 +46,7 @@ HomePageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([(0,_a
 
 /***/ }),
 
-/***/ 2711:
+/***/ 3467:
 /*!*************************************!*\
   !*** ./src/app/home/home.module.ts ***!
   \*************************************/
@@ -62,8 +62,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 4666);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 3819);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 2508);
-/* harmony import */ var _home_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./home.page */ 9460);
-/* harmony import */ var _home_routing_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home-routing.module */ 5089);
+/* harmony import */ var _home_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./home.page */ 2267);
+/* harmony import */ var _home_routing_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home-routing.module */ 2003);
 
 
 
@@ -80,7 +80,7 @@ HomePageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([(0,_angular_
 
 /***/ }),
 
-/***/ 9460:
+/***/ 2267:
 /*!***********************************!*\
   !*** ./src/app/home/home.page.ts ***!
   \***********************************/
@@ -96,7 +96,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home.page.scss?ngResource */ 1821);
 /* harmony import */ var _home_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_home_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _services_sleep_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/sleep.service */ 5403);
+/* harmony import */ var _services_sleep_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/sleep.service */ 2517);
 
 
 

@@ -1,6 +1,6 @@
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["default-src_app_log-sleep_log-sleep_module_ts"],{
 
-/***/ 889:
+/***/ 1010:
 /*!*******************************************************!*\
   !*** ./src/app/log-sleep/log-sleep-routing.module.ts ***!
   \*******************************************************/
@@ -14,7 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 2560);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 124);
-/* harmony import */ var _log_sleep_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./log-sleep.page */ 1739);
+/* harmony import */ var _log_sleep_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./log-sleep.page */ 6981);
 
 
 
@@ -32,7 +32,7 @@ LogSleepPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([(
 
 /***/ }),
 
-/***/ 3456:
+/***/ 7696:
 /*!***********************************************!*\
   !*** ./src/app/log-sleep/log-sleep.module.ts ***!
   \***********************************************/
@@ -48,8 +48,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 4666);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ 2508);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 3819);
-/* harmony import */ var _log_sleep_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./log-sleep-routing.module */ 889);
-/* harmony import */ var _log_sleep_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./log-sleep.page */ 1739);
+/* harmony import */ var _log_sleep_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./log-sleep-routing.module */ 1010);
+/* harmony import */ var _log_sleep_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./log-sleep.page */ 6981);
 /* harmony import */ var _awesome_cordova_plugins_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @awesome-cordova-plugins/local-notifications/ngx */ 2832);
 
 
@@ -69,7 +69,7 @@ LogSleepPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([(0,_angu
 
 /***/ }),
 
-/***/ 1739:
+/***/ 6981:
 /*!*********************************************!*\
   !*** ./src/app/log-sleep/log-sleep.page.ts ***!
   \*********************************************/
@@ -86,8 +86,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _log_sleep_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./log-sleep.page.scss?ngResource */ 1287);
 /* harmony import */ var _log_sleep_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_log_sleep_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _services_sleep_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/sleep.service */ 5403);
-/* harmony import */ var _data_overnight_sleep_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../data/overnight-sleep-data */ 4883);
+/* harmony import */ var _services_sleep_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/sleep.service */ 2517);
+/* harmony import */ var _data_overnight_sleep_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../data/overnight-sleep-data */ 7212);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 3819);
 /* harmony import */ var _awesome_cordova_plugins_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @awesome-cordova-plugins/local-notifications/ngx */ 2832);
 
@@ -160,9 +160,9 @@ let LogSleepPage = class LogSleepPage {
   }
   simpleNotif() {
     this.localNotifications.schedule({
-      text: 'Delayed ILocalNotification',
+      text: 'Remember to track how sleepy you feel Today! 😴',
       trigger: {
-        at: new Date(new Date().getTime() + 6000)
+        at: new Date(new Date().getTime() + 60000)
       },
       led: 'FF0000',
       sound: null

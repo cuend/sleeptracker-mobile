@@ -1,6 +1,6 @@
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["main"],{
 
-/***/ 809:
+/***/ 158:
 /*!***************************************!*\
   !*** ./src/app/app-routing.module.ts ***!
   \***************************************/
@@ -19,20 +19,20 @@ __webpack_require__.r(__webpack_exports__);
 
 const routes = [{
   path: 'home',
-  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_sleep_service_ts"), __webpack_require__.e("src_app_home_home_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./home/home.module */ 2711)).then(m => m.HomePageModule)
+  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_sleep_service_ts"), __webpack_require__.e("src_app_home_home_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./home/home.module */ 3467)).then(m => m.HomePageModule)
 }, {
   path: '',
   redirectTo: 'home',
   pathMatch: 'full'
 }, {
   path: 'sleepiness',
-  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_sleep_service_ts"), __webpack_require__.e("common")]).then(__webpack_require__.bind(__webpack_require__, /*! ./sleepiness/sleepiness.module */ 7534)).then(m => m.SleepinessPageModule)
+  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_sleep_service_ts"), __webpack_require__.e("common")]).then(__webpack_require__.bind(__webpack_require__, /*! ./sleepiness/sleepiness.module */ 6189)).then(m => m.SleepinessPageModule)
 }, {
   path: 'log-sleep',
-  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_sleep_service_ts"), __webpack_require__.e("default-src_app_log-sleep_log-sleep_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./log-sleep/log-sleep.module */ 3456)).then(m => m.LogSleepPageModule)
+  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_sleep_service_ts"), __webpack_require__.e("default-src_app_log-sleep_log-sleep_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./log-sleep/log-sleep.module */ 7696)).then(m => m.LogSleepPageModule)
 }, {
   path: 'view-data',
-  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_sleep_service_ts"), __webpack_require__.e("default-src_app_view-data_view-data_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./view-data/view-data.module */ 7163)).then(m => m.ViewDataPageModule)
+  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_sleep_service_ts"), __webpack_require__.e("default-src_app_view-data_view-data_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./view-data/view-data.module */ 642)).then(m => m.ViewDataPageModule)
 }];
 let AppRoutingModule = class AppRoutingModule {};
 AppRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.NgModule)({
@@ -45,7 +45,7 @@ AppRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([(0,_angula
 
 /***/ }),
 
-/***/ 721:
+/***/ 5041:
 /*!**********************************!*\
   !*** ./src/app/app.component.ts ***!
   \**********************************/
@@ -78,7 +78,7 @@ AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([(0,_angular_co
 
 /***/ }),
 
-/***/ 23:
+/***/ 6747:
 /*!*******************************!*\
   !*** ./src/app/app.module.ts ***!
   \*******************************/
@@ -94,8 +94,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ 4497);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 124);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 3819);
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.component */ 721);
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app-routing.module */ 809);
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.component */ 5041);
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app-routing.module */ 158);
 
 
 
@@ -118,7 +118,7 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([(0,_angular_core_
 
 /***/ }),
 
-/***/ 4766:
+/***/ 2340:
 /*!*****************************************!*\
   !*** ./src/environments/environment.ts ***!
   \*****************************************/
@@ -146,7 +146,7 @@ const environment = {
 
 /***/ }),
 
-/***/ 8835:
+/***/ 4431:
 /*!*********************!*\
   !*** ./src/main.ts ***!
   \*********************/
@@ -156,8 +156,8 @@ const environment = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 2560);
 /* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ 6057);
-/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app/app.module */ 23);
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./environments/environment */ 4766);
+/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app/app.module */ 6747);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./environments/environment */ 2340);
 
 
 
@@ -236,12 +236,12 @@ var map = {
 	],
 	"./ion-datetime-button.entry.js": [
 		7950,
-		"default-node_modules_ionic_core_dist_esm_data-64bc531e_js-node_modules_ionic_core_dist_esm_th-f0213e",
+		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
 		"node_modules_ionic_core_dist_esm_ion-datetime-button_entry_js"
 	],
 	"./ion-datetime_3.entry.js": [
 		9689,
-		"default-node_modules_ionic_core_dist_esm_data-64bc531e_js-node_modules_ionic_core_dist_esm_th-f0213e",
+		"default-node_modules_ionic_core_dist_esm_data-cb72448c_js-node_modules_ionic_core_dist_esm_th-29e28e",
 		"common",
 		"node_modules_ionic_core_dist_esm_ion-datetime_3_entry_js"
 	],
@@ -448,7 +448,7 @@ module.exports = "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-ap
 },
 /******/ __webpack_require__ => { // webpackRuntimeModules
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ __webpack_require__.O(0, ["vendor"], () => (__webpack_exec__(8835)));
+/******/ __webpack_require__.O(0, ["vendor"], () => (__webpack_exec__(4431)));
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);

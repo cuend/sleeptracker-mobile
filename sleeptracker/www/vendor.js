@@ -260,14 +260,8 @@ class ValueAccessor {
       this.statusChanges = ngControl.statusChanges.subscribe(() => setIonicClasses(this.el));
     }
     /**
-     * TODO Remove this in favor of https://github.com/angular/angular/issues/10887
-     * whenever it is implemented. Currently, Ionic's form status classes
-     * do not react to changes when developers manually call
-     * Angular form control methods such as markAsTouched.
-     * This results in Ionic's form status classes being out
-     * of sync with the ng form status classes.
-     * This patches the methods to manually sync
-     * the classes until this feature is implemented in Angular.
+     * TODO FW-2787: Remove this in favor of https://github.com/angular/angular/issues/10887
+     * whenever it is implemented.
      */
     const formControl = ngControl.control;
     if (formControl) {
@@ -5326,7 +5320,6 @@ const toSegments = path => {
 };
 const destroyView = view => {
   if (view) {
-    // TODO lifecycle event
     view.ref.destroy();
     view.unlistenEvents();
   }
@@ -7469,7 +7462,7 @@ let IonPopover = class IonPopover {
     this.z = z;
     this.isCmpOpen = false;
     this.el = r.nativeElement;
-    this.el.addEventListener('willPresent', () => {
+    this.el.addEventListener('ionMount', () => {
       this.isCmpOpen = true;
       c.detectChanges();
     });
@@ -7572,7 +7565,6 @@ class OverlayBaseController {
    * Creates a new overlay
    */
   create(opts) {
-    // TODO: next major release opts is not optional
     return this.ctrl.create(opts || {});
   }
   /**
@@ -8203,9 +8195,9 @@ IonicModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_2__["�
 
 /***/ }),
 
-/***/ 631:
+/***/ 8211:
 /*!*****************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/animation-2c50d24d.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/animation-6a1a2a1d.js ***!
   \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -9033,8 +9025,6 @@ const createAnimation = animationId => {
          * may be flickering if a new
          * animation is started on the same
          * element too quickly
-         *
-         * TODO: Is there a cleaner way to do this?
          */
         (0,_helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_0__.r)(() => {
           clearCSSAnimationPlayState();
@@ -9211,9 +9201,9 @@ const globalScripts = _ionic_global_c95cf239_js__WEBPACK_IMPORTED_MODULE_0__.i;
 
 /***/ }),
 
-/***/ 1077:
+/***/ 1463:
 /*!********************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/cubic-bezier-c313947a.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/cubic-bezier-e78d1307.js ***!
   \********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -9228,7 +9218,6 @@ __webpack_require__.r(__webpack_exports__);
  * Based on:
  * https://stackoverflow.com/questions/7348009/y-coordinate-for-a-given-x-cubic-bezier
  * https://math.stackexchange.com/questions/26846/is-there-an-explicit-form-for-cubic-b%C3%A9zier-curves
- * TODO: Reduce rounding error
  */
 /**
  * EXPERIMENTAL
@@ -10014,49 +10003,9 @@ const shallowEqualStringMap = (map1, map2) => {
 
 /***/ }),
 
-/***/ 2286:
+/***/ 6277:
 /*!*************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/index-33ffec25.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "w": () => (/* binding */ win)
-/* harmony export */ });
-/*!
- * (C) Ionic http://ionicframework.com - MIT License
- */
-/**
- * When accessing the window, it is important
- * to account for SSR applications where the
- * window is not available. Code that accesses
- * window when it is not available will crash.
- * Even checking if `window === undefined` will cause
- * apps to crash in SSR.
- *
- * Use win below to access an SSR-safe version
- * of the window.
- *
- * Example 1:
- * Before:
- * if (window.innerWidth > 768) { ... }
- *
- * After:
- * import { win } from 'path/to/this/file';
- * if (win?.innerWidth > 768) { ... }
- *
- * Note: Code inside of this if-block will
- * not run in an SSR environment.
- */
-const win = typeof window !== 'undefined' ? window : undefined;
-
-
-/***/ }),
-
-/***/ 8923:
-/*!*************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/index-41145c2b.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/index-2dc81358.js ***!
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -10068,7 +10017,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _hardware_back_button_490df115_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hardware-back-button-490df115.js */ 159);
 /* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 9259);
 /* harmony import */ var _ionic_global_c95cf239_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ionic-global-c95cf239.js */ 8607);
-/* harmony import */ var _animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./animation-2c50d24d.js */ 631);
+/* harmony import */ var _animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./animation-6a1a2a1d.js */ 8211);
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -10092,7 +10041,7 @@ const baseAnimation = isIos => {
    * from the same exit point. When they return, use the deceleration curve. On mobile,
    * this transition typically occurs over 300ms" -- MD Motion Guide
    */
-  return (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_4__.c)().duration(isIos ? 400 : 300);
+  return (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_4__.c)().duration(isIos ? 400 : 300);
 };
 
 /**
@@ -10104,8 +10053,8 @@ const menuOverlayAnimation = menu => {
   let closedX;
   let openedX;
   const width = menu.width + 8;
-  const menuAnimation = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_4__.c)();
-  const backdropAnimation = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_4__.c)();
+  const menuAnimation = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_4__.c)();
+  const backdropAnimation = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_4__.c)();
   if (menu.isEndSide) {
     // right side
     closedX = width + 'px';
@@ -10140,9 +10089,9 @@ const menuPushAnimation = menu => {
     contentOpenedX = width + 'px';
     menuClosedX = -width + 'px';
   }
-  const menuAnimation = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_4__.c)().addElement(menu.menuInnerEl).fromTo('transform', `translateX(${menuClosedX})`, 'translateX(0px)');
-  const contentAnimation = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_4__.c)().addElement(menu.contentEl).fromTo('transform', 'translateX(0px)', `translateX(${contentOpenedX})`);
-  const backdropAnimation = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_4__.c)().addElement(menu.backdropEl).fromTo('opacity', 0.01, 0.32);
+  const menuAnimation = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_4__.c)().addElement(menu.menuInnerEl).fromTo('transform', `translateX(${menuClosedX})`, 'translateX(0px)');
+  const contentAnimation = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_4__.c)().addElement(menu.contentEl).fromTo('transform', 'translateX(0px)', `translateX(${contentOpenedX})`);
+  const backdropAnimation = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_4__.c)().addElement(menu.backdropEl).fromTo('opacity', 0.01, 0.32);
   return baseAnimation(mode === 'ios').addAnimation([menuAnimation, contentAnimation, backdropAnimation]);
 };
 
@@ -10154,7 +10103,7 @@ const menuPushAnimation = menu => {
 const menuRevealAnimation = menu => {
   const mode = (0,_ionic_global_c95cf239_js__WEBPACK_IMPORTED_MODULE_3__.b)(menu);
   const openedX = menu.width * (menu.isEndSide ? -1 : 1) + 'px';
-  const contentOpen = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_4__.c)().addElement(menu.contentEl) // REVIEW
+  const contentOpen = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_4__.c)().addElement(menu.contentEl) // REVIEW
   .fromTo('transform', 'translateX(0px)', `translateX(${openedX})`);
   return baseAnimation(mode === 'ios').addAnimation(contentOpen);
 };
@@ -10418,6 +10367,46 @@ const createMenuController = () => {
   };
 };
 const menuController = /*@__PURE__*/createMenuController();
+
+
+/***/ }),
+
+/***/ 2286:
+/*!*************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm/index-33ffec25.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "w": () => (/* binding */ win)
+/* harmony export */ });
+/*!
+ * (C) Ionic http://ionicframework.com - MIT License
+ */
+/**
+ * When accessing the window, it is important
+ * to account for SSR applications where the
+ * window is not available. Code that accesses
+ * window when it is not available will crash.
+ * Even checking if `window === undefined` will cause
+ * apps to crash in SSR.
+ *
+ * Use win below to access an SSR-safe version
+ * of the window.
+ *
+ * Example 1:
+ * Before:
+ * if (window.innerWidth > 768) { ... }
+ *
+ * After:
+ * import { win } from 'path/to/this/file';
+ * if (win?.innerWidth > 768) { ... }
+ *
+ * Note: Code inside of this if-block will
+ * not run in an SSR environment.
+ */
+const win = typeof window !== 'undefined' ? window : undefined;
 
 
 /***/ }),
@@ -12793,9 +12782,9 @@ class IonicSafeString {
 
 /***/ }),
 
-/***/ 9287:
+/***/ 1856:
 /*!*************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/index-e6cecce9.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/index-eab49c64.js ***!
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -12826,8 +12815,8 @@ const LIFECYCLE_DID_ENTER = 'ionViewDidEnter';
 const LIFECYCLE_WILL_LEAVE = 'ionViewWillLeave';
 const LIFECYCLE_DID_LEAVE = 'ionViewDidLeave';
 const LIFECYCLE_WILL_UNLOAD = 'ionViewWillUnload';
-const iosTransitionAnimation = () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./ios.transition-a4006a5a.js */ 7938));
-const mdTransitionAnimation = () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./md.transition-3924e170.js */ 4844));
+const iosTransitionAnimation = () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./ios.transition-15066173.js */ 9591));
+const mdTransitionAnimation = () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./md.transition-d0077e8c.js */ 2797));
 const transition = opts => {
   return new Promise((resolve, reject) => {
     (0,_index_8e692445_js__WEBPACK_IMPORTED_MODULE_1__.c)(() => {
@@ -13537,41 +13526,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "IonicSafeString": () => (/* reexport safe */ _index_dff497fb_js__WEBPACK_IMPORTED_MODULE_7__.I),
 /* harmony export */   "IonicSlides": () => (/* binding */ IonicSlides),
 /* harmony export */   "IonicSwiper": () => (/* binding */ IonicSwiper),
-/* harmony export */   "LIFECYCLE_DID_ENTER": () => (/* reexport safe */ _index_e6cecce9_js__WEBPACK_IMPORTED_MODULE_8__.a),
-/* harmony export */   "LIFECYCLE_DID_LEAVE": () => (/* reexport safe */ _index_e6cecce9_js__WEBPACK_IMPORTED_MODULE_8__.c),
-/* harmony export */   "LIFECYCLE_WILL_ENTER": () => (/* reexport safe */ _index_e6cecce9_js__WEBPACK_IMPORTED_MODULE_8__.L),
-/* harmony export */   "LIFECYCLE_WILL_LEAVE": () => (/* reexport safe */ _index_e6cecce9_js__WEBPACK_IMPORTED_MODULE_8__.b),
-/* harmony export */   "LIFECYCLE_WILL_UNLOAD": () => (/* reexport safe */ _index_e6cecce9_js__WEBPACK_IMPORTED_MODULE_8__.d),
+/* harmony export */   "LIFECYCLE_DID_ENTER": () => (/* reexport safe */ _index_eab49c64_js__WEBPACK_IMPORTED_MODULE_8__.a),
+/* harmony export */   "LIFECYCLE_DID_LEAVE": () => (/* reexport safe */ _index_eab49c64_js__WEBPACK_IMPORTED_MODULE_8__.c),
+/* harmony export */   "LIFECYCLE_WILL_ENTER": () => (/* reexport safe */ _index_eab49c64_js__WEBPACK_IMPORTED_MODULE_8__.L),
+/* harmony export */   "LIFECYCLE_WILL_LEAVE": () => (/* reexport safe */ _index_eab49c64_js__WEBPACK_IMPORTED_MODULE_8__.b),
+/* harmony export */   "LIFECYCLE_WILL_UNLOAD": () => (/* reexport safe */ _index_eab49c64_js__WEBPACK_IMPORTED_MODULE_8__.d),
 /* harmony export */   "actionSheetController": () => (/* reexport safe */ _overlays_87c7c7cb_js__WEBPACK_IMPORTED_MODULE_10__.b),
 /* harmony export */   "alertController": () => (/* reexport safe */ _overlays_87c7c7cb_js__WEBPACK_IMPORTED_MODULE_10__.a),
 /* harmony export */   "componentOnReady": () => (/* reexport safe */ _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_6__.c),
-/* harmony export */   "createAnimation": () => (/* reexport safe */ _animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c),
+/* harmony export */   "createAnimation": () => (/* reexport safe */ _animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c),
 /* harmony export */   "createGesture": () => (/* reexport safe */ _index_f8d8aa5a_js__WEBPACK_IMPORTED_MODULE_4__.createGesture),
 /* harmony export */   "getMode": () => (/* binding */ getMode),
 /* harmony export */   "getPlatforms": () => (/* reexport safe */ _ionic_global_c95cf239_js__WEBPACK_IMPORTED_MODULE_5__.g),
-/* harmony export */   "getTimeGivenProgression": () => (/* reexport safe */ _cubic_bezier_c313947a_js__WEBPACK_IMPORTED_MODULE_3__.g),
+/* harmony export */   "getTimeGivenProgression": () => (/* reexport safe */ _cubic_bezier_e78d1307_js__WEBPACK_IMPORTED_MODULE_3__.g),
 /* harmony export */   "initialize": () => (/* reexport safe */ _ionic_global_c95cf239_js__WEBPACK_IMPORTED_MODULE_5__.i),
-/* harmony export */   "iosTransitionAnimation": () => (/* reexport safe */ _ios_transition_a4006a5a_js__WEBPACK_IMPORTED_MODULE_1__.iosTransitionAnimation),
+/* harmony export */   "iosTransitionAnimation": () => (/* reexport safe */ _ios_transition_15066173_js__WEBPACK_IMPORTED_MODULE_1__.iosTransitionAnimation),
 /* harmony export */   "isPlatform": () => (/* reexport safe */ _ionic_global_c95cf239_js__WEBPACK_IMPORTED_MODULE_5__.a),
 /* harmony export */   "loadingController": () => (/* reexport safe */ _overlays_87c7c7cb_js__WEBPACK_IMPORTED_MODULE_10__.l),
-/* harmony export */   "mdTransitionAnimation": () => (/* reexport safe */ _md_transition_3924e170_js__WEBPACK_IMPORTED_MODULE_2__.mdTransitionAnimation),
-/* harmony export */   "menuController": () => (/* reexport safe */ _index_41145c2b_js__WEBPACK_IMPORTED_MODULE_9__.m),
+/* harmony export */   "mdTransitionAnimation": () => (/* reexport safe */ _md_transition_d0077e8c_js__WEBPACK_IMPORTED_MODULE_2__.mdTransitionAnimation),
+/* harmony export */   "menuController": () => (/* reexport safe */ _index_2dc81358_js__WEBPACK_IMPORTED_MODULE_9__.m),
 /* harmony export */   "modalController": () => (/* reexport safe */ _overlays_87c7c7cb_js__WEBPACK_IMPORTED_MODULE_10__.m),
 /* harmony export */   "pickerController": () => (/* reexport safe */ _overlays_87c7c7cb_js__WEBPACK_IMPORTED_MODULE_10__.p),
 /* harmony export */   "popoverController": () => (/* reexport safe */ _overlays_87c7c7cb_js__WEBPACK_IMPORTED_MODULE_10__.c),
 /* harmony export */   "setupConfig": () => (/* binding */ setupConfig),
 /* harmony export */   "toastController": () => (/* reexport safe */ _overlays_87c7c7cb_js__WEBPACK_IMPORTED_MODULE_10__.t)
 /* harmony export */ });
-/* harmony import */ var _animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animation-2c50d24d.js */ 631);
-/* harmony import */ var _ios_transition_a4006a5a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ios.transition-a4006a5a.js */ 7938);
-/* harmony import */ var _md_transition_3924e170_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./md.transition-3924e170.js */ 4844);
-/* harmony import */ var _cubic_bezier_c313947a_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./cubic-bezier-c313947a.js */ 1077);
+/* harmony import */ var _animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animation-6a1a2a1d.js */ 8211);
+/* harmony import */ var _ios_transition_15066173_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ios.transition-15066173.js */ 9591);
+/* harmony import */ var _md_transition_d0077e8c_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./md.transition-d0077e8c.js */ 2797);
+/* harmony import */ var _cubic_bezier_e78d1307_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./cubic-bezier-e78d1307.js */ 1463);
 /* harmony import */ var _index_f8d8aa5a_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./index-f8d8aa5a.js */ 9286);
 /* harmony import */ var _ionic_global_c95cf239_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ionic-global-c95cf239.js */ 8607);
 /* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 9259);
 /* harmony import */ var _index_dff497fb_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./index-dff497fb.js */ 1652);
-/* harmony import */ var _index_e6cecce9_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./index-e6cecce9.js */ 9287);
-/* harmony import */ var _index_41145c2b_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./index-41145c2b.js */ 8923);
+/* harmony import */ var _index_eab49c64_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./index-eab49c64.js */ 1856);
+/* harmony import */ var _index_2dc81358_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./index-2dc81358.js */ 6277);
 /* harmony import */ var _overlays_87c7c7cb_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./overlays-87c7c7cb.js */ 2752);
 /* harmony import */ var _index_33ffec25_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./index-33ffec25.js */ 2286);
 /* harmony import */ var _gesture_controller_17060b7c_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./gesture-controller-17060b7c.js */ 6379);
@@ -14080,9 +14069,9 @@ const initialize = (userConfig = {}) => {
 
 /***/ }),
 
-/***/ 7938:
+/***/ 9591:
 /*!**********************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/ios.transition-a4006a5a.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/ios.transition-15066173.js ***!
   \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -14091,8 +14080,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "iosTransitionAnimation": () => (/* binding */ iosTransitionAnimation),
 /* harmony export */   "shadow": () => (/* binding */ shadow)
 /* harmony export */ });
-/* harmony import */ var _animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animation-2c50d24d.js */ 631);
-/* harmony import */ var _index_e6cecce9_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index-e6cecce9.js */ 9287);
+/* harmony import */ var _animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animation-6a1a2a1d.js */ 8211);
+/* harmony import */ var _index_eab49c64_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index-eab49c64.js */ 1856);
 /* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 9259);
 /* harmony import */ var _index_33ffec25_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./index-33ffec25.js */ 2286);
 /* harmony import */ var _index_8e692445_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./index-8e692445.js */ 1559);
@@ -14218,8 +14207,8 @@ const animateBackButton = (rootAnimation, rtl, backDirection, backButtonEl, larg
     transform: `translate3d(${ICON_TRANSLATE}, ${backButtonBox.top - 41}px, 0) scale(0.6)`
   }];
   const ICON_KEYFRAMES = backDirection ? BACKWARD_ICON_KEYFRAMES : FORWARD_ICON_KEYFRAMES;
-  const enteringBackButtonTextAnimation = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
-  const enteringBackButtonIconAnimation = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+  const enteringBackButtonTextAnimation = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+  const enteringBackButtonIconAnimation = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
   const clonedBackButtonEl = getClonedElement('ion-back-button');
   const backButtonTextEl = shadow(clonedBackButtonEl).querySelector('.button-text');
   const backButtonIconEl = shadow(clonedBackButtonEl).querySelector('ion-icon');
@@ -14277,7 +14266,7 @@ const animateLargeTitle = (rootAnimation, rtl, backDirection, largeTitleEl, larg
   }];
   const KEYFRAMES = backDirection ? BACKWARDS_KEYFRAMES : FORWARDS_KEYFRAMES;
   const clonedTitleEl = getClonedElement('ion-title');
-  const clonedLargeTitleAnimation = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+  const clonedLargeTitleAnimation = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
   clonedTitleEl.innerText = largeTitleEl.innerText;
   clonedTitleEl.size = largeTitleEl.size;
   clonedTitleEl.color = largeTitleEl.color;
@@ -14313,11 +14302,11 @@ const iosTransitionAnimation = (navEl, opts) => {
     const contentEl = enteringEl.querySelector(':scope > ion-content');
     const headerEls = enteringEl.querySelectorAll(':scope > ion-header > *:not(ion-toolbar), :scope > ion-footer > *');
     const enteringToolBarEls = enteringEl.querySelectorAll(':scope > ion-header > ion-toolbar');
-    const rootAnimation = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
-    const enteringContentAnimation = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+    const rootAnimation = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+    const enteringContentAnimation = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
     rootAnimation.addElement(enteringEl).duration(((_a = opts.duration) !== null && _a !== void 0 ? _a : 0) || DURATION).easing(opts.easing || EASING).fill('both').beforeRemoveClass('ion-page-invisible');
     if (leavingEl && navEl !== null && navEl !== undefined) {
-      const navDecorAnimation = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+      const navDecorAnimation = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
       navDecorAnimation.addElement(navEl);
       rootAnimation.addAnimation(navDecorAnimation);
     }
@@ -14339,9 +14328,9 @@ const iosTransitionAnimation = (navEl, opts) => {
       if (enteringTransitionEffectEl) {
         const enteringTransitionCoverEl = enteringTransitionEffectEl.querySelector('.transition-cover');
         const enteringTransitionShadowEl = enteringTransitionEffectEl.querySelector('.transition-shadow');
-        const enteringTransitionEffect = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
-        const enteringTransitionCover = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
-        const enteringTransitionShadow = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+        const enteringTransitionEffect = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+        const enteringTransitionCover = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+        const enteringTransitionShadow = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
         enteringTransitionEffect.addElement(enteringTransitionEffectEl).beforeStyles({
           opacity: '1',
           display: 'block'
@@ -14363,12 +14352,12 @@ const iosTransitionAnimation = (navEl, opts) => {
       backward
     } = createLargeTitleTransition(rootAnimation, isRTL, backDirection, enteringEl, leavingEl);
     enteringToolBarEls.forEach(enteringToolBarEl => {
-      const enteringToolBar = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+      const enteringToolBar = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
       enteringToolBar.addElement(enteringToolBarEl);
       rootAnimation.addAnimation(enteringToolBar);
-      const enteringTitle = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+      const enteringTitle = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
       enteringTitle.addElement(enteringToolBarEl.querySelector('ion-title')); // REVIEW
-      const enteringToolBarButtons = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+      const enteringToolBarButtons = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
       const buttons = Array.from(enteringToolBarEl.querySelectorAll('ion-buttons,[menuToggle]'));
       const parentHeader = enteringToolBarEl.closest('ion-header');
       const inactiveHeader = parentHeader === null || parentHeader === void 0 ? void 0 : parentHeader.classList.contains('header-collapse-condense-inactive');
@@ -14382,11 +14371,11 @@ const iosTransitionAnimation = (navEl, opts) => {
         buttonsToAnimate = buttons.filter(button => !button.classList.contains('buttons-collapse'));
       }
       enteringToolBarButtons.addElement(buttonsToAnimate);
-      const enteringToolBarItems = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+      const enteringToolBarItems = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
       enteringToolBarItems.addElement(enteringToolBarEl.querySelectorAll(':scope > *:not(ion-title):not(ion-buttons):not([menuToggle])'));
-      const enteringToolBarBg = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+      const enteringToolBarBg = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
       enteringToolBarBg.addElement(shadow(enteringToolBarEl).querySelector('.toolbar-background')); // REVIEW
-      const enteringBackButton = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+      const enteringBackButton = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
       const backButtonEl = enteringToolBarEl.querySelector('ion-back-button');
       if (backButtonEl) {
         enteringBackButton.addElement(backButtonEl);
@@ -14419,7 +14408,7 @@ const iosTransitionAnimation = (navEl, opts) => {
           enteringBackButton.fromTo(OPACITY, 0.01, 1);
         }
         if (backButtonEl && !forward) {
-          const enteringBackBtnText = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+          const enteringBackBtnText = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
           enteringBackBtnText.addElement(shadow(backButtonEl).querySelector('.button-text')) // REVIEW
           .fromTo(`transform`, isRTL ? 'translateX(-100px)' : 'translateX(100px)', 'translateX(0px)');
           enteringToolBar.addAnimation(enteringBackBtnText);
@@ -14428,7 +14417,7 @@ const iosTransitionAnimation = (navEl, opts) => {
     });
     // setup leaving view
     if (leavingEl) {
-      const leavingContent = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+      const leavingContent = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
       const leavingContentEl = leavingEl.querySelector(':scope > ion-content');
       const leavingToolBarEls = leavingEl.querySelectorAll(':scope > ion-header > ion-toolbar');
       const leavingHeaderEls = leavingEl.querySelectorAll(':scope > ion-header > *:not(ion-toolbar), :scope > ion-footer > *');
@@ -14442,7 +14431,7 @@ const iosTransitionAnimation = (navEl, opts) => {
       if (backDirection) {
         // leaving content, back direction
         leavingContent.beforeClearStyles([OPACITY]).fromTo('transform', `translateX(${CENTER})`, isRTL ? 'translateX(-100%)' : 'translateX(100%)');
-        const leavingPage = (0,_index_e6cecce9_js__WEBPACK_IMPORTED_MODULE_1__.g)(leavingEl);
+        const leavingPage = (0,_index_eab49c64_js__WEBPACK_IMPORTED_MODULE_1__.g)(leavingEl);
         rootAnimation.afterAddWrite(() => {
           if (rootAnimation.getDirection() === 'normal') {
             leavingPage.style.setProperty('display', 'none');
@@ -14457,9 +14446,9 @@ const iosTransitionAnimation = (navEl, opts) => {
         if (leavingTransitionEffectEl) {
           const leavingTransitionCoverEl = leavingTransitionEffectEl.querySelector('.transition-cover');
           const leavingTransitionShadowEl = leavingTransitionEffectEl.querySelector('.transition-shadow');
-          const leavingTransitionEffect = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
-          const leavingTransitionCover = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
-          const leavingTransitionShadow = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+          const leavingTransitionEffect = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+          const leavingTransitionCover = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+          const leavingTransitionShadow = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
           leavingTransitionEffect.addElement(leavingTransitionEffectEl).beforeStyles({
             opacity: '1',
             display: 'block'
@@ -14476,11 +14465,11 @@ const iosTransitionAnimation = (navEl, opts) => {
         }
       }
       leavingToolBarEls.forEach(leavingToolBarEl => {
-        const leavingToolBar = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+        const leavingToolBar = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
         leavingToolBar.addElement(leavingToolBarEl);
-        const leavingTitle = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+        const leavingTitle = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
         leavingTitle.addElement(leavingToolBarEl.querySelector('ion-title')); // REVIEW
-        const leavingToolBarButtons = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+        const leavingToolBarButtons = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
         const buttons = leavingToolBarEl.querySelectorAll('ion-buttons,[menuToggle]');
         const parentHeader = leavingToolBarEl.closest('ion-header');
         const inactiveHeader = parentHeader === null || parentHeader === void 0 ? void 0 : parentHeader.classList.contains('header-collapse-condense-inactive');
@@ -14489,14 +14478,14 @@ const iosTransitionAnimation = (navEl, opts) => {
           return isCollapseButton && !inactiveHeader || !isCollapseButton;
         });
         leavingToolBarButtons.addElement(buttonsToAnimate);
-        const leavingToolBarItems = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+        const leavingToolBarItems = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
         const leavingToolBarItemEls = leavingToolBarEl.querySelectorAll(':scope > *:not(ion-title):not(ion-buttons):not([menuToggle])');
         if (leavingToolBarItemEls.length > 0) {
           leavingToolBarItems.addElement(leavingToolBarItemEls);
         }
-        const leavingToolBarBg = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+        const leavingToolBarBg = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
         leavingToolBarBg.addElement(shadow(leavingToolBarEl).querySelector('.toolbar-background')); // REVIEW
-        const leavingBackButton = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+        const leavingBackButton = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
         const backButtonEl = leavingToolBarEl.querySelector('ion-back-button');
         if (backButtonEl) {
           leavingBackButton.addElement(backButtonEl);
@@ -14523,7 +14512,7 @@ const iosTransitionAnimation = (navEl, opts) => {
             leavingToolBarBg.fromTo('transform', 'translateX(0px)', isRTL ? 'translateX(-100%)' : 'translateX(100%)');
           }
           if (backButtonEl && !backward) {
-            const leavingBackBtnText = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+            const leavingBackBtnText = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
             leavingBackBtnText.addElement(shadow(backButtonEl).querySelector('.button-text')) // REVIEW
             .fromTo('transform', `translateX(${CENTER})`, `translateX(${(isRTL ? -124 : 124) + 'px'})`);
             leavingToolBar.addAnimation(leavingBackBtnText);
@@ -14586,9 +14575,9 @@ const defineCustomElements = (win, options) => {
 
 /***/ }),
 
-/***/ 4844:
+/***/ 2797:
 /*!*********************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/md.transition-3924e170.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/md.transition-d0077e8c.js ***!
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -14596,8 +14585,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "mdTransitionAnimation": () => (/* binding */ mdTransitionAnimation)
 /* harmony export */ });
-/* harmony import */ var _animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animation-2c50d24d.js */ 631);
-/* harmony import */ var _index_e6cecce9_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index-e6cecce9.js */ 9287);
+/* harmony import */ var _animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animation-6a1a2a1d.js */ 8211);
+/* harmony import */ var _index_eab49c64_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index-eab49c64.js */ 1856);
 /* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 9259);
 /* harmony import */ var _index_33ffec25_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./index-33ffec25.js */ 2286);
 /* harmony import */ var _index_8e692445_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./index-8e692445.js */ 1559);
@@ -14616,9 +14605,9 @@ const mdTransitionAnimation = (_, opts) => {
   const backDirection = opts.direction === 'back';
   const enteringEl = opts.enteringEl;
   const leavingEl = opts.leavingEl;
-  const ionPageElement = (0,_index_e6cecce9_js__WEBPACK_IMPORTED_MODULE_1__.g)(enteringEl);
+  const ionPageElement = (0,_index_eab49c64_js__WEBPACK_IMPORTED_MODULE_1__.g)(enteringEl);
   const enteringToolbarEle = ionPageElement.querySelector('ion-toolbar');
-  const rootTransition = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+  const rootTransition = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
   rootTransition.addElement(ionPageElement).fill('both').beforeRemoveClass('ion-page-invisible');
   // animate the component itself
   if (backDirection) {
@@ -14628,7 +14617,7 @@ const mdTransitionAnimation = (_, opts) => {
   }
   // Animate toolbar if it's there
   if (enteringToolbarEle) {
-    const enteringToolBar = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+    const enteringToolBar = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
     enteringToolBar.addElement(enteringToolbarEle);
     rootTransition.addAnimation(enteringToolBar);
   }
@@ -14636,8 +14625,8 @@ const mdTransitionAnimation = (_, opts) => {
   if (leavingEl && backDirection) {
     // leaving content
     rootTransition.duration(((_c = opts.duration) !== null && _c !== void 0 ? _c : 0) || 200).easing('cubic-bezier(0.47,0,0.745,0.715)');
-    const leavingPage = (0,_animation_2c50d24d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
-    leavingPage.addElement((0,_index_e6cecce9_js__WEBPACK_IMPORTED_MODULE_1__.g)(leavingEl)).onFinish(currentStep => {
+    const leavingPage = (0,_animation_6a1a2a1d_js__WEBPACK_IMPORTED_MODULE_0__.c)();
+    leavingPage.addElement((0,_index_eab49c64_js__WEBPACK_IMPORTED_MODULE_1__.g)(leavingEl)).onFinish(currentStep => {
       if (currentStep === 1 && leavingPage.elements.length > 0) {
         leavingPage.elements[0].style.setProperty('display', 'none');
       }
@@ -19426,7 +19415,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 2560);
 /**
- * @license Angular v15.0.0
+ * @license Angular v15.1.0-next.0
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -25332,7 +25321,7 @@ function isPlatformWorkerUi(platformId) {
 /**
  * @publicApi
  */
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.0.0');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.0.1');
 
 /**
  * @license
@@ -27179,7 +27168,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "visitAll": () => (/* binding */ visitAll)
 /* harmony export */ });
 /**
- * @license Angular v15.0.0
+ * @license Angular v15.1.0-next.0
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -47639,7 +47628,7 @@ function publishFacade(global) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-const VERSION = new Version('15.0.0');
+const VERSION = new Version('15.0.1');
 
 /**
  * @license
@@ -49759,7 +49748,7 @@ const MINIMUM_PARTIAL_LINKER_VERSION$6 = '12.0.0';
 function compileDeclareClassMetadata(metadata) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION$6));
-  definitionMap.set('version', literal('15.0.0'));
+  definitionMap.set('version', literal('15.0.1'));
   definitionMap.set('ngImport', importExpr(Identifiers.core));
   definitionMap.set('type', metadata.type);
   definitionMap.set('decorators', metadata.decorators);
@@ -49881,7 +49870,7 @@ function compileDeclareDirectiveFromMetadata(meta) {
 function createDirectiveDefinitionMap(meta) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION$5));
-  definitionMap.set('version', literal('15.0.0'));
+  definitionMap.set('version', literal('15.0.1'));
   // e.g. `type: MyDirective`
   definitionMap.set('type', meta.internalType);
   if (meta.isStandalone) {
@@ -50125,7 +50114,7 @@ const MINIMUM_PARTIAL_LINKER_VERSION$4 = '12.0.0';
 function compileDeclareFactoryFunction(meta) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION$4));
-  definitionMap.set('version', literal('15.0.0'));
+  definitionMap.set('version', literal('15.0.1'));
   definitionMap.set('ngImport', importExpr(Identifiers.core));
   definitionMap.set('type', meta.internalType);
   definitionMap.set('deps', compileDependencies(meta.deps));
@@ -50171,7 +50160,7 @@ function compileDeclareInjectableFromMetadata(meta) {
 function createInjectableDefinitionMap(meta) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION$3));
-  definitionMap.set('version', literal('15.0.0'));
+  definitionMap.set('version', literal('15.0.1'));
   definitionMap.set('ngImport', importExpr(Identifiers.core));
   definitionMap.set('type', meta.internalType);
   // Only generate providedIn property if it has a non-null value
@@ -50233,7 +50222,7 @@ function compileDeclareInjectorFromMetadata(meta) {
 function createInjectorDefinitionMap(meta) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION$2));
-  definitionMap.set('version', literal('15.0.0'));
+  definitionMap.set('version', literal('15.0.1'));
   definitionMap.set('ngImport', importExpr(Identifiers.core));
   definitionMap.set('type', meta.internalType);
   definitionMap.set('providers', meta.providers);
@@ -50274,7 +50263,7 @@ function compileDeclareNgModuleFromMetadata(meta) {
 function createNgModuleDefinitionMap(meta) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION$1));
-  definitionMap.set('version', literal('15.0.0'));
+  definitionMap.set('version', literal('15.0.1'));
   definitionMap.set('ngImport', importExpr(Identifiers.core));
   definitionMap.set('type', meta.internalType);
   // We only generate the keys in the metadata if the arrays contain values.
@@ -50336,7 +50325,7 @@ function compileDeclarePipeFromMetadata(meta) {
 function createPipeDefinitionMap(meta) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION));
-  definitionMap.set('version', literal('15.0.0'));
+  definitionMap.set('version', literal('15.0.1'));
   definitionMap.set('ngImport', importExpr(Identifiers.core));
   // e.g. `type: MyPipe`
   definitionMap.set('type', meta.internalType);
@@ -50541,6 +50530,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ɵTESTABILITY": () => (/* binding */ TESTABILITY),
 /* harmony export */   "ɵTESTABILITY_GETTER": () => (/* binding */ TESTABILITY_GETTER),
 /* harmony export */   "ɵViewRef": () => (/* binding */ ViewRef$1),
+/* harmony export */   "ɵXSS_SECURITY_URL": () => (/* binding */ XSS_SECURITY_URL),
 /* harmony export */   "ɵ_sanitizeHtml": () => (/* binding */ _sanitizeHtml),
 /* harmony export */   "ɵ_sanitizeUrl": () => (/* binding */ _sanitizeUrl),
 /* harmony export */   "ɵallowSanitizationBypassAndThrow": () => (/* binding */ allowSanitizationBypassAndThrow),
@@ -50775,7 +50765,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 8623);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 4514);
 /**
- * @license Angular v15.0.0
+ * @license Angular v15.1.0-next.0
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -50925,11 +50915,15 @@ function isEnvironmentProviders(value) {
 /**
  * Base URL for the error details page.
  *
- * Keep the files below in full sync:
+ * Keep this constant in sync across:
  *  - packages/compiler-cli/src/ngtsc/diagnostics/src/error_details_base_url.ts
  *  - packages/core/src/error_details_base_url.ts
  */
 const ERROR_DETAILS_PAGE_BASE_URL = 'https://angular.io/errors';
+/**
+ * URL for the XSS security documentation.
+ */
+const XSS_SECURITY_URL = 'https://g.co/ng/security#xss';
 
 /**
  * @license
@@ -57147,22 +57141,16 @@ function processCleanups(tView, lView) {
   if (tCleanup !== null) {
     for (let i = 0; i < tCleanup.length - 1; i += 2) {
       if (typeof tCleanup[i] === 'string') {
-        // This is a native DOM listener
-        const idxOrTargetGetter = tCleanup[i + 1];
-        const target = typeof idxOrTargetGetter === 'function' ? idxOrTargetGetter(lView) : unwrapRNode(lView[idxOrTargetGetter]);
-        const listener = lCleanup[lastLCleanupIndex = tCleanup[i + 2]];
-        const useCaptureOrSubIdx = tCleanup[i + 3];
-        if (typeof useCaptureOrSubIdx === 'boolean') {
-          // native DOM listener registered with Renderer3
-          target.removeEventListener(tCleanup[i], listener, useCaptureOrSubIdx);
+        // This is a native DOM listener. It will occupy 4 entries in the TCleanup array (hence i +=
+        // 2 at the end of this block).
+        const targetIdx = tCleanup[i + 3];
+        ngDevMode && assertNumber(targetIdx, 'cleanup target must be a number');
+        if (targetIdx >= 0) {
+          // unregister
+          lCleanup[lastLCleanupIndex = targetIdx]();
         } else {
-          if (useCaptureOrSubIdx >= 0) {
-            // unregister
-            lCleanup[lastLCleanupIndex = useCaptureOrSubIdx]();
-          } else {
-            // Subscription
-            lCleanup[lastLCleanupIndex = -useCaptureOrSubIdx].unsubscribe();
-          }
+          // Subscription
+          lCleanup[lastLCleanupIndex = -targetIdx].unsubscribe();
         }
         i += 2;
       } else {
@@ -57988,7 +57976,7 @@ class SafeValueImpl {
     this.changingThisBreaksApplicationSecurity = changingThisBreaksApplicationSecurity;
   }
   toString() {
-    return `SafeValue must use [property]=binding: ${this.changingThisBreaksApplicationSecurity}` + ` (see https://g.co/ng/security#xss)`;
+    return `SafeValue must use [property]=binding: ${this.changingThisBreaksApplicationSecurity}` + ` (see ${XSS_SECURITY_URL})`;
   }
 }
 class SafeHtmlImpl extends SafeValueImpl {
@@ -58029,7 +58017,7 @@ function allowSanitizationBypassAndThrow(value, type) {
   if (actualType != null && actualType !== type) {
     // Allow ResourceURLs in URL contexts, they are strictly more trusted.
     if (actualType === "ResourceURL" /* BypassType.ResourceUrl */ && type === "URL" /* BypassType.Url */) return true;
-    throw new Error(`Required a safe ${type}, got a ${actualType} (see https://g.co/ng/security#xss)`);
+    throw new Error(`Required a safe ${type}, got a ${actualType} (see ${XSS_SECURITY_URL})`);
   }
   return actualType === type;
 }
@@ -58263,7 +58251,7 @@ function _sanitizeUrl(url) {
   url = String(url);
   if (url.match(SAFE_URL_PATTERN)) return url;
   if (typeof ngDevMode === 'undefined' || ngDevMode) {
-    console.warn(`WARNING: sanitizing unsafe URL value ${url} (see https://g.co/ng/security#xss)`);
+    console.warn(`WARNING: sanitizing unsafe URL value ${url} (see ${XSS_SECURITY_URL})`);
   }
   return 'unsafe:' + url;
 }
@@ -58466,7 +58454,7 @@ function _sanitizeHtml(defaultDoc, unsafeHtmlInput) {
     const sanitizer = new SanitizingHtmlSerializer();
     const safeHtml = sanitizer.sanitizeChildren(getTemplateContent(inertBodyElement) || inertBodyElement);
     if ((typeof ngDevMode === 'undefined' || ngDevMode) && sanitizer.sanitizedSomething) {
-      console.warn('WARNING: sanitizing HTML stripped some content, see https://g.co/ng/security#xss');
+      console.warn(`WARNING: sanitizing HTML stripped some content, see ${XSS_SECURITY_URL}`);
     }
     return trustedHTMLFromString(safeHtml);
   } finally {
@@ -58610,7 +58598,7 @@ function ɵɵsanitizeResourceUrl(unsafeResourceUrl) {
   if (allowSanitizationBypassAndThrow(unsafeResourceUrl, "ResourceURL" /* BypassType.ResourceUrl */)) {
     return trustedScriptURLFromStringBypass(unwrapSafeValue(unsafeResourceUrl));
   }
-  throw new RuntimeError(904 /* RuntimeErrorCode.UNSAFE_VALUE_IN_RESOURCE_URL */, ngDevMode && 'unsafe value used in a resource URL context (see https://g.co/ng/security#xss)');
+  throw new RuntimeError(904 /* RuntimeErrorCode.UNSAFE_VALUE_IN_RESOURCE_URL */, ngDevMode && `unsafe value used in a resource URL context (see ${XSS_SECURITY_URL})`);
 }
 /**
  * A `script` sanitizer which only lets trusted javascript through.
@@ -59670,7 +59658,7 @@ class Version {
 /**
  * @publicApi
  */
-const VERSION = new Version('15.0.0');
+const VERSION = new Version('15.0.1');
 
 /**
  * @license
@@ -66230,7 +66218,8 @@ const isObservable = isSubscribable;
  *
  * @param eventName Name of the event
  * @param listenerFn The function to be called when event emits
- * @param useCapture Whether or not to use capture in event listener
+ * @param useCapture Whether or not to use capture in event listener - this argument is a reminder
+ *     from the Renderer3 infrastructure and should be removed from the instruction arguments
  * @param eventTargetResolver Function that returns global target information in case this listener
  * should be attached to a global object like window, document or body
  *
@@ -66240,7 +66229,7 @@ function ɵɵlistener(eventName, listenerFn, useCapture, eventTargetResolver) {
   const lView = getLView();
   const tView = getTView();
   const tNode = getCurrentTNode();
-  listenerInternal(tView, lView, lView[RENDERER], tNode, eventName, listenerFn, !!useCapture, eventTargetResolver);
+  listenerInternal(tView, lView, lView[RENDERER], tNode, eventName, listenerFn, eventTargetResolver);
   return ɵɵlistener;
 }
 /**
@@ -66270,7 +66259,7 @@ function ɵɵsyntheticHostListener(eventName, listenerFn) {
   const tView = getTView();
   const currentDef = getCurrentDirectiveDef(tView.data);
   const renderer = loadComponentRenderer(currentDef, tNode, lView);
-  listenerInternal(tView, lView, renderer, tNode, eventName, listenerFn, false);
+  listenerInternal(tView, lView, renderer, tNode, eventName, listenerFn);
   return ɵɵsyntheticHostListener;
 }
 /**
@@ -66303,7 +66292,7 @@ function findExistingListener(tView, lView, eventName, tNodeIdx) {
   }
   return null;
 }
-function listenerInternal(tView, lView, renderer, tNode, eventName, listenerFn, useCapture, eventTargetResolver) {
+function listenerInternal(tView, lView, renderer, tNode, eventName, listenerFn, eventTargetResolver) {
   const isTNodeDirectiveHost = isDirectiveHost(tNode);
   const firstCreatePass = tView.firstCreatePass;
   const tCleanup = firstCreatePass && getOrCreateTViewCleanup(tView);
@@ -71517,7 +71506,7 @@ function walkIcuTree(tView, tIcu, lView, sharedUpdateOpCodes, create, remove, up
                   generateBindingUpdateOpCodes(update, attr.value, newIndex, attr.name, 0, null);
                 }
               } else {
-                ngDevMode && console.warn(`WARNING: ignoring unsafe attribute value ` + `${lowerAttrName} on element ${tagName} ` + `(see https://g.co/ng/security#xss)`);
+                ngDevMode && console.warn(`WARNING: ignoring unsafe attribute value ` + `${lowerAttrName} on element ${tagName} ` + `(see ${XSS_SECURITY_URL})`);
               }
             } else {
               addCreateAttribute(create, newIndex, attr);
@@ -80457,7 +80446,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 4350);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 6942);
 /**
- * @license Angular v15.0.0
+ * @license Angular v15.0.1
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -82318,10 +82307,8 @@ class AbstractControl {
     this.touched = false;
     /** @internal */
     this._onDisabledChange = [];
-    this._rawValidators = validators;
-    this._rawAsyncValidators = asyncValidators;
-    this._composedValidatorFn = coerceToValidator(this._rawValidators);
-    this._composedAsyncValidatorFn = coerceToAsyncValidator(this._rawAsyncValidators);
+    this._assignValidators(validators);
+    this._assignAsyncValidators(asyncValidators);
   }
   /**
    * Returns the function that is used to determine the validity of this control synchronously.
@@ -82449,8 +82436,7 @@ class AbstractControl {
    * using `addValidators()` method instead.
    */
   setValidators(validators) {
-    this._rawValidators = validators;
-    this._composedValidatorFn = coerceToValidator(validators);
+    this._assignValidators(validators);
   }
   /**
    * Sets the asynchronous validators that are active on this control. Calling this
@@ -82463,8 +82449,7 @@ class AbstractControl {
    * using `addAsyncValidators()` method instead.
    */
   setAsyncValidators(validators) {
-    this._rawAsyncValidators = validators;
-    this._composedAsyncValidatorFn = coerceToAsyncValidator(validators);
+    this._assignAsyncValidators(validators);
   }
   /**
    * Add a synchronous validator or validators to this control, without affecting other validators.
@@ -82514,7 +82499,7 @@ class AbstractControl {
    * const minValidator = Validators.min(3);
    * const ctrl = new FormControl<string | null>('', minValidator);
    * expect(ctrl.hasValidator(minValidator)).toEqual(true)
-   * expect(ctrl.hasValidator(Validators.min(3)).toEqual(false)
+   * expect(ctrl.hasValidator(Validators.min(3))).toEqual(false)
    *
    * ctrl.removeValidators(minValidator);
    * ```
@@ -82558,7 +82543,7 @@ class AbstractControl {
    * const minValidator = Validators.min(3);
    * const ctrl = new FormControl<number | null>(0, minValidator);
    * expect(ctrl.hasValidator(minValidator)).toEqual(true)
-   * expect(ctrl.hasValidator(Validators.min(3)).toEqual(false)
+   * expect(ctrl.hasValidator(Validators.min(3))).toEqual(false)
    * ```
    *
    * @param validator The validator to check for presence. Compared by function reference.
@@ -83113,6 +83098,24 @@ class AbstractControl {
   /** @internal */
   _find(name) {
     return null;
+  }
+  /**
+   * Internal implementation of the `setValidators` method. Needs to be separated out into a
+   * different method, because it is called in the constructor and it can break cases where
+   * a control is extended.
+   */
+  _assignValidators(validators) {
+    this._rawValidators = Array.isArray(validators) ? validators.slice() : validators;
+    this._composedValidatorFn = coerceToValidator(this._rawValidators);
+  }
+  /**
+   * Internal implementation of the `setAsyncValidators` method. Needs to be separated out into a
+   * different method, because it is called in the constructor and it can break cases where
+   * a control is extended.
+   */
+  _assignAsyncValidators(validators) {
+    this._rawAsyncValidators = Array.isArray(validators) ? validators.slice() : validators;
+    this._composedAsyncValidatorFn = coerceToAsyncValidator(this._rawAsyncValidators);
   }
 }
 
@@ -88704,7 +88707,7 @@ UntypedFormBuilder.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODUL
 /**
  * @publicApi
  */
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.0.0');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.0.1');
 
 /**
  * @license
@@ -88759,7 +88762,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ 4666);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ 4497);
 /**
- * @license Angular v15.0.0
+ * @license Angular v15.0.1
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -89012,7 +89015,7 @@ class CachedResourceLoader extends _angular_compiler__WEBPACK_IMPORTED_MODULE_0_
 /**
  * @publicApi
  */
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.Version('15.0.0');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.Version('15.0.1');
 
 /**
  * @license
@@ -89114,7 +89117,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common */ 4666);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2560);
 /**
- * @license Angular v15.0.0
+ * @license Angular v15.0.1
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -91449,9 +91452,9 @@ class DomSanitizerImpl extends DomSanitizer {
         if ((0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵallowSanitizationBypassAndThrow"])(value, "ResourceURL" /* BypassType.ResourceUrl */)) {
           return (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunwrapSafeValue"])(value);
         }
-        throw new Error('unsafe value used in a resource URL context (see https://g.co/ng/security#xss)');
+        throw new Error(`unsafe value used in a resource URL context (see ${_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵXSS_SECURITY_URL"]})`);
       default:
-        throw new Error(`Unexpected SecurityContext ${ctx} (see https://g.co/ng/security#xss)`);
+        throw new Error(`Unexpected SecurityContext ${ctx} (see ${_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵXSS_SECURITY_URL"]})`);
     }
   }
   bypassSecurityTrustHtml(value) {
@@ -91523,7 +91526,7 @@ DomSanitizerImpl.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_
 /**
  * @publicApi
  */
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.Version('15.0.0');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.Version('15.0.1');
 
 /**
  * @license
@@ -91662,12 +91665,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! rxjs/operators */ 9701);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! rxjs/operators */ 7760);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! rxjs/operators */ 9361);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! rxjs/operators */ 4661);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! rxjs/operators */ 4661);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! rxjs/operators */ 8331);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! rxjs/operators */ 6675);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/platform-browser */ 4497);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/platform-browser */ 4497);
 /**
- * @license Angular v15.0.0
+ * @license Angular v15.0.1
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -91867,7 +91870,7 @@ function wrapIntoObservable(value) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-const NG_DEV_MODE$9 = typeof ngDevMode === 'undefined' || ngDevMode;
+const NG_DEV_MODE$a = typeof ngDevMode === 'undefined' || ngDevMode;
 const pathCompareMap = {
   'exact': equalSegmentGroups,
   'subset': containsSegmentGroup
@@ -91971,7 +91974,7 @@ class UrlTree {
     this.root = root;
     this.queryParams = queryParams;
     this.fragment = fragment;
-    if (NG_DEV_MODE$9) {
+    if (NG_DEV_MODE$a) {
       if (root.segments.length > 0) {
         throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4015 /* RuntimeErrorCode.INVALID_ROOT_URL_SEGMENT */, 'The root `UrlSegmentGroup` should not contain `segments`. ' + 'Instead, these segments belong in the `children` so they can be associated with a named outlet.');
       }
@@ -92312,7 +92315,7 @@ class UrlParser {
   parseSegment() {
     const path = matchSegments(this.remaining);
     if (path === '' && this.peekStartsWith(';')) {
-      throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4009 /* RuntimeErrorCode.EMPTY_PATH_WITH_PARAMS */, NG_DEV_MODE$9 && `Empty path url segment cannot have parameters: '${this.remaining}'.`);
+      throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4009 /* RuntimeErrorCode.EMPTY_PATH_WITH_PARAMS */, NG_DEV_MODE$a && `Empty path url segment cannot have parameters: '${this.remaining}'.`);
     }
     this.capture(path);
     return new UrlSegment(decode(path), this.parseMatrixParams());
@@ -92380,7 +92383,7 @@ class UrlParser {
       // if is is not one of these characters, then the segment was unescaped
       // or the group was not closed
       if (next !== '/' && next !== ')' && next !== ';') {
-        throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4010 /* RuntimeErrorCode.UNPARSABLE_URL */, NG_DEV_MODE$9 && `Cannot parse url '${this.url}'`);
+        throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4010 /* RuntimeErrorCode.UNPARSABLE_URL */, NG_DEV_MODE$a && `Cannot parse url '${this.url}'`);
       }
       let outletName = undefined;
       if (path.indexOf(':') > -1) {
@@ -92409,7 +92412,7 @@ class UrlParser {
   }
   capture(str) {
     if (!this.consumeOptional(str)) {
-      throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4011 /* RuntimeErrorCode.UNEXPECTED_VALUE_IN_URL */, NG_DEV_MODE$9 && `Expected "${str}".`);
+      throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4011 /* RuntimeErrorCode.UNEXPECTED_VALUE_IN_URL */, NG_DEV_MODE$a && `Expected "${str}".`);
     }
   }
 }
@@ -92462,7 +92465,7 @@ function isUrlTree(v) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-const NG_DEV_MODE$8 = typeof ngDevMode === 'undefined' || ngDevMode;
+const NG_DEV_MODE$9 = typeof ngDevMode === 'undefined' || ngDevMode;
 /**
  * Creates a `UrlTree` relative to an `ActivatedRouteSnapshot`.
  *
@@ -92625,11 +92628,11 @@ class Navigation {
     this.numberOfDoubleDots = numberOfDoubleDots;
     this.commands = commands;
     if (isAbsolute && commands.length > 0 && isMatrixParams(commands[0])) {
-      throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4003 /* RuntimeErrorCode.ROOT_SEGMENT_MATRIX_PARAMS */, NG_DEV_MODE$8 && 'Root segment cannot have matrix parameters');
+      throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4003 /* RuntimeErrorCode.ROOT_SEGMENT_MATRIX_PARAMS */, NG_DEV_MODE$9 && 'Root segment cannot have matrix parameters');
     }
     const cmdWithOutlet = commands.find(isCommandWithOutlets);
     if (cmdWithOutlet && cmdWithOutlet !== last(commands)) {
-      throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4004 /* RuntimeErrorCode.MISPLACED_OUTLETS_COMMAND */, NG_DEV_MODE$8 && '{outlets:{}} has to be the last command');
+      throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4004 /* RuntimeErrorCode.MISPLACED_OUTLETS_COMMAND */, NG_DEV_MODE$9 && '{outlets:{}} has to be the last command');
     }
   }
   toRoot() {
@@ -92729,7 +92732,7 @@ function createPositionApplyingDoubleDots(group, index, numberOfDoubleDots) {
     dd -= ci;
     g = g.parent;
     if (!g) {
-      throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4005 /* RuntimeErrorCode.INVALID_DOUBLE_DOTS */, NG_DEV_MODE$8 && 'Invalid number of \'../\'');
+      throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4005 /* RuntimeErrorCode.INVALID_DOUBLE_DOTS */, NG_DEV_MODE$9 && 'Invalid number of \'../\'');
     }
     ci = g.segments.length;
   }
@@ -93998,7 +94001,7 @@ ChildrenOutletContexts.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_M
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-const NG_DEV_MODE$7 = typeof ngDevMode === 'undefined' || ngDevMode;
+const NG_DEV_MODE$8 = typeof ngDevMode === 'undefined' || ngDevMode;
 /**
  * @description
  *
@@ -94138,11 +94141,11 @@ class RouterOutlet {
    * @throws An error if the outlet is not activated.
    */
   get component() {
-    if (!this.activated) throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4012 /* RuntimeErrorCode.OUTLET_NOT_ACTIVATED */, NG_DEV_MODE$7 && 'Outlet is not activated');
+    if (!this.activated) throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4012 /* RuntimeErrorCode.OUTLET_NOT_ACTIVATED */, NG_DEV_MODE$8 && 'Outlet is not activated');
     return this.activated.instance;
   }
   get activatedRoute() {
-    if (!this.activated) throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4012 /* RuntimeErrorCode.OUTLET_NOT_ACTIVATED */, NG_DEV_MODE$7 && 'Outlet is not activated');
+    if (!this.activated) throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4012 /* RuntimeErrorCode.OUTLET_NOT_ACTIVATED */, NG_DEV_MODE$8 && 'Outlet is not activated');
     return this._activatedRoute;
   }
   get activatedRouteData() {
@@ -94155,7 +94158,7 @@ class RouterOutlet {
    * Called when the `RouteReuseStrategy` instructs to detach the subtree
    */
   detach() {
-    if (!this.activated) throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4012 /* RuntimeErrorCode.OUTLET_NOT_ACTIVATED */, NG_DEV_MODE$7 && 'Outlet is not activated');
+    if (!this.activated) throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4012 /* RuntimeErrorCode.OUTLET_NOT_ACTIVATED */, NG_DEV_MODE$8 && 'Outlet is not activated');
     this.location.detach();
     const cmp = this.activated;
     this.activated = null;
@@ -94183,11 +94186,11 @@ class RouterOutlet {
   }
   activateWith(activatedRoute, resolverOrInjector) {
     if (this.isActivated) {
-      throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4013 /* RuntimeErrorCode.OUTLET_ALREADY_ACTIVATED */, NG_DEV_MODE$7 && 'Cannot activate an already activated outlet');
+      throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4013 /* RuntimeErrorCode.OUTLET_ALREADY_ACTIVATED */, NG_DEV_MODE$8 && 'Cannot activate an already activated outlet');
     }
     this._activatedRoute = activatedRoute;
     const location = this.location;
-    const snapshot = activatedRoute._futureSnapshot;
+    const snapshot = activatedRoute.snapshot;
     const component = snapshot.component;
     const childContexts = this.parentContexts.getOrCreateContext(this.name).children;
     const injector = new OutletInjector(activatedRoute, childContexts, location.injector);
@@ -95209,7 +95212,7 @@ function noLeftoversInUrl(segmentGroup, segments, outlet) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-const NG_DEV_MODE$6 = typeof ngDevMode === 'undefined' || ngDevMode;
+const NG_DEV_MODE$7 = typeof ngDevMode === 'undefined' || ngDevMode;
 class NoMatch$1 {
   constructor(segmentGroup) {
     this.segmentGroup = segmentGroup || null;
@@ -95227,10 +95230,10 @@ function absoluteRedirect(newTree) {
   return (0,rxjs__WEBPACK_IMPORTED_MODULE_18__.throwError)(new AbsoluteRedirect(newTree));
 }
 function namedOutletsRedirect(redirectTo) {
-  return (0,rxjs__WEBPACK_IMPORTED_MODULE_18__.throwError)(new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4000 /* RuntimeErrorCode.NAMED_OUTLET_REDIRECT */, NG_DEV_MODE$6 && `Only absolute redirects can have named outlets. redirectTo: '${redirectTo}'`));
+  return (0,rxjs__WEBPACK_IMPORTED_MODULE_18__.throwError)(new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4000 /* RuntimeErrorCode.NAMED_OUTLET_REDIRECT */, NG_DEV_MODE$7 && `Only absolute redirects can have named outlets. redirectTo: '${redirectTo}'`));
 }
 function canLoadFails(route) {
-  return (0,rxjs__WEBPACK_IMPORTED_MODULE_18__.throwError)(navigationCancelingError(NG_DEV_MODE$6 && `Cannot load children because the guard of the route "path: '${route.path}'" returned false`, 3 /* NavigationCancellationCode.GuardRejected */));
+  return (0,rxjs__WEBPACK_IMPORTED_MODULE_18__.throwError)(navigationCancelingError(NG_DEV_MODE$7 && `Cannot load children because the guard of the route "path: '${route.path}'" returned false`, 3 /* NavigationCancellationCode.GuardRejected */));
 }
 /**
  * Returns the `UrlTree` with the redirection applied.
@@ -95289,7 +95292,7 @@ class ApplyRedirects {
     }));
   }
   noMatchError(e) {
-    return new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4002 /* RuntimeErrorCode.NO_MATCH */, NG_DEV_MODE$6 && `Cannot match any routes. URL Segment: '${e.segmentGroup}'`);
+    return new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4002 /* RuntimeErrorCode.NO_MATCH */, NG_DEV_MODE$7 && `Cannot match any routes. URL Segment: '${e.segmentGroup}'`);
   }
   createUrlTree(rootCandidate, queryParams, fragment) {
     const root = createRoot(rootCandidate);
@@ -95517,7 +95520,7 @@ class ApplyRedirects {
   }
   findPosParam(redirectTo, redirectToUrlSegment, posParams) {
     const pos = posParams[redirectToUrlSegment.path.substring(1)];
-    if (!pos) throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4001 /* RuntimeErrorCode.MISSING_REDIRECT */, NG_DEV_MODE$6 && `Cannot redirect to '${redirectTo}'. Cannot find '${redirectToUrlSegment.path}'.`);
+    if (!pos) throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4001 /* RuntimeErrorCode.MISSING_REDIRECT */, NG_DEV_MODE$7 && `Cannot redirect to '${redirectTo}'. Cannot find '${redirectToUrlSegment.path}'.`);
     return pos;
   }
   findOrReturn(redirectToUrlSegment, actualSegments) {
@@ -95554,7 +95557,7 @@ function applyRedirects(environmentInjector, configLoader, urlSerializer, config
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-const NG_DEV_MODE$5 = typeof ngDevMode === 'undefined' || !!ngDevMode;
+const NG_DEV_MODE$6 = typeof ngDevMode === 'undefined' || !!ngDevMode;
 class NoMatch {}
 function newObservableError(e) {
   // TODO(atscott): This pattern is used throughout the router code and can be `throwError` instead.
@@ -95635,7 +95638,7 @@ class Recognizer {
       // multiple activated results for the same outlet. We should merge the children of
       // these results so the final return value is only one `TreeNode` per outlet.
       const mergedChildren = mergeEmptyPathMatches(children);
-      if (NG_DEV_MODE$5) {
+      if (NG_DEV_MODE$6) {
         // This should really never happen - we are only taking the first match for each
         // outlet and merge the empty path matches.
         checkOutletNameUniqueness(mergedChildren);
@@ -95801,7 +95804,7 @@ function checkOutletNameUniqueness(nodes) {
     if (routeWithSameOutletName) {
       const p = routeWithSameOutletName.url.map(s => s.toString()).join('/');
       const c = n.value.url.map(s => s.toString()).join('/');
-      throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4006 /* RuntimeErrorCode.TWO_SEGMENTS_WITH_SAME_OUTLET */, NG_DEV_MODE$5 && `Two segments cannot have the same outlet name: '${p}' and '${c}'.`);
+      throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4006 /* RuntimeErrorCode.TWO_SEGMENTS_WITH_SAME_OUTLET */, NG_DEV_MODE$6 && `Two segments cannot have the same outlet name: '${p}' and '${c}'.`);
     }
     names[n.value.outlet] = n.value;
   });
@@ -95942,6 +95945,308 @@ function switchTap(next) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+const NG_DEV_MODE$5 = typeof ngDevMode === 'undefined' || !!ngDevMode;
+class NavigationTransitions {
+  constructor(router) {
+    this.router = router;
+    this.currentNavigation = null;
+  }
+  setupNavigations(transitions) {
+    const eventsSubject = this.router.events;
+    return transitions.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.filter)(t => t.id !== 0),
+    // Extract URL
+    (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(t => ({
+      ...t,
+      extractedUrl: this.router.urlHandlingStrategy.extract(t.rawUrl)
+    })),
+    // Using switchMap so we cancel executing navigations when a new one comes in
+    (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.switchMap)(overallTransitionState => {
+      let completed = false;
+      let errored = false;
+      return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(overallTransitionState).pipe(
+      // Store the Navigation object
+      (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)(t => {
+        this.currentNavigation = {
+          id: t.id,
+          initialUrl: t.rawUrl,
+          extractedUrl: t.extractedUrl,
+          trigger: t.source,
+          extras: t.extras,
+          previousNavigation: !this.router.lastSuccessfulNavigation ? null : {
+            ...this.router.lastSuccessfulNavigation,
+            previousNavigation: null
+          }
+        };
+      }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.switchMap)(t => {
+        const browserUrlTree = this.router.browserUrlTree.toString();
+        const urlTransition = !this.router.navigated || t.extractedUrl.toString() !== browserUrlTree ||
+        // Navigations which succeed or ones which fail and are cleaned up
+        // correctly should result in `browserUrlTree` and `currentUrlTree`
+        // matching. If this is not the case, assume something went wrong and
+        // try processing the URL again.
+        browserUrlTree !== this.router.currentUrlTree.toString();
+        const processCurrentUrl = (this.router.onSameUrlNavigation === 'reload' ? true : urlTransition) && this.router.urlHandlingStrategy.shouldProcessUrl(t.rawUrl);
+        if (processCurrentUrl) {
+          // If the source of the navigation is from a browser event, the URL is
+          // already updated. We already need to sync the internal state.
+          if (isBrowserTriggeredNavigation(t.source)) {
+            this.router.browserUrlTree = t.extractedUrl;
+          }
+          return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t).pipe(
+          // Fire NavigationStart event
+          (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.switchMap)(t => {
+            const transition = this.router.transitions.getValue();
+            eventsSubject.next(new NavigationStart(t.id, this.router.serializeUrl(t.extractedUrl), t.source, t.restoredState));
+            if (transition !== this.router.transitions.getValue()) {
+              return rxjs__WEBPACK_IMPORTED_MODULE_26__.EMPTY;
+            }
+            // This delay is required to match old behavior that forced
+            // navigation to always be async
+            return Promise.resolve(t);
+          }),
+          // ApplyRedirects
+          applyRedirects(this.router.ngModule.injector, this.router.configLoader, this.router.urlSerializer, this.router.config),
+          // Update the currentNavigation
+          // `urlAfterRedirects` is guaranteed to be set after this point
+          (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)(t => {
+            this.currentNavigation = {
+              ...this.currentNavigation,
+              finalUrl: t.urlAfterRedirects
+            };
+            overallTransitionState.urlAfterRedirects = t.urlAfterRedirects;
+          }),
+          // Recognize
+          recognize(this.router.ngModule.injector, this.router.rootComponentType, this.router.config, this.router.urlSerializer, this.router.paramsInheritanceStrategy),
+          // Update URL if in `eager` update mode
+          (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)(t => {
+            overallTransitionState.targetSnapshot = t.targetSnapshot;
+            if (this.router.urlUpdateStrategy === 'eager') {
+              if (!t.extras.skipLocationChange) {
+                const rawUrl = this.router.urlHandlingStrategy.merge(t.urlAfterRedirects, t.rawUrl);
+                this.router.setBrowserUrl(rawUrl, t);
+              }
+              this.router.browserUrlTree = t.urlAfterRedirects;
+            }
+            // Fire RoutesRecognized
+            const routesRecognized = new RoutesRecognized(t.id, this.router.serializeUrl(t.extractedUrl), this.router.serializeUrl(t.urlAfterRedirects), t.targetSnapshot);
+            eventsSubject.next(routesRecognized);
+          }));
+        } else {
+          const processPreviousUrl = urlTransition && this.router.rawUrlTree && this.router.urlHandlingStrategy.shouldProcessUrl(this.router.rawUrlTree);
+          /* When the current URL shouldn't be processed, but the previous one
+           * was, we handle this "error condition" by navigating to the
+           * previously successful URL, but leaving the URL intact.*/
+          if (processPreviousUrl) {
+            const {
+              id,
+              extractedUrl,
+              source,
+              restoredState,
+              extras
+            } = t;
+            const navStart = new NavigationStart(id, this.router.serializeUrl(extractedUrl), source, restoredState);
+            eventsSubject.next(navStart);
+            const targetSnapshot = createEmptyState(extractedUrl, this.router.rootComponentType).snapshot;
+            overallTransitionState = {
+              ...t,
+              targetSnapshot,
+              urlAfterRedirects: extractedUrl,
+              extras: {
+                ...extras,
+                skipLocationChange: false,
+                replaceUrl: false
+              }
+            };
+            return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(overallTransitionState);
+          } else {
+            /* When neither the current or previous URL can be processed, do
+             * nothing other than update router's internal reference to the
+             * current "settled" URL. This way the next navigation will be coming
+             * from the current URL in the browser.
+             */
+            this.router.rawUrlTree = t.rawUrl;
+            t.resolve(null);
+            return rxjs__WEBPACK_IMPORTED_MODULE_26__.EMPTY;
+          }
+        }
+      }),
+      // --- GUARDS ---
+      (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)(t => {
+        const guardsStart = new GuardsCheckStart(t.id, this.router.serializeUrl(t.extractedUrl), this.router.serializeUrl(t.urlAfterRedirects), t.targetSnapshot);
+        this.router.triggerEvent(guardsStart);
+      }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(t => {
+        overallTransitionState = {
+          ...t,
+          guards: getAllRouteGuards(t.targetSnapshot, t.currentSnapshot, this.router.rootContexts)
+        };
+        return overallTransitionState;
+      }), checkGuards(this.router.ngModule.injector, evt => this.router.triggerEvent(evt)), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)(t => {
+        overallTransitionState.guardsResult = t.guardsResult;
+        if (isUrlTree(t.guardsResult)) {
+          throw redirectingNavigationError(this.router.urlSerializer, t.guardsResult);
+        }
+        const guardsEnd = new GuardsCheckEnd(t.id, this.router.serializeUrl(t.extractedUrl), this.router.serializeUrl(t.urlAfterRedirects), t.targetSnapshot, !!t.guardsResult);
+        this.router.triggerEvent(guardsEnd);
+      }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.filter)(t => {
+        if (!t.guardsResult) {
+          this.router.restoreHistory(t);
+          this.router.cancelNavigationTransition(t, '', 3 /* NavigationCancellationCode.GuardRejected */);
+          return false;
+        }
+        return true;
+      }),
+      // --- RESOLVE ---
+      switchTap(t => {
+        if (t.guards.canActivateChecks.length) {
+          return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)(t => {
+            const resolveStart = new ResolveStart(t.id, this.router.serializeUrl(t.extractedUrl), this.router.serializeUrl(t.urlAfterRedirects), t.targetSnapshot);
+            this.router.triggerEvent(resolveStart);
+          }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.switchMap)(t => {
+            let dataResolved = false;
+            return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t).pipe(resolveData(this.router.paramsInheritanceStrategy, this.router.ngModule.injector), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)({
+              next: () => dataResolved = true,
+              complete: () => {
+                if (!dataResolved) {
+                  this.router.restoreHistory(t);
+                  this.router.cancelNavigationTransition(t, NG_DEV_MODE$5 ? `At least one route resolver didn't emit any value.` : '', 2 /* NavigationCancellationCode.NoDataFromResolver */);
+                }
+              }
+            }));
+          }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)(t => {
+            const resolveEnd = new ResolveEnd(t.id, this.router.serializeUrl(t.extractedUrl), this.router.serializeUrl(t.urlAfterRedirects), t.targetSnapshot);
+            this.router.triggerEvent(resolveEnd);
+          }));
+        }
+        return undefined;
+      }),
+      // --- LOAD COMPONENTS ---
+      switchTap(t => {
+        const loadComponents = route => {
+          const loaders = [];
+          if (route.routeConfig?.loadComponent && !route.routeConfig._loadedComponent) {
+            loaders.push(this.router.configLoader.loadComponent(route.routeConfig).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)(loadedComponent => {
+              route.component = loadedComponent;
+            }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(() => void 0)));
+          }
+          for (const child of route.children) {
+            loaders.push(...loadComponents(child));
+          }
+          return loaders;
+        };
+        return (0,rxjs__WEBPACK_IMPORTED_MODULE_7__.combineLatest)(loadComponents(t.targetSnapshot.root)).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_24__.defaultIfEmpty)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.take)(1));
+      }), switchTap(() => this.router.afterPreactivation()), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(t => {
+        const targetRouterState = createRouterState(this.router.routeReuseStrategy, t.targetSnapshot, t.currentRouterState);
+        overallTransitionState = {
+          ...t,
+          targetRouterState
+        };
+        return overallTransitionState;
+      }),
+      /* Once here, we are about to activate synchronously. The assumption is
+         this will succeed, and user code may read from the Router service.
+         Therefore before activation, we need to update router properties storing
+         the current URL and the RouterState, as well as updated the browser URL.
+         All this should happen *before* activating. */
+      (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)(t => {
+        this.router.currentUrlTree = t.urlAfterRedirects;
+        this.router.rawUrlTree = this.router.urlHandlingStrategy.merge(t.urlAfterRedirects, t.rawUrl);
+        this.router.routerState = t.targetRouterState;
+        if (this.router.urlUpdateStrategy === 'deferred') {
+          if (!t.extras.skipLocationChange) {
+            this.router.setBrowserUrl(this.router.rawUrlTree, t);
+          }
+          this.router.browserUrlTree = t.urlAfterRedirects;
+        }
+      }), activateRoutes(this.router.rootContexts, this.router.routeReuseStrategy, evt => this.router.triggerEvent(evt)), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)({
+        next() {
+          completed = true;
+        },
+        complete() {
+          completed = true;
+        }
+      }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_28__.finalize)(() => {
+        /* When the navigation stream finishes either through error or success,
+         * we set the `completed` or `errored` flag. However, there are some
+         * situations where we could get here without either of those being set.
+         * For instance, a redirect during NavigationStart. Therefore, this is a
+         * catch-all to make sure the NavigationCancel event is fired when a
+         * navigation gets cancelled but not caught by other means. */
+        if (!completed && !errored) {
+          const cancelationReason = NG_DEV_MODE$5 ? `Navigation ID ${overallTransitionState.id} is not equal to the current navigation id ${this.router.navigationId}` : '';
+          this.router.cancelNavigationTransition(overallTransitionState, cancelationReason, 1 /* NavigationCancellationCode.SupersededByNewNavigation */);
+        }
+        // Only clear current navigation if it is still set to the one that
+        // finalized.
+        if (this.currentNavigation?.id === overallTransitionState.id) {
+          this.currentNavigation = null;
+        }
+      }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_19__.catchError)(e => {
+        errored = true;
+        /* This error type is issued during Redirect, and is handled as a
+         * cancellation rather than an error. */
+        if (isNavigationCancelingError$1(e)) {
+          if (!isRedirectingNavigationCancelingError$1(e)) {
+            // Set property only if we're not redirecting. If we landed on a page
+            // and redirect to `/` route, the new navigation is going to see the
+            // `/` isn't a change from the default currentUrlTree and won't
+            // navigate. This is only applicable with initial navigation, so
+            // setting `navigated` only when not redirecting resolves this
+            // scenario.
+            this.router.navigated = true;
+            this.router.restoreHistory(overallTransitionState, true);
+          }
+          const navCancel = new NavigationCancel(overallTransitionState.id, this.router.serializeUrl(overallTransitionState.extractedUrl), e.message, e.cancellationCode);
+          eventsSubject.next(navCancel);
+          // When redirecting, we need to delay resolving the navigation
+          // promise and push it to the redirect navigation
+          if (!isRedirectingNavigationCancelingError$1(e)) {
+            overallTransitionState.resolve(false);
+          } else {
+            const mergedTree = this.router.urlHandlingStrategy.merge(e.url, this.router.rawUrlTree);
+            const extras = {
+              skipLocationChange: overallTransitionState.extras.skipLocationChange,
+              // The URL is already updated at this point if we have 'eager' URL
+              // updates or if the navigation was triggered by the browser (back
+              // button, URL bar, etc). We want to replace that item in history
+              // if the navigation is rejected.
+              replaceUrl: this.router.urlUpdateStrategy === 'eager' || isBrowserTriggeredNavigation(overallTransitionState.source)
+            };
+            this.router.scheduleNavigation(mergedTree, 'imperative', null, extras, {
+              resolve: overallTransitionState.resolve,
+              reject: overallTransitionState.reject,
+              promise: overallTransitionState.promise
+            });
+          }
+          /* All other errors should reset to the router's internal URL reference
+           * to the pre-error state. */
+        } else {
+          this.router.restoreHistory(overallTransitionState, true);
+          const navError = new NavigationError(overallTransitionState.id, this.router.serializeUrl(overallTransitionState.extractedUrl), e, overallTransitionState.targetSnapshot ?? undefined);
+          eventsSubject.next(navError);
+          try {
+            overallTransitionState.resolve(this.router.errorHandler(e));
+          } catch (ee) {
+            overallTransitionState.reject(ee);
+          }
+        }
+        return rxjs__WEBPACK_IMPORTED_MODULE_26__.EMPTY;
+      }));
+      // TODO(jasonaden): remove cast once g3 is on updated TypeScript
+    }));
+  }
+}
+
+function isBrowserTriggeredNavigation(source) {
+  return source !== 'imperative';
+}
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 /**
  * Provides a strategy for setting the page title after a router navigation.
  *
@@ -96026,7 +96331,7 @@ class DefaultTitleStrategy extends TitleStrategy {
   }
 }
 DefaultTitleStrategy.ɵfac = function DefaultTitleStrategy_Factory(t) {
-  return new (t || DefaultTitleStrategy)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_28__.Title));
+  return new (t || DefaultTitleStrategy)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_29__.Title));
 };
 DefaultTitleStrategy.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
   token: DefaultTitleStrategy,
@@ -96041,7 +96346,7 @@ DefaultTitleStrategy.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MOD
     }]
   }], function () {
     return [{
-      type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_28__.Title
+      type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_29__.Title
     }];
   }, null);
 })();
@@ -96061,6 +96366,25 @@ DefaultTitleStrategy.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MOD
  * @publicApi
  */
 class RouteReuseStrategy {}
+RouteReuseStrategy.ɵfac = function RouteReuseStrategy_Factory(t) {
+  return new (t || RouteReuseStrategy)();
+};
+RouteReuseStrategy.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+  token: RouteReuseStrategy,
+  factory: function () {
+    return (() => (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.inject)(DefaultRouteReuseStrategy))();
+  },
+  providedIn: 'root'
+});
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RouteReuseStrategy, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable,
+    args: [{
+      providedIn: 'root',
+      useFactory: () => (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.inject)(DefaultRouteReuseStrategy)
+    }]
+  }], null, null);
+})();
 /**
  * @description
  *
@@ -96108,6 +96432,25 @@ class BaseRouteReuseStrategy {
   }
 }
 class DefaultRouteReuseStrategy extends BaseRouteReuseStrategy {}
+DefaultRouteReuseStrategy.ɵfac = /* @__PURE__ */function () {
+  let ɵDefaultRouteReuseStrategy_BaseFactory;
+  return function DefaultRouteReuseStrategy_Factory(t) {
+    return (ɵDefaultRouteReuseStrategy_BaseFactory || (ɵDefaultRouteReuseStrategy_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](DefaultRouteReuseStrategy)))(t || DefaultRouteReuseStrategy);
+  };
+}();
+DefaultRouteReuseStrategy.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+  token: DefaultRouteReuseStrategy,
+  factory: DefaultRouteReuseStrategy.ɵfac,
+  providedIn: 'root'
+});
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](DefaultRouteReuseStrategy, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable,
+    args: [{
+      providedIn: 'root'
+    }]
+  }], null, null);
+})();
 
 /**
  * @license
@@ -96179,7 +96522,7 @@ class RouterConfigLoader {
       }
       NG_DEV_MODE$3 && assertStandalone(route.path ?? '', component);
       route._loadedComponent = component;
-    }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_29__.finalize)(() => {
+    }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_28__.finalize)(() => {
       this.componentLoaders.delete(route);
     }));
     // Use custom ConnectableObservable as share in runners pipe increasing the bundle size too much
@@ -96226,7 +96569,7 @@ class RouterConfigLoader {
         routes,
         injector
       };
-    }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_29__.finalize)(() => {
+    }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_28__.finalize)(() => {
       this.childrenLoaders.delete(route);
     }));
     // Use custom ConnectableObservable as share in runners pipe increasing the bundle size too much
@@ -96297,6 +96640,25 @@ function maybeUnwrapDefaultExport(input) {
  * @publicApi
  */
 class UrlHandlingStrategy {}
+UrlHandlingStrategy.ɵfac = function UrlHandlingStrategy_Factory(t) {
+  return new (t || UrlHandlingStrategy)();
+};
+UrlHandlingStrategy.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+  token: UrlHandlingStrategy,
+  factory: function () {
+    return (() => (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.inject)(DefaultUrlHandlingStrategy))();
+  },
+  providedIn: 'root'
+});
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](UrlHandlingStrategy, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable,
+    args: [{
+      providedIn: 'root',
+      useFactory: () => (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.inject)(DefaultUrlHandlingStrategy)
+    }]
+  }], null, null);
+})();
 /**
  * @publicApi
  */
@@ -96311,6 +96673,22 @@ class DefaultUrlHandlingStrategy {
     return newUrlPart;
   }
 }
+DefaultUrlHandlingStrategy.ɵfac = function DefaultUrlHandlingStrategy_Factory(t) {
+  return new (t || DefaultUrlHandlingStrategy)();
+};
+DefaultUrlHandlingStrategy.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+  token: DefaultUrlHandlingStrategy,
+  factory: DefaultUrlHandlingStrategy.ɵfac,
+  providedIn: 'root'
+});
+(function () {
+  (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](DefaultUrlHandlingStrategy, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable,
+    args: [{
+      providedIn: 'root'
+    }]
+  }], null, null);
+})();
 
 /**
  * @license
@@ -96378,24 +96756,7 @@ function setupRouter() {
   const opts = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.inject)(ROUTER_CONFIGURATION, {
     optional: true
   }) ?? {};
-  const defaultTitleStrategy = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.inject)(DefaultTitleStrategy);
-  const titleStrategy = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.inject)(TitleStrategy, {
-    optional: true
-  });
-  const urlHandlingStrategy = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.inject)(UrlHandlingStrategy, {
-    optional: true
-  });
-  const routeReuseStrategy = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.inject)(RouteReuseStrategy, {
-    optional: true
-  });
   const router = new Router(null, urlSerializer, contexts, location, injector, compiler, flatten(config));
-  if (urlHandlingStrategy) {
-    router.urlHandlingStrategy = urlHandlingStrategy;
-  }
-  if (routeReuseStrategy) {
-    router.routeReuseStrategy = routeReuseStrategy;
-  }
-  router.titleStrategy = titleStrategy ?? defaultTitleStrategy;
   assignExtraOptionsToRouter(opts, router);
   return router;
 }
@@ -96416,15 +96777,20 @@ class Router {
    * Creates the router service.
    */
   // TODO: vsavkin make internal after the final is out.
-  constructor(rootComponentType, urlSerializer, rootContexts, location, injector, compiler, config) {
+  constructor( /** @internal */
+  rootComponentType, /** @internal */
+  urlSerializer, /** @internal */
+  rootContexts, /** @internal */
+  location, injector, compiler, config) {
     this.rootComponentType = rootComponentType;
     this.urlSerializer = urlSerializer;
     this.rootContexts = rootContexts;
     this.location = location;
     this.config = config;
+    /** @internal */
     this.lastSuccessfulNavigation = null;
-    this.currentNavigation = null;
     this.disposed = false;
+    /** @internal */
     this.navigationId = 0;
     /**
      * The id of the currently active page in the router.
@@ -96468,11 +96834,15 @@ class Router {
      * A strategy for extracting and merging URLs.
      * Used for AngularJS to Angular migrations.
      */
-    this.urlHandlingStrategy = new DefaultUrlHandlingStrategy();
+    this.urlHandlingStrategy = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.inject)(UrlHandlingStrategy);
     /**
      * A strategy for re-using routes.
      */
-    this.routeReuseStrategy = new DefaultRouteReuseStrategy();
+    this.routeReuseStrategy = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.inject)(RouteReuseStrategy);
+    /**
+     * A strategy for setting the title based on the `routerState`.
+     */
+    this.titleStrategy = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.inject)(TitleStrategy);
     /**
      * How to handle a navigation request to the current URL. One of:
      *
@@ -96528,6 +96898,7 @@ class Router {
      *
      */
     this.canceledNavigationResolution = 'replace';
+    this.navigationTransitions = new NavigationTransitions(this);
     const onLoadStart = r => this.triggerEvent(new RouteConfigLoadStart(r));
     const onLoadEnd = r => this.triggerEvent(new RouteConfigLoadEnd(r));
     this.configLoader = injector.get(RouterConfigLoader);
@@ -96546,7 +96917,6 @@ class Router {
       id: 0,
       targetPageId: 0,
       currentUrlTree: this.currentUrlTree,
-      currentRawUrl: this.currentUrlTree,
       extractedUrl: this.urlHandlingStrategy.extract(this.currentUrlTree),
       urlAfterRedirects: this.urlHandlingStrategy.extract(this.currentUrlTree),
       rawUrl: this.currentUrlTree,
@@ -96566,7 +96936,7 @@ class Router {
       },
       guardsResult: null
     });
-    this.navigations = this.setupNavigations(this.transitions);
+    this.navigations = this.navigationTransitions.setupNavigations(this.transitions);
     this.processNavigations();
   }
   /**
@@ -96576,289 +96946,6 @@ class Router {
    */
   get browserPageId() {
     return this.location.getState()?.ɵrouterPageId;
-  }
-  setupNavigations(transitions) {
-    const eventsSubject = this.events;
-    return transitions.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.filter)(t => t.id !== 0),
-    // Extract URL
-    (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(t => ({
-      ...t,
-      extractedUrl: this.urlHandlingStrategy.extract(t.rawUrl)
-    })),
-    // Using switchMap so we cancel executing navigations when a new one comes in
-    (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.switchMap)(overallTransitionState => {
-      let completed = false;
-      let errored = false;
-      return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(overallTransitionState).pipe(
-      // Store the Navigation object
-      (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)(t => {
-        this.currentNavigation = {
-          id: t.id,
-          initialUrl: t.rawUrl,
-          extractedUrl: t.extractedUrl,
-          trigger: t.source,
-          extras: t.extras,
-          previousNavigation: this.lastSuccessfulNavigation ? {
-            ...this.lastSuccessfulNavigation,
-            previousNavigation: null
-          } : null
-        };
-      }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.switchMap)(t => {
-        const browserUrlTree = this.browserUrlTree.toString();
-        const urlTransition = !this.navigated || t.extractedUrl.toString() !== browserUrlTree ||
-        // Navigations which succeed or ones which fail and are cleaned up
-        // correctly should result in `browserUrlTree` and `currentUrlTree`
-        // matching. If this is not the case, assume something went wrong and
-        // try processing the URL again.
-        browserUrlTree !== this.currentUrlTree.toString();
-        const processCurrentUrl = (this.onSameUrlNavigation === 'reload' ? true : urlTransition) && this.urlHandlingStrategy.shouldProcessUrl(t.rawUrl);
-        if (processCurrentUrl) {
-          // If the source of the navigation is from a browser event, the URL is
-          // already updated. We already need to sync the internal state.
-          if (isBrowserTriggeredNavigation(t.source)) {
-            this.browserUrlTree = t.extractedUrl;
-          }
-          return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t).pipe(
-          // Fire NavigationStart event
-          (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.switchMap)(t => {
-            const transition = this.transitions.getValue();
-            eventsSubject.next(new NavigationStart(t.id, this.serializeUrl(t.extractedUrl), t.source, t.restoredState));
-            if (transition !== this.transitions.getValue()) {
-              return rxjs__WEBPACK_IMPORTED_MODULE_26__.EMPTY;
-            }
-            // This delay is required to match old behavior that forced
-            // navigation to always be async
-            return Promise.resolve(t);
-          }),
-          // ApplyRedirects
-          applyRedirects(this.ngModule.injector, this.configLoader, this.urlSerializer, this.config),
-          // Update the currentNavigation
-          // `urlAfterRedirects` is guaranteed to be set after this point
-          (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)(t => {
-            this.currentNavigation = {
-              ...this.currentNavigation,
-              finalUrl: t.urlAfterRedirects
-            };
-            overallTransitionState.urlAfterRedirects = t.urlAfterRedirects;
-          }),
-          // Recognize
-          recognize(this.ngModule.injector, this.rootComponentType, this.config, this.urlSerializer, this.paramsInheritanceStrategy),
-          // Update URL if in `eager` update mode
-          (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)(t => {
-            overallTransitionState.targetSnapshot = t.targetSnapshot;
-            if (this.urlUpdateStrategy === 'eager') {
-              if (!t.extras.skipLocationChange) {
-                const rawUrl = this.urlHandlingStrategy.merge(t.urlAfterRedirects, t.rawUrl);
-                this.setBrowserUrl(rawUrl, t);
-              }
-              this.browserUrlTree = t.urlAfterRedirects;
-            }
-            // Fire RoutesRecognized
-            const routesRecognized = new RoutesRecognized(t.id, this.serializeUrl(t.extractedUrl), this.serializeUrl(t.urlAfterRedirects), t.targetSnapshot);
-            eventsSubject.next(routesRecognized);
-          }));
-        } else {
-          const processPreviousUrl = urlTransition && this.rawUrlTree && this.urlHandlingStrategy.shouldProcessUrl(this.rawUrlTree);
-          /* When the current URL shouldn't be processed, but the previous one
-           * was, we handle this "error condition" by navigating to the
-           * previously successful URL, but leaving the URL intact.*/
-          if (processPreviousUrl) {
-            const {
-              id,
-              extractedUrl,
-              source,
-              restoredState,
-              extras
-            } = t;
-            const navStart = new NavigationStart(id, this.serializeUrl(extractedUrl), source, restoredState);
-            eventsSubject.next(navStart);
-            const targetSnapshot = createEmptyState(extractedUrl, this.rootComponentType).snapshot;
-            overallTransitionState = {
-              ...t,
-              targetSnapshot,
-              urlAfterRedirects: extractedUrl,
-              extras: {
-                ...extras,
-                skipLocationChange: false,
-                replaceUrl: false
-              }
-            };
-            return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(overallTransitionState);
-          } else {
-            /* When neither the current or previous URL can be processed, do
-             * nothing other than update router's internal reference to the
-             * current "settled" URL. This way the next navigation will be coming
-             * from the current URL in the browser.
-             */
-            this.rawUrlTree = t.rawUrl;
-            t.resolve(null);
-            return rxjs__WEBPACK_IMPORTED_MODULE_26__.EMPTY;
-          }
-        }
-      }),
-      // --- GUARDS ---
-      (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)(t => {
-        const guardsStart = new GuardsCheckStart(t.id, this.serializeUrl(t.extractedUrl), this.serializeUrl(t.urlAfterRedirects), t.targetSnapshot);
-        this.triggerEvent(guardsStart);
-      }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(t => {
-        overallTransitionState = {
-          ...t,
-          guards: getAllRouteGuards(t.targetSnapshot, t.currentSnapshot, this.rootContexts)
-        };
-        return overallTransitionState;
-      }), checkGuards(this.ngModule.injector, evt => this.triggerEvent(evt)), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)(t => {
-        overallTransitionState.guardsResult = t.guardsResult;
-        if (isUrlTree(t.guardsResult)) {
-          throw redirectingNavigationError(this.urlSerializer, t.guardsResult);
-        }
-        const guardsEnd = new GuardsCheckEnd(t.id, this.serializeUrl(t.extractedUrl), this.serializeUrl(t.urlAfterRedirects), t.targetSnapshot, !!t.guardsResult);
-        this.triggerEvent(guardsEnd);
-      }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.filter)(t => {
-        if (!t.guardsResult) {
-          this.restoreHistory(t);
-          this.cancelNavigationTransition(t, '', 3 /* NavigationCancellationCode.GuardRejected */);
-          return false;
-        }
-        return true;
-      }),
-      // --- RESOLVE ---
-      switchTap(t => {
-        if (t.guards.canActivateChecks.length) {
-          return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)(t => {
-            const resolveStart = new ResolveStart(t.id, this.serializeUrl(t.extractedUrl), this.serializeUrl(t.urlAfterRedirects), t.targetSnapshot);
-            this.triggerEvent(resolveStart);
-          }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.switchMap)(t => {
-            let dataResolved = false;
-            return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(t).pipe(resolveData(this.paramsInheritanceStrategy, this.ngModule.injector), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)({
-              next: () => dataResolved = true,
-              complete: () => {
-                if (!dataResolved) {
-                  this.restoreHistory(t);
-                  this.cancelNavigationTransition(t, NG_DEV_MODE$2 ? `At least one route resolver didn't emit any value.` : '', 2 /* NavigationCancellationCode.NoDataFromResolver */);
-                }
-              }
-            }));
-          }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)(t => {
-            const resolveEnd = new ResolveEnd(t.id, this.serializeUrl(t.extractedUrl), this.serializeUrl(t.urlAfterRedirects), t.targetSnapshot);
-            this.triggerEvent(resolveEnd);
-          }));
-        }
-        return undefined;
-      }),
-      // --- LOAD COMPONENTS ---
-      switchTap(t => {
-        const loadComponents = route => {
-          const loaders = [];
-          if (route.routeConfig?.loadComponent && !route.routeConfig._loadedComponent) {
-            loaders.push(this.configLoader.loadComponent(route.routeConfig).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)(loadedComponent => {
-              route.component = loadedComponent;
-            }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(() => void 0)));
-          }
-          for (const child of route.children) {
-            loaders.push(...loadComponents(child));
-          }
-          return loaders;
-        };
-        return (0,rxjs__WEBPACK_IMPORTED_MODULE_7__.combineLatest)(loadComponents(t.targetSnapshot.root)).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_24__.defaultIfEmpty)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.take)(1));
-      }), switchTap(() => this.afterPreactivation()), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(t => {
-        const targetRouterState = createRouterState(this.routeReuseStrategy, t.targetSnapshot, t.currentRouterState);
-        overallTransitionState = {
-          ...t,
-          targetRouterState
-        };
-        return overallTransitionState;
-      }),
-      /* Once here, we are about to activate synchronously. The assumption is
-         this will succeed, and user code may read from the Router service.
-         Therefore before activation, we need to update router properties storing
-         the current URL and the RouterState, as well as updated the browser URL.
-         All this should happen *before* activating. */
-      (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)(t => {
-        this.currentUrlTree = t.urlAfterRedirects;
-        this.rawUrlTree = this.urlHandlingStrategy.merge(t.urlAfterRedirects, t.rawUrl);
-        this.routerState = t.targetRouterState;
-        if (this.urlUpdateStrategy === 'deferred') {
-          if (!t.extras.skipLocationChange) {
-            this.setBrowserUrl(this.rawUrlTree, t);
-          }
-          this.browserUrlTree = t.urlAfterRedirects;
-        }
-      }), activateRoutes(this.rootContexts, this.routeReuseStrategy, evt => this.triggerEvent(evt)), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_17__.tap)({
-        next() {
-          completed = true;
-        },
-        complete() {
-          completed = true;
-        }
-      }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_29__.finalize)(() => {
-        /* When the navigation stream finishes either through error or success,
-         * we set the `completed` or `errored` flag. However, there are some
-         * situations where we could get here without either of those being set.
-         * For instance, a redirect during NavigationStart. Therefore, this is a
-         * catch-all to make sure the NavigationCancel event is fired when a
-         * navigation gets cancelled but not caught by other means. */
-        if (!completed && !errored) {
-          const cancelationReason = NG_DEV_MODE$2 ? `Navigation ID ${overallTransitionState.id} is not equal to the current navigation id ${this.navigationId}` : '';
-          this.cancelNavigationTransition(overallTransitionState, cancelationReason, 1 /* NavigationCancellationCode.SupersededByNewNavigation */);
-        }
-        // Only clear current navigation if it is still set to the one that
-        // finalized.
-        if (this.currentNavigation?.id === overallTransitionState.id) {
-          this.currentNavigation = null;
-        }
-      }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_19__.catchError)(e => {
-        errored = true;
-        /* This error type is issued during Redirect, and is handled as a
-         * cancellation rather than an error. */
-        if (isNavigationCancelingError$1(e)) {
-          if (!isRedirectingNavigationCancelingError$1(e)) {
-            // Set property only if we're not redirecting. If we landed on a page
-            // and redirect to `/` route, the new navigation is going to see the
-            // `/` isn't a change from the default currentUrlTree and won't
-            // navigate. This is only applicable with initial navigation, so
-            // setting `navigated` only when not redirecting resolves this
-            // scenario.
-            this.navigated = true;
-            this.restoreHistory(overallTransitionState, true);
-          }
-          const navCancel = new NavigationCancel(overallTransitionState.id, this.serializeUrl(overallTransitionState.extractedUrl), e.message, e.cancellationCode);
-          eventsSubject.next(navCancel);
-          // When redirecting, we need to delay resolving the navigation
-          // promise and push it to the redirect navigation
-          if (!isRedirectingNavigationCancelingError$1(e)) {
-            overallTransitionState.resolve(false);
-          } else {
-            const mergedTree = this.urlHandlingStrategy.merge(e.url, this.rawUrlTree);
-            const extras = {
-              skipLocationChange: overallTransitionState.extras.skipLocationChange,
-              // The URL is already updated at this point if we have 'eager' URL
-              // updates or if the navigation was triggered by the browser (back
-              // button, URL bar, etc). We want to replace that item in history
-              // if the navigation is rejected.
-              replaceUrl: this.urlUpdateStrategy === 'eager' || isBrowserTriggeredNavigation(overallTransitionState.source)
-            };
-            this.scheduleNavigation(mergedTree, 'imperative', null, extras, {
-              resolve: overallTransitionState.resolve,
-              reject: overallTransitionState.reject,
-              promise: overallTransitionState.promise
-            });
-          }
-          /* All other errors should reset to the router's internal URL reference
-           * to the pre-error state. */
-        } else {
-          this.restoreHistory(overallTransitionState, true);
-          const navError = new NavigationError(overallTransitionState.id, this.serializeUrl(overallTransitionState.extractedUrl), e, overallTransitionState.targetSnapshot ?? undefined);
-          eventsSubject.next(navError);
-          try {
-            overallTransitionState.resolve(this.errorHandler(e));
-          } catch (ee) {
-            overallTransitionState.reject(ee);
-          }
-        }
-        return rxjs__WEBPACK_IMPORTED_MODULE_26__.EMPTY;
-      }));
-      // TODO(jasonaden): remove cast once g3 is on updated TypeScript
-    }));
   }
   /**
    * @internal
@@ -96906,12 +96993,19 @@ class Router {
             const extras = {
               replaceUrl: true
             };
-            // Navigations coming from Angular router have a navigationId state
-            // property. When this exists, restore the state.
-            const state = event.state?.navigationId ? event.state : null;
-            if (state) {
+            // TODO: restoredState should always include the entire state, regardless
+            // of navigationId. This requires a breaking change to update the type on
+            // NavigationStart’s restoredState, which currently requires navigationId
+            // to always be present. The Router used to only restore history state if
+            // a navigationId was present.
+            // The stored navigationId is used by the RouterScroller to retrieve the scroll
+            // position for the page.
+            const restoredState = event.state?.navigationId ? event.state : null;
+            // Separate to NavigationStart.restoredState, we must also restore the state to
+            // history.state and generate a new navigationId, since it will be overwritten
+            if (event.state) {
               const stateCopy = {
-                ...state
+                ...event.state
               };
               delete stateCopy.navigationId;
               delete stateCopy.ɵrouterPageId;
@@ -96920,7 +97014,7 @@ class Router {
               }
             }
             const urlTree = this.parseUrl(event['url']);
-            this.scheduleNavigation(urlTree, source, state, extras);
+            this.scheduleNavigation(urlTree, source, restoredState, extras);
           }, 0);
         }
       });
@@ -96935,7 +97029,7 @@ class Router {
    * and `null` when idle.
    */
   getCurrentNavigation() {
-    return this.currentNavigation;
+    return this.navigationTransitions.currentNavigation;
   }
   /** @internal */
   triggerEvent(event) {
@@ -97171,13 +97265,14 @@ class Router {
       this.lastSuccessfulId = t.id;
       this.currentPageId = t.targetPageId;
       this.events.next(new NavigationEnd(t.id, this.serializeUrl(t.extractedUrl), this.serializeUrl(this.currentUrlTree)));
-      this.lastSuccessfulNavigation = this.currentNavigation;
+      this.lastSuccessfulNavigation = this.getCurrentNavigation();
       this.titleStrategy?.updateTitle(this.routerState.snapshot);
       t.resolve(true);
     }, e => {
       this.console.warn(`Unhandled Navigation Error: ${e}`);
     });
   }
+  /** @internal */
   scheduleNavigation(rawUrl, source, restoredState, extras, priorPromise) {
     if (this.disposed) {
       return Promise.resolve(false);
@@ -97226,7 +97321,6 @@ class Router {
       source,
       restoredState,
       currentUrlTree: this.currentUrlTree,
-      currentRawUrl: this.rawUrlTree,
       rawUrl,
       extras,
       resolve,
@@ -97241,13 +97335,14 @@ class Router {
       return Promise.reject(e);
     });
   }
-  setBrowserUrl(url, t) {
+  /** @internal */
+  setBrowserUrl(url, transition) {
     const path = this.urlSerializer.serialize(url);
     const state = {
-      ...t.extras.state,
-      ...this.generateNgRouterState(t.id, t.targetPageId)
+      ...transition.extras.state,
+      ...this.generateNgRouterState(transition.id, transition.targetPageId)
     };
-    if (this.location.isCurrentPathEqualTo(path) || !!t.extras.replaceUrl) {
+    if (this.location.isCurrentPathEqualTo(path) || !!transition.extras.replaceUrl) {
       this.location.replaceState(path, '', state);
     } else {
       this.location.go(path, '', state);
@@ -97256,26 +97351,27 @@ class Router {
   /**
    * Performs the necessary rollback action to restore the browser URL to the
    * state before the transition.
+   * @internal
    */
-  restoreHistory(t, restoringFromCaughtError = false) {
+  restoreHistory(transition, restoringFromCaughtError = false) {
     if (this.canceledNavigationResolution === 'computed') {
-      const targetPagePosition = this.currentPageId - t.targetPageId;
+      const targetPagePosition = this.currentPageId - transition.targetPageId;
       // The navigator change the location before triggered the browser event,
       // so we need to go back to the current url if the navigation is canceled.
       // Also, when navigation gets cancelled while using url update strategy eager, then we need to
       // go back. Because, when `urlUpdateStrategy` is `eager`; `setBrowserUrl` method is called
       // before any verification.
-      const browserUrlUpdateOccurred = t.source === 'popstate' || this.urlUpdateStrategy === 'eager' || this.currentUrlTree === this.currentNavigation?.finalUrl;
+      const browserUrlUpdateOccurred = transition.source === 'popstate' || this.urlUpdateStrategy === 'eager' || this.currentUrlTree === this.getCurrentNavigation()?.finalUrl;
       if (browserUrlUpdateOccurred && targetPagePosition !== 0) {
         this.location.historyGo(targetPagePosition);
-      } else if (this.currentUrlTree === this.currentNavigation?.finalUrl && targetPagePosition === 0) {
+      } else if (this.currentUrlTree === this.getCurrentNavigation()?.finalUrl && targetPagePosition === 0) {
         // We got to the activation stage (where currentUrlTree is set to the navigation's
         // finalUrl), but we weren't moving anywhere in history (skipLocationChange or replaceUrl).
         // We still need to reset the router state back to what it was when the navigation started.
-        this.resetState(t);
+        this.resetState(transition);
         // TODO(atscott): resetting the `browserUrlTree` should really be done in `resetState`.
         // Investigate if this can be done by running TGP.
-        this.browserUrlTree = t.currentUrlTree;
+        this.browserUrlTree = transition.currentUrlTree;
         this.resetUrlToCurrentUrlTree();
       } else {
         // The browser URL and router state was not updated before the navigation cancelled so
@@ -97287,7 +97383,7 @@ class Router {
       // reject. For 'eager' navigations, it seems like we also really should reset the state
       // because the navigation was cancelled. Investigate if this can be done by running TGP.
       if (restoringFromCaughtError) {
-        this.resetState(t);
+        this.resetState(transition);
       }
       this.resetUrlToCurrentUrlTree();
     }
@@ -97305,10 +97401,11 @@ class Router {
   resetUrlToCurrentUrlTree() {
     this.location.replaceState(this.urlSerializer.serialize(this.rawUrlTree), '', this.generateNgRouterState(this.lastSuccessfulId, this.currentPageId));
   }
-  cancelNavigationTransition(t, reason, code) {
-    const navCancel = new NavigationCancel(t.id, this.serializeUrl(t.extractedUrl), reason, code);
+  /** @internal */
+  cancelNavigationTransition(transition, reason, code) {
+    const navCancel = new NavigationCancel(transition.id, this.serializeUrl(transition.extractedUrl), reason, code);
     this.triggerEvent(navCancel);
-    t.resolve(false);
+    transition.resolve(false);
   }
   generateNgRouterState(navigationId, routerPageId) {
     if (this.canceledNavigationResolution === 'computed') {
@@ -97364,9 +97461,6 @@ function validateCommands(commands) {
       throw new _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵRuntimeError"](4008 /* RuntimeErrorCode.NULLISH_COMMAND */, NG_DEV_MODE$2 && `The requested path contains ${cmd} segment at index ${i}`);
     }
   }
-}
-function isBrowserTriggeredNavigation(source) {
-  return source !== 'imperative';
 }
 
 /**
@@ -98475,8 +98569,10 @@ function getBootstrapListener() {
     injector.get(ROUTER_PRELOADER, null, _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectFlags.Optional)?.setUpPreloading();
     injector.get(ROUTER_SCROLLER, null, _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectFlags.Optional)?.init();
     router.resetRootComponentType(ref.componentTypes[0]);
-    bootstrapDone.next();
-    bootstrapDone.complete();
+    if (!bootstrapDone.closed) {
+      bootstrapDone.next();
+      bootstrapDone.unsubscribe();
+    }
   };
 }
 /**
@@ -98528,7 +98624,6 @@ function withEnabledBlockingInitialNavigation() {
     deps: [_angular_core__WEBPACK_IMPORTED_MODULE_0__.Injector],
     useFactory: injector => {
       const locationInitialized = injector.get(_angular_common__WEBPACK_IMPORTED_MODULE_33__.LOCATION_INITIALIZED, Promise.resolve());
-      let initNavigation = false;
       /**
        * Performs the given action once the router finishes its next/current navigation.
        *
@@ -98557,20 +98652,13 @@ function withEnabledBlockingInitialNavigation() {
               // Unblock APP_INITIALIZER in case the initial navigation was canceled or errored
               // without a redirect.
               resolve(true);
-              initNavigation = true;
             });
             router.afterPreactivation = () => {
               // Unblock APP_INITIALIZER once we get to `afterPreactivation`. At this point, we
               // assume activation will complete successfully (even though this is not
               // guaranteed).
               resolve(true);
-              // only the initial navigation should be delayed until bootstrapping is done.
-              if (!initNavigation) {
-                return bootstrapDone.closed ? (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(void 0) : bootstrapDone;
-                // subsequent navigations should not be delayed
-              } else {
-                return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(void 0);
-              }
+              return bootstrapDone.closed ? (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(void 0) : bootstrapDone;
             };
             router.initialNavigation();
           });
@@ -98979,7 +99067,7 @@ function provideRouterInitializer() {
 /**
  * @publicApi
  */
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.0.0');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.0.1');
 
 /**
  * @license
