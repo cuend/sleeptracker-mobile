@@ -87,8 +87,8 @@ export class LogSleepPage implements OnInit {
   
   simpleNotif () {
     this.localNotifications.schedule({
-      text: 'Delayed ILocalNotification',
-      trigger: {at: new Date(new Date().getTime() + 6000)},
+      text: 'Remember to track how sleepy you feel Today! 😴',
+      trigger: {at: new Date(new Date().getTime() + 60000)}, // notif to send after one minute (For Video)
       led: 'FF0000',
       sound: null
     });
