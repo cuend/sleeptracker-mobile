@@ -1,3 +1,70 @@
+# SleepTracker Mobile App
+
+The SleepTracker Mobile App is a user-friendly mobile application developed using Ionic and Chart.js, designed to track and visualize sleep-related data. The app incorporates intuitive features such as interactive line graphs for data visualization and native device notifications, adhering to best practices in mobile design principles.
+
+## Features:
+
+- **Logging Overnight Sleep:**
+  - Users can log their overnight sleep by either clicking the "Start Sleep" button on the Log Sleep tab, leaving it until they wake up, or by logging a previous night's sleep with specific start and end times.
+  - **Choice Rationale:** The app provides two options for logging sleep, allowing users the flexibility to manually log sleep or use the app to time their sleep duration.
+
+- **Logging Sleepiness During the Day:**
+  - Users can log sleepiness during the day by navigating to the Track Sleepiness tab and using a slider to rate how sleepy they feel on the Stanford Sleepiness Scale (1 to 7).
+  - An optional note section is available, limited to 50 characters.
+  - **Choice Rationale:** The slider simplifies the process of rating sleepiness, making it easy for users to log their feelings. The note section provides an option for users to add context to their rating.
+
+- **Viewing Logged Data:**
+  - The View Data tab displays two line graphs showing the last 5 data logs for overnight sleep and sleepiness ratings.
+  - Pulling down to reload the tab updates the graphs with new data.
+  - **Choice Rationale:** The decision to show only the last 5 data points ensures that the graphs remain uncluttered while still providing enough information to identify trends in the logged data.
+
+- **Native Device Resource (Notifications):**
+  - The app utilizes native device resources to send notifications to users, reminding them to log sleepiness after initiating the "Start Sleep" button on the Log Sleep tab.
+  - Notifications are sent one minute after clicking the "Start Sleep" button to reduce waiting time.
+  - **Choice Rationale:** Leveraging native device notifications enhances the user experience by providing timely reminders for sleep logging.
+
+- **Principles of Good Mobile Design:**
+  - **Useful Initial View:** The app opens to the Log Sleep page, the primary feature of the app, allowing users to start/end sleep logs or log them manually.
+  - **Error Prevention:** Implemented a slider in the sleepiness log page to prevent values out of range and limited text to 50 characters to prevent excessively large logs. A calendar component slider prevents incorrect dates from being logged.
+  - **Follow Platform Conventions (iOS):** The app's design is modeled after other iOS apps like Spotify and SleepScore, ensuring button placement, UI coloring, and text size/placement align with iOS conventions for a familiar user experience.
+
+## How to Use:
+
+1. **Clone the Repository:**
+    ```bash
+    git clone https://github.com/your-username/SleepTracker.git
+    ```
+
+2. **Install Dependencies:**
+    ```bash
+    cd SleepTracker
+    npm install
+    ```
+
+3. **Run the App:**
+    ```bash
+    ionic serve
+    ```
+
+4. **Explore Features:**
+    - Log overnight sleep or sleepiness during the day.
+    - View logged data on the View Data tab.
+    - Experience native device notifications for timely reminders.
+
+## Contribute:
+
+Feel free to contribute to the project by submitting bug reports, feature requests, or pull requests. Your input is valuable in enhancing the SleepTracker Mobile App.
+
+## License:
+
+This project is licensed under the [MIT License](LICENSE), making it open for collaboration and use in various applications.
+
+---
+
+The SleepTracker Mobile App showcases my expertise in mobile app development, combining a thoughtful user interface with efficient data logging and visualization features. This project underscores my ability to design and implement user-centric applications, utilizing the principles of good mobile design and incorporating native device resources for a seamless user experience.
+
+---
+
 --Readme document for _author(s)_, _email(s)_, _UCI id(s)_--
 Anthony Martinez, anthomm5@uci.edu, 58472467
 David Cuen, cuend@uci.edu, 61157101
